@@ -1,46 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Demonik Coop-20 MOTD</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background: #000000;
-        color: #ffffff;
-        font-family: sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        flex-direction: column;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-      .container {
-        max-width: 1200px;
-        width: 100%;
-        text-align: center;
-      }
-      a {
-        text-decoration: none;
-      }
+        :root {
+            --bg-color: #0a0a0a;
+            --accent-color: #e50914;
+            --text-color: #f5f5f5;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            overflow: hidden; /* Prevent scrollbars in MOTD window */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #333;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        a:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+        }
+
+        .join-btn {
+            margin-top: 1rem;
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <a
-        href="https://discord.gg/wGU8ndUCh7"
-        target="_blank"
-        title="Join our Discord"
-      >
-        <img src="motd.jpg" alt="Demonik L4D2 Server MOTD" />
-      </a>
+        <a href="https://discord.gg/wGU8ndUCh7" target="_blank" title="Join our Discord">
+            <img src="motd.jpg" alt="Demonik L4D2 Server MOTD">
+        </a>
+        <br>
+        <a href="https://discord.gg/wGU8ndUCh7" target="_blank" class="join-btn">Join Discord</a>
     </div>
-  </body>
+</body>
 </html>
