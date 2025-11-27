@@ -17,8 +17,8 @@ Demonik Coop‑20 is a modern **Left 4 Dead 2** co‑op server focused on fun, c
 ## Quick Start
 
 1. Click the Discord badge above to join our community.
-2. Look for the "#server‑info" channel for the latest IP/port and connection instructions.
-3. Follow the guidelines and enjoy the game!
+2. Look for the "`#server‑info`" channel for the latest IP/port and connection instructions.
+3. Follow the `#rules` and enjoy the game!
 
 ---
 
