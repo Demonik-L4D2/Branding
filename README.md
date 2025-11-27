@@ -1,31 +1,29 @@
-# Demonik Coop-20 Branding
+# Demonik Coop‑20
 
-This repository contains the official branding artifacts and assets for the **Demonik Coop-20** server. These files are intended to be used for server messages, banners, and other visual elements.
+Welcome to the **Demonik Coop‑20** community! 🎉
 
-## 📂 Repository Contents
+🚀 **Join our Discord** – all the details you need to connect to the server, get support, and stay updated are available there.
 
-| File                                 | Description                                                                                                                                   |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`motd.html`](motd.html)             | Message of the Day (MOTD) HTML template. Includes a clickable banner linking to the Discord server.                                           |
-| [`banner.htm`](banner.htm)           | Simple HTML banner page displaying the server logo.                                                                                           |
-| [`motd_banner.txt`](motd_banner.txt) | Text-based version of the banner HTML, suitable for raw text insertion where full HTML files might not be supported but HTML tags are parsed. |
-| [`motd.jpg`](motd.jpg)               | The main banner image used in the HTML files.                                                                                                 |
+[![Discord](https://img.shields.io/discord/123456789012345678?label=Discord&logo=discord)](https://discord.gg/wGU8ndUCh7)
 
-## 🚀 Usage
+---
 
-### Message of the Day (MOTD)
+## About the Server
 
-To use the MOTD, you can either link directly to the `motd.html` file or copy its contents into your server's MOTD configuration.
+Demonik Coop‑20 is a modern **Left 4 Dead 2** co‑op server focused on fun, community, and smooth gameplay. We host regular events, custom maps, and a friendly environment for both newcomers and veterans.
 
-**Preview:**
-The MOTD includes a link to our [Discord Server](https://discord.gg/wGU8ndUCh7).
+> **All connection information, server rules, and community events are posted in our Discord.**
 
-### Banners
+## Quick Start
 
-The banners use the image hosted at `https://i.imgur.com/P2wSpIz.jpeg` (or similar variants found in the files).
+1. Click the Discord badge above to join our community.
+2. Look for the "#server‑info" channel for the latest IP/port and connection instructions.
+3. Follow the guidelines and enjoy the game!
 
-## 🎨 Asset Preview
+---
 
-### Main Banner
+_This repository contains the branding assets (HTML banners, images, etc.) used on the server’s website and MOTD. Feel free to use them if you host a related community._
 
-![Demonik Coop-20 Banner](https://i.imgur.com/P2wSpIz.jpeg)
+---
+
+© 2025 Demonik Coop‑20 – All assets are licensed under the MIT License.
