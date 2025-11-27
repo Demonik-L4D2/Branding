@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonik L4D2 Server</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        header {
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #ff0000; /* Demonik red */
+            text-shadow: 2px 2px 4px #333;
+            margin-bottom: 0.5rem;
+        }
+        nav {
+            margin-top: 2rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            background: #ff0000;
+            border-color: #ff0000;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+        }
+        .hero-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+        footer {
+            padding: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DEMONIK L4D2</h1>
+        <p>Left 4 Dead 2 Coop-20 Server</p>
+        <nav>
+            <a href="motd.html">MOTD</a>
+            <a href="files/">Hosted Files</a>
+            <a href="https://discord.gg/wGU8ndUCh7" target="_blank">Discord</a>
+        </nav>
+    </header>
+
+    <main>
+        <img src="motd.jpg" alt="Demonik Server Banner" class="hero-image">
+    </main>
+
+    <footer>
+        &copy; 2024 Demonik L4D2 Server
+    </footer>
+</body>
+</html>
