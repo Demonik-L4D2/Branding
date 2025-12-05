@@ -4,7 +4,7 @@ Welcome to the **Demonik Coop‑20** community! 🎉
 
 🚀 **Join our Discord** – all the details you need to connect to the server, get support, and stay updated are available there.
 
-[![Discord](https://img.shields.io/discord/123456789012345678?label=Discord&logo=discord)](https://discord.gg/wGU8ndUCh7)
+[![Discord](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaY8tSQDP8uH31XlTYDlIpHkB0Yri8IZisaQ&s)](https://discord.gg/wGU8ndUCh7)
 
 ---
 
