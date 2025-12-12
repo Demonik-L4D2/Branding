@@ -58,11 +58,15 @@
             }
 
             .logo {
-              font-size: 1.5rem;
-              font-weight: 700;
-              color: var(--accent-color);
-              letter-spacing: 2px;
               text-decoration: none;
+              display: flex;
+              align-items: center;
+            }
+
+            .logo img {
+              height: 50px;
+              width: auto;
+              border-radius: 4px; /* Optional: smooth corners if desired */
             }
 
             nav {
@@ -143,12 +147,95 @@
               border: 1px solid var(--accent-color);
               text-transform: uppercase;
               letter-spacing: 1px;
+              margin: 10px;
             }
 
             .cta-button:hover {
               background: transparent;
               color: var(--accent-color);
               box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+            }
+
+            .secondary-button {
+              display: inline-block;
+              background: rgba(255, 255, 255, 0.1);
+              color: var(--text-color);
+              padding: 0.8rem 2rem;
+              font-family: "Oswald", sans-serif;
+              font-size: 1rem;
+              text-decoration: none;
+              border-radius: 4px;
+              transition: all 0.3s ease;
+              border: 1px solid rgba(255, 255, 255, 0.4);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              margin: 10px;
+            }
+
+            .secondary-button:hover {
+              color: var(--bg-color);
+              border-color: var(--text-color);
+              background: var(--text-color);
+            }
+
+            .brand-name {
+              display: block;
+              font-family: "Oswald", sans-serif;
+              font-size: 5rem;
+              font-weight: 700;
+              color: var(--accent-color);
+              line-height: 1;
+              margin-bottom: 10px;
+              text-shadow: 0 0 30px rgba(229, 9, 20, 0.2);
+              opacity: 0;
+              animation: fadeIn 1s ease-out forwards;
+            }
+
+            .tagline {
+              font-family: "Oswald", sans-serif;
+              font-size: 3rem;
+              color: #f5f5f5;
+              letter-spacing: 3px;
+              margin-bottom: 1rem;
+              text-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+              text-transform: uppercase;
+            }
+
+            .text-highlight {
+              color: var(--accent-color);
+              font-weight: 700;
+              text-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
+            }
+
+            .features-grid {
+              display: flex;
+              gap: 1.5rem;
+              justify-content: center;
+              margin: 2rem 0;
+              flex-wrap: wrap;
+            }
+
+            .feature-item {
+              background: rgba(229, 9, 20, 0.1);
+              border: 1px solid var(--accent-color);
+              padding: 0.5rem 1.5rem;
+              color: #fff;
+              font-family: "Oswald", sans-serif;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              backdrop-filter: blur(5px);
+              box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+              border-radius: 50px;
+              font-size: 0.9rem;
+              transition: all 0.3s ease;
+              cursor: default;
+            }
+
+            .feature-item:hover {
+              background: var(--accent-color);
+              color: white;
+              transform: translateY(-2px);
+              box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
             }
 
             /* Footer */
@@ -362,26 +449,62 @@
                 font-size: 1.2rem;
               }
             }
+
+            .logo img {
+              height: 50px; /* Adjust as needed */
+              width: auto;
+              vertical-align: middle;
+            }
     </style>
   </head>
   <body>
+    <header>
+      <a href="#" class="logo">
+        <img src="host.jpg" alt="DEMONIK" />
+      </a>
+      <nav>
+        <a href="https://www.gametracker.com/server_info/98.142.13.139:27015/"
+          >STATS</a
+        >
+        <a href="https://steamcommunity.com/groups/DemonikLFD2" target="_blank"
+          >STEAM GROUP</a
+        >
+        <a href="https://discord.gg/wGU8ndUCh7" target="_blank">DISCORD</a>
+      </nav>
+    </header>
     <section class="hero">
       <div class="hero-content">
-        <h1>SURVIVE THE HORDE</h1>
-        <p class="subtitle">
-          Join the ultimate Left 4 Dead 2 Coop-20 experience.
-        </p>
-        <a
-          href="https://steamcommunity.com/groups/DemonikLFD2"
-          class="cta-button"
-          >JOIN STEAM GROUP</a
-        >
-        <a
-          href="https://discord.gg/wGU8ndUCh7"
-          target="_blank"
-          class="cta-button"
-          >JOIN DISCORD</a
-        >
+        <span class="brand-name">WELCOME TO DEMONIK</span>
+        <h2 class="tagline">L4D2 CUSTOM SERVER</h2>
+
+        <div class="features-grid">
+          <div class="feature-item">20-Player Coop</div>
+          <div class="feature-item">Exclusive Mods</div>
+          <div class="feature-item">Custom Maps</div>
+          <div class="feature-item">Server Events</div>
+        </div>
+
+        <div style="margin-bottom: 20px">
+          <a
+            href="steam://connect/98.142.13.139:27015"
+            class="cta-button"
+            style="font-size: 1.5rem; padding: 1.2rem 3rem"
+            >CONNECT TO THE SERVER NOW!</a
+          >
+        </div>
+        <div>
+          <a
+            href="https://steamcommunity.com/groups/DemonikLFD2"
+            class="secondary-button"
+            >JOIN STEAM GROUP</a
+          >
+          <a
+            href="https://discord.gg/wGU8ndUCh7"
+            target="_blank"
+            class="secondary-button"
+            >JOIN DISCORD</a
+          >
+        </div>
       </div>
     </section>
     <footer>
