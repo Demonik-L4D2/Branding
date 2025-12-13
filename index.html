@@ -215,35 +215,28 @@
         text-transform: uppercase;
       }
 
-      .features-grid {
+      .features-list {
         display: flex;
-        gap: 1.5rem;
         justify-content: center;
-        margin: 2rem 0;
+        align-items: center;
+        margin: 2rem 0 3rem 0; /* Extra margin bottom */
         flex-wrap: wrap;
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 1.2rem; /* Slightly larger */
+        color: #fff;
+        gap: 15px;
       }
 
       .feature-item {
-        background: rgba(229, 9, 20, 0.1);
-        border: 1px solid var(--accent-color);
-        padding: 0.5rem 1.5rem;
-        color: #fff;
-        font-family: "Oswald", sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        border-radius: 50px;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-        cursor: default;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
       }
 
-      .feature-item:hover {
-        background: var(--accent-color);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+      .feature-separator {
+        color: var(--accent-color);
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
       }
 
       /* Footer */
@@ -309,11 +302,14 @@
         <span class="brand-name">WELCOME TO DEMONIK</span>
         <h2 class="tagline">L4D2 CUSTOM SERVER</h2>
 
-        <div class="features-grid">
-          <div class="feature-item">20-Player Coop</div>
-          <div class="feature-item">Exclusive Mods</div>
-          <div class="feature-item">Custom Maps</div>
-          <div class="feature-item">Server Events</div>
+        <div class="features-list">
+          <span class="feature-item">20-Player Coop</span>
+          <span class="feature-separator">//</span>
+          <span class="feature-item">Exclusive Mods</span>
+          <span class="feature-separator">//</span>
+          <span class="feature-item">Custom Maps</span>
+          <span class="feature-separator">//</span>
+          <span class="feature-item">Server Events</span>
         </div>
 
         <div class="cta-container">
