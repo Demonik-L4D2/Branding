@@ -26,4 +26,4 @@ _This repository contains the branding assets (HTML banners, images, etc.) used 
 
 ---
 
-© 2025 Demonik Coop‑20 – All assets are licensed under the MIT License.
+© 2026 Demonik Coop‑20 – All assets are licensed under the MIT License.
