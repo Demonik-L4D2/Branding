@@ -273,6 +273,113 @@
           font-size: 1.2rem;
         }
       }
+
+      /* SERVER WIDGET STYLES */
+      .server-widget {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 3px solid var(--accent-color);
+        border-radius: 8px;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 30px auto;
+        padding: 25px;
+        text-align: left;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        animation: fadeIn 1s ease-out;
+      }
+      .widget-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 15px;
+      }
+      .status-badge {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Oswald", sans-serif;
+        font-size: 1.3rem;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        background-color: #444; /* Default gray */
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+      }
+      .refresh-btn {
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+      }
+      .refresh-btn:hover {
+        color: var(--accent-color);
+      }
+      .widget-info {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .info-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+        font-weight: 700;
+      }
+      .info-value {
+        font-family: "Oswald", sans-serif;
+        font-size: 1.4rem;
+        color: #fff;
+        line-height: 1.2;
+      }
+      /* .player-list {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      } */
+      .player-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.95rem;
+        color: #e0e0e0;
+      }
+      .player-item:last-child {
+        border-bottom: none;
+      }
+      .offline-msg {
+        text-align: center;
+        padding: 25px;
+        color: #bbb;
+        font-size: 0.95rem;
+      }
+      .offline-msg a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .offline-msg a:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -318,6 +425,36 @@
             >CONNECT TO THE SERVER NOW!</a
           >
         </div>
+
+        <!-- SERVER STATUS WIDGET -->
+        <div class="server-widget" id="server-widget">
+          <div class="widget-header">
+            <div class="status-badge">
+              <div class="status-dot" id="status-dot"></div>
+              <span>Server Status</span>
+            </div>
+            <button class="refresh-btn" onclick="fetchServerData()">Refresh</button>
+          </div>
+
+          <div class="widget-info">
+            <div>
+              <div class="info-label">Current Map</div>
+              <div class="info-value" id="map-name">Loading...</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="info-label">Survivors</div>
+              <div class="info-value" id="player-count">--/20</div>
+            </div>
+          </div>
+
+          <div class="player-list" id="player-list">
+            <!-- Items injected by JS -->
+            <div style="padding: 15px; text-align: center; color: #888; font-size: 0.9rem;">
+              Scanning server...
+            </div>
+          </div>
+        </div>
+
         <div>
           <a
             href="https://steamcommunity.com/groups/DemonikLFD2"
@@ -352,5 +489,155 @@
         >
       </p>
     </footer>
+  </body>
+    </footer>
+
+    <script>
+      const VANILLA_MAPS = {
+        // Dead Center
+        "c1m1_hotel": "Dead Center: The Hotel",
+        "c1m2_streets": "Dead Center: Streets",
+        "c1m3_mall": "Dead Center: Mall",
+        "c1m4_atrium": "Dead Center: Atrium",
+        // Dark Carnival
+        "c2m1_highway": "Dark Carnival: Highway",
+        "c2m2_fairgrounds": "Dark Carnival: Fairgrounds",
+        "c2m3_coaster": "Dark Carnival: Coaster",
+        "c2m4_barns": "Dark Carnival: Barns",
+        "c2m5_concert": "Dark Carnival: Concert",
+        // Swamp Fever
+        "c3m1_plankcountry": "Swamp Fever: Plank Country",
+        "c3m2_swamp": "Swamp Fever: Swamp",
+        "c3m3_shantytown": "Swamp Fever: Shanty Town",
+        "c3m4_plantation": "Swamp Fever: Plantation",
+        // Hard Rain
+        "c4m1_milltown_a": "Hard Rain: Milltown",
+        "c4m2_sugarmill_a": "Hard Rain: Sugar Mill",
+        "c4m3_sugarmill_b": "Hard Rain: Mill Escape",
+        "c4m4_milltown_b": "Hard Rain: Return to Town",
+        "c4m5_milltown_escape": "Hard Rain: Escape",
+        // The Parish
+        "c5m1_waterfront": "The Parish: Waterfront",
+        "c5m2_park": "The Parish: Park",
+        "c5m3_cemetery": "The Parish: Cemetery",
+        "c5m4_quarter": "The Parish: Quarter",
+        "c5m5_bridge": "The Parish: Bridge",
+        // The Passing
+        "c6m1_riverbank": "The Passing: Riverbank",
+        "c6m2_bedlam": "The Passing: Underground",
+        "c6m3_port": "The Passing: Port",
+        // The Sacrifice
+        "c7m1_docks": "The Sacrifice: Docks",
+        "c7m2_barge": "The Sacrifice: Barge",
+        "c7m3_port": "The Sacrifice: Port",
+        // No Mercy
+        "c8m1_apartment": "No Mercy: Apartments",
+        "c8m2_subway": "No Mercy: Subway",
+        "c8m3_sewers": "No Mercy: Sewers",
+        "c8m4_interior": "No Mercy: Hospital",
+        "c8m5_rooftop": "No Mercy: Rooftop",
+        // Crash Course
+        "c9m1_alleys": "Crash Course: The Alleys",
+        "c9m2_lots": "Crash Course: The Truck Depot",
+        // Death Toll
+        "c10m1_caves": "Death Toll: The Turnpike",
+        "c10m2_drainage": "Death Toll: The Drains",
+        "c10m3_ranchhouse": "Death Toll: The Church",
+        "c10m4_mainstreet": "Death Toll: The Town",
+        "c10m5_houseboat": "Death Toll: Boathouse",
+        // Dead Air
+        "c11m1_greenhouse": "Dead Air: Greenhouse",
+        "c11m2_offices": "Dead Air: Crane",
+        "c11m3_garage": "Dead Air: Garage",
+        "c11m4_terminal": "Dead Air: Terminal",
+        "c11m5_runway": "Dead Air: Runway",
+        // Blood Harvest
+        "c12m1_hilltop": "Blood Harvest: The Woods",
+        "c12m2_traintunnel": "Blood Harvest: The Tunnel",
+        "c12m3_bridge": "Blood Harvest: The Bridge",
+        "c12m4_barn": "Blood Harvest: The Train Station",
+        "c12m5_cornfield": "Blood Harvest: Farmhouse",
+        // Cold Stream
+        "c13m1_alpinecreek": "Cold Stream: Alpine Creek",
+        "c13m2_southpinestream": "Cold Stream: South Pine Stream",
+        "c13m3_memorialbridge": "Cold Stream: Memorial Bridge",
+        "c13m4_cutthroatcreek": "Cold Stream: Cutthroat Creek",
+        // The Last Stand
+        "c14m1_junkyard": "The Last Stand: The Junkyard",
+        "c14m2_lighthouse": "The Last Stand: The Lighthouse",
+      };
+
+      async function fetchServerData() {
+        const mapEl = document.getElementById("map-name");
+        const countEl = document.getElementById("player-count");
+        const listEl = document.getElementById("player-list");
+        const dotEl = document.getElementById("status-dot");
+        const btn = document.querySelector(".refresh-btn");
+
+        // UI Reset
+        if(btn) btn.innerText = "REFRESHING...";
+        dotEl.style.backgroundColor = "#eab308"; // Yellow (Loading)
+        dotEl.style.boxShadow = "none";
+        
+        // POINT TO YOUR LOCAL BOT API (Adjust port if needed)
+        const apiUrl = "http://localhost:8080/api/status"; 
+
+        try {
+          const response = await fetch(apiUrl);
+          if (!response.ok) throw new Error("API Network Error");
+          
+          const data = await response.json();
+          
+          if (!data.online) throw new Error(data.error || "Server Offline");
+
+          // 1. Map Translation
+          const rawMap = data.map || "Unknown";
+          const friendlyMap = VANILLA_MAPS[rawMap.toLowerCase()] || (rawMap !== "Unknown" ? "Custom Map" : "Scanning...");
+          mapEl.innerText = friendlyMap;
+
+          // 2. Update UI
+          const players = data.player_list || [];
+          const count = data.players || 0;
+          const max = data.max_players || 20;
+          
+          countEl.innerText = `${count}/${max}`;
+          
+          if (players.length > 0) {
+            listEl.innerHTML = players.map(p => `
+              <div class="player-item">
+                <span style="max-width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${p}</span>
+                <span style="color:#16a34a; font-size:0.7rem; font-weight:bold; align-self:center;">ONLINE</span>
+              </div>
+            `).join("");
+          } else {
+            listEl.innerHTML = '<div style="padding:15px; text-align:center; color:#888;">The server is currently empty.</div>';
+          }
+    
+          // Success State
+          dotEl.style.backgroundColor = "#16a34a"; // Green
+          dotEl.style.boxShadow = "0 0 10px #16a34a";
+
+        } catch (e) {
+          console.error("Widget Error:", e);
+          // Offline / Error State
+          mapEl.innerText = "OFFLINE";
+          countEl.innerText = "0/20";
+          dotEl.style.backgroundColor = "#dc2626"; // Red
+          dotEl.style.boxShadow = "0 0 10px #dc2626";
+          listEl.innerHTML = `
+            <div class="offline-msg">
+              Server may be offline, start the Discord Bot to sync status.
+            </div>
+          `;
+        } finally {
+          if(btn) btn.innerText = "REFRESH";
+        }
+      }
+
+      // Initial Load
+      fetchServerData();
+      // Auto-refresh every 60s
+      setInterval(fetchServerData, 60000);
+    </script>
   </body>
 </html>
