@@ -500,73 +500,79 @@
 
     <script>
       async function fetchServerMsg() {
-        // Trying explicit search including port to be safer, or fallback to name search
-        const serverSearch = "98.142.13.139";
-        // BattleMetrics API usually handles IP search well
-        const queryUrl = `https://api.battlemetrics.com/servers?filter[search]=${serverSearch}&filter[game]=l4d2&include=player`;
+        // Strategy: Try multiple search queries in case one fails (BattleMetrics can be inconsistent with exact IP)
+        const serverIP = "98.142.13.139";
+        const queries = [
+          `https://api.battlemetrics.com/servers?filter[search]=${serverIP}&filter[game]=l4d2&include=player`,
+          `https://api.battlemetrics.com/servers?filter[search]=Demonik&filter[game]=l4d2&filter[status]=online&include=player`,
+        ];
 
         const statusIndicator = document.getElementById("status-indicator");
         const mapEl = document.getElementById("server-map");
         const countEl = document.getElementById("player-count");
         const listEl = document.getElementById("player-list");
 
-        try {
-          const response = await fetch(queryUrl);
-          const data = await response.json();
+        for (const queryUrl of queries) {
+          try {
+            const response = await fetch(queryUrl);
+            const data = await response.json();
 
-          if (data.data && data.data.length > 0) {
-            // Found the server
-            const server = data.data[0];
-            const attr = server.attributes;
-            const players = data.included || [];
+            if (data.data && data.data.length > 0) {
+              // Match found!
+              const server = data.data[0];
+              const attr = server.attributes;
+              const players = data.included || [];
 
-            statusIndicator.className = "status-indicator online";
-            mapEl.textContent = attr.details.map || "Unknown Map";
-            countEl.textContent = `${attr.players}/${attr.maxPlayers}`;
+              statusIndicator.className = "status-indicator online";
+              mapEl.textContent = attr.details.map || "Unknown Map";
+              countEl.textContent = `${attr.players}/${attr.maxPlayers}`;
 
-            listEl.innerHTML = "";
+              listEl.innerHTML = "";
 
-            if (players.length > 0) {
-              // Filter only type 'player' and existing name
-              const validPlayers = players.filter(
-                (p) => p.type === "player" && p.attributes.name,
-              );
+              if (players.length > 0) {
+                const validPlayers = players.filter(
+                  (p) =>
+                    p.type === "player" &&
+                    p.attributes.name &&
+                    p.attributes.name.trim() !== "",
+                );
 
-              if (validPlayers.length > 0) {
-                validPlayers.forEach((p) => {
-                  const li = document.createElement("li");
-                  li.textContent = p.attributes.name;
-                  listEl.appendChild(li);
-                });
+                if (validPlayers.length > 0) {
+                  validPlayers.forEach((p) => {
+                    const li = document.createElement("li");
+                    li.textContent = p.attributes.name;
+                    listEl.appendChild(li);
+                  });
+                } else {
+                  listEl.innerHTML =
+                    '<li class="loading-state">No named players found</li>';
+                }
+              } else if (attr.players > 0) {
+                listEl.innerHTML =
+                  '<li class="loading-state">Active Players (Names Hidden)</li>';
               } else {
                 listEl.innerHTML =
-                  '<li class="loading-state">No named players found</li>';
+                  '<li class="loading-state">Server is currently empty</li>';
               }
-            } else if (attr.players > 0) {
-              listEl.innerHTML =
-                '<li class="loading-state">Active Players (Names Hidden)</li>';
-            } else {
-              listEl.innerHTML =
-                '<li class="loading-state">Server is currently empty</li>';
+
+              // Stop trying other queries if successful
+              return;
             }
-          } else {
-            // Server not found
-            statusIndicator.className = "status-indicator offline";
-            mapEl.textContent = "Offline";
-            countEl.textContent = "0/20";
-            listEl.innerHTML =
-              '<li class="loading-state">Server Offline or Not Tracked</li>';
+          } catch (error) {
+            console.warn("Query attempt failed:", error);
           }
-        } catch (error) {
-          console.error("API Error:", error);
-          statusIndicator.className = "status-indicator offline";
-          mapEl.textContent = "Error";
-          listEl.innerHTML = '<li class="loading-state">Connection Failed</li>';
         }
+
+        // If all attempts failed
+        statusIndicator.className = "status-indicator offline";
+        mapEl.textContent = "Offline";
+        countEl.textContent = "0/20";
+        listEl.innerHTML =
+          '<li class="loading-state">Server Offline or Not Tracked</li>';
       }
 
       document.addEventListener("DOMContentLoaded", fetchServerMsg);
-      setInterval(fetchServerMsg, 60000); // 60s refresh to be kind to API
+      setInterval(fetchServerMsg, 60000); // 60s refresh
     </script>
     <footer>
       <p>&copy; 2026 Demonik L4D2 Server. All rights reserved.</p>
