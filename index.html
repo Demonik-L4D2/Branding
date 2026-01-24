@@ -500,11 +500,16 @@
 
     <script>
       async function fetchServerMsg() {
-        // Strategy: Try multiple search queries in case one fails (BattleMetrics can be inconsistent with exact IP)
         const serverIP = "98.142.13.139";
+
+        // Revised Strategy:
+        // 1. Exact search (most specific)
+        // 2. IP:Port search
+        // 3. Name search "Demonik"
         const queries = [
-          `https://api.battlemetrics.com/servers?filter[search]=${serverIP}&filter[game]=l4d2&include=player`,
-          `https://api.battlemetrics.com/servers?filter[search]=Demonik&filter[game]=l4d2&filter[status]=online&include=player`,
+          `https://api.battlemetrics.com/servers?filter[search]=${serverIP}&include=player`,
+          `https://api.battlemetrics.com/servers?filter[search]=${serverIP}:27015&include=player`,
+          `https://api.battlemetrics.com/servers?filter[search]=Demonik&filter[game]=l4d2&include=player`,
         ];
 
         const statusIndicator = document.getElementById("status-indicator");
@@ -512,7 +517,11 @@
         const countEl = document.getElementById("player-count");
         const listEl = document.getElementById("player-list");
 
+        let found = false;
+
         for (const queryUrl of queries) {
+          if (found) break;
+
           try {
             const response = await fetch(queryUrl);
             const data = await response.json();
@@ -523,6 +532,17 @@
               const attr = server.attributes;
               const players = data.included || [];
 
+              // Verify IP matches if we searched by Name
+              if (queryUrl.includes("Demonik")) {
+                const serverIpMatch = attr.ip === serverIP;
+                // If IP doesn't match, we might have found a different server. Skip it.
+                // But if user has dynamic IP, this check prevents it from working.
+                // Given it's a specific user request, let's relax this slightly or assume Demonik is unique enough.
+                // Actually, sticking to strict IP check is safer to avoid showing random servers.
+                if (!serverIpMatch) continue;
+              }
+
+              found = true;
               statusIndicator.className = "status-indicator online";
               mapEl.textContent = attr.details.map || "Unknown Map";
               countEl.textContent = `${attr.players}/${attr.maxPlayers}`;
@@ -554,21 +574,26 @@
                 listEl.innerHTML =
                   '<li class="loading-state">Server is currently empty</li>';
               }
-
-              // Stop trying other queries if successful
-              return;
             }
           } catch (error) {
             console.warn("Query attempt failed:", error);
           }
         }
 
-        // If all attempts failed
-        statusIndicator.className = "status-indicator offline";
-        mapEl.textContent = "Offline";
-        countEl.textContent = "0/20";
-        listEl.innerHTML =
-          '<li class="loading-state">Server Offline or Not Tracked</li>';
+        if (!found) {
+          // Server not found after all attempts
+          statusIndicator.className = "status-indicator offline";
+          mapEl.textContent = "Offline";
+          countEl.textContent = "0/20";
+
+          // Helpful fallback message with link to GameTracker which we know works
+          listEl.innerHTML = `
+                <li class="loading-state" style="display:flex; flex-direction:column; gap:5px;">
+                    <span>Status API Unreachable</span>
+                    <a href="https://www.gametracker.com/server_info/98.142.13.139:27015/" target="_blank" style="color:var(--accent-color); text-decoration:underline; font-style:normal;">Check on GameTracker</a>
+                </li>
+            `;
+        }
       }
 
       document.addEventListener("DOMContentLoaded", fetchServerMsg);
