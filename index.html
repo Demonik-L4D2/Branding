@@ -567,6 +567,10 @@
         "c14m2_lighthouse": "The Last Stand: The Lighthouse",
       };
 
+      // Firestore REST API URL (Read-only public access required for this document)
+      const PROJECT_ID = "discord-bot-482803";
+      const API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/server_status/latest`;
+
       async function fetchServerData() {
         const mapEl = document.getElementById("map-name");
         const countEl = document.getElementById("player-count");
@@ -579,26 +583,34 @@
         dotEl.style.backgroundColor = "#eab308"; // Yellow (Loading)
         dotEl.style.boxShadow = "none";
         
-        // POINT TO YOUR LOCAL BOT API (Adjust port if needed)
-        const apiUrl = "http://localhost:8080/api/status"; 
-
         try {
-          const response = await fetch(apiUrl);
+          const response = await fetch(API_URL);
           if (!response.ok) throw new Error("API Network Error");
           
-          const data = await response.json();
+          const json = await response.json();
+          // Firestore returns fields wrapped in types: { fields: { map: { stringValue: "..." } } }
+          const fields = json.fields;
           
-          if (!data.online) throw new Error(data.error || "Server Offline");
+          if (!fields) throw new Error("Invalid Data Format");
+          
+          const isOnline = fields.online ? fields.online.booleanValue : false;
+          
+          if (!isOnline) throw new Error("Server Reported Offline");
 
           // 1. Map Translation
-          const rawMap = data.map || "Unknown";
+          const rawMap = fields.map ? fields.map.stringValue : "Unknown";
           const friendlyMap = VANILLA_MAPS[rawMap.toLowerCase()] || (rawMap !== "Unknown" ? "Custom Map" : "Scanning...");
           mapEl.innerText = friendlyMap;
 
           // 2. Update UI
-          const players = data.player_list || [];
-          const count = data.players || 0;
-          const max = data.max_players || 20;
+          const count = fields.players ? parseInt(fields.players.integerValue) : 0;
+          const max = fields.max_players ? parseInt(fields.max_players.integerValue) : 20;
+          
+          // Parse Player List (Array of Strings)
+          let players = [];
+          if (fields.player_list && fields.player_list.arrayValue && fields.player_list.arrayValue.values) {
+             players = fields.player_list.arrayValue.values.map(v => v.stringValue);
+          }
           
           countEl.innerText = `${count}/${max}`;
           
