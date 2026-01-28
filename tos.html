@@ -42,18 +42,32 @@
         text-transform: uppercase;
       }
 
+      /* Header & Nav */
       header {
         background: rgba(10, 10, 10, 0.95);
         padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
         border-bottom: 1px solid #333;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        backdrop-filter: blur(10px);
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        letter-spacing: 2px;
+        text-decoration: none;
       }
 
       .logo img {
         height: 50px;
         width: auto;
+        vertical-align: middle;
       }
 
       nav {
@@ -66,10 +80,26 @@
         text-decoration: none;
         font-size: 1.1rem;
         transition: color 0.3s ease;
+        position: relative;
       }
 
       nav a:hover {
         color: var(--accent-color);
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: var(--accent-color);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 100%;
       }
 
       main {
