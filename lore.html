@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Read the history of the Demonik L4D2 Community. From Ascension to the rise of Demonik."
+    />
+    <title>Lore | DEMONIK L4D2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #0a0a0a;
+        --card-bg: #1f1f1f;
+        --accent-color: #e50914;
+        --text-color: #f5f5f5;
+        --text-muted: #a0a0a0;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Roboto", sans-serif;
+        line-height: 1.8;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1,
+      h2,
+      h3,
+      nav a {
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+      }
+
+      /* Header & Nav */
+      header {
+        background: rgba(10, 10, 10, 0.95);
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(10px);
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        letter-spacing: 2px;
+        text-decoration: none;
+      }
+
+      .logo img {
+        height: 50px;
+        width: auto;
+        vertical-align: middle;
+      }
+
+      nav {
+        display: flex;
+        gap: 2rem;
+      }
+
+      nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      nav a:hover,
+      nav a.active {
+        color: var(--accent-color);
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: var(--accent-color);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after,
+      nav a.active::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .lore-hero {
+        padding: 6rem 2rem 4rem;
+        text-align: center;
+        background:
+          linear-gradient(to bottom, rgba(10, 10, 10, 0.8), var(--bg-color)),
+          url("motd.jpg");
+        background-size: cover;
+        background-position: center top;
+        border-bottom: 1px solid #333;
+      }
+
+      .lore-title {
+        font-size: 4rem;
+        color: var(--accent-color);
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+        line-height: 1.1;
+      }
+
+      .lore-subtitle {
+        font-size: 1.5rem;
+        color: var(--text-muted);
+        font-weight: 300;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Content Container */
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      .intro-text {
+        font-size: 1.2rem;
+        color: #e0e0e0;
+        margin-bottom: 4rem;
+        text-align: center;
+        font-style: italic;
+        border-left: 3px solid var(--accent-color);
+        padding-left: 20px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 2rem;
+        border-radius: 0 8px 8px 0;
+      }
+
+      /* timeline / sections */
+      .chronicle-section {
+        margin-bottom: 4rem;
+        position: relative;
+        padding-left: 2rem;
+        border-left: 1px solid #333;
+      }
+
+      .chronicle-section:last-child {
+        border-left: none;
+        margin-bottom: 2rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .section-number {
+        font-family: "Oswald", sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.1);
+        position: absolute;
+        left: -4rem;
+        top: -1.5rem;
+        z-index: 0;
+        user-select: none;
+      }
+
+      .chronicle-section::before {
+        content: "";
+        position: absolute;
+        left: -5px; /* (1px width / 2) - (10px width / 2) approx */
+        top: 0;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        box-shadow: 0 0 10px var(--accent-color);
+      }
+
+      /* Hide line if last child */
+      .chronicle-section:last-child {
+        border-left: 1px solid transparent;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        color: var(--text-color);
+        z-index: 1;
+        margin-left: 0;
+      }
+
+      .section-year {
+        font-family: "Oswald", sans-serif;
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        margin-left: 1rem;
+        font-weight: 300;
+      }
+
+      .section-content {
+        font-size: 1.1rem;
+        color: #ccc;
+        margin-bottom: 1.5rem;
+      }
+
+      .highlight {
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .outro {
+        text-align: center;
+        margin-top: 5rem;
+        padding: 3rem;
+        background: var(--card-bg);
+        border-radius: 8px;
+        border: 1px solid #333;
+      }
+
+      .outro h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        background: #050505;
+        color: #666;
+        font-size: 0.9rem;
+        border-top: 1px solid #1a1a1a;
+        margin-top: auto;
+      }
+
+      @media (max-width: 768px) {
+        .lore-title {
+          font-size: 2.5rem;
+        }
+        .section-header {
+          flex-direction: column;
+        }
+        .section-year {
+          margin-left: 0;
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+        .section-number {
+          display: none;
+        }
+        .chronicle-section::before {
+          display: none;
+        }
+        .chronicle-section {
+          border-left: none;
+          padding-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <img src="host.jpg" alt="DEMONIK" />
+      </a>
+      <nav>
+        <a href="/">HOME</a>
+        <a
+          href="https://www.gametracker.com/server_info/98.142.13.139:27015/"
+          target="_blank"
+          >STATS</a
+        >
+        <a href="lore.html" class="active">LORE</a>
+        <a
+          href="https://steamcommunity.com/groups/DemonikLFD2"
+          target="_blank"
+          rel="noopener noreferrer"
+          >STEAM GROUP</a
+        >
+        <a
+          href="https://discord.gg/wGU8ndUCh7"
+          target="_blank"
+          rel="noopener noreferrer"
+          >DISCORD</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <section class="lore-hero">
+        <h1 class="lore-title">THE CHRONICLES OF THE WASTES</h1>
+        <p class="lore-subtitle">The History of the Demonik Community</p>
+      </section>
+
+      <div class="container">
+        <div class="intro-text">
+          <p>
+            To the survivors, the veterans, and the newcomers: many of you
+            joined this caravan at different waypoints. Some have been here
+            since the first fire was lit; others found us in the storm. For your
+            loyalty and your company, we are incredibly grateful.
+          </p>
+          <br />
+          <p>
+            This is our history—the record of how we survived the fall of an
+            empire to build a home of our own.
+          </p>
+        </div>
+
+        <article class="chronicle-section">
+          <div class="section-header">
+            <span class="section-number">I</span>
+            <h2 class="section-title">The Age of Genesis</h2>
+            <span class="section-year">(2020)</span>
+          </div>
+          <div class="section-content">
+            <p>
+              In the fading days of 2019, a spark flickered in the dark.
+              Ascension was born—not in a grand hall, but hosted on the humble
+              machinery of its founder, a rig that hummed with the strain of our
+              ambition. We were a small band of survivors then, unified by a
+              singular vision of
+              <span class="highlight">"Hardcore Co-op."</span> We didn't want
+              safety; we wanted a world where the shadows grew taller and the
+              monsters grew stronger for every soul that dared to join the
+              fight. It was fast, it was brutal, and it was unapologetically
+              ours.
+            </p>
+          </div>
+          <div class="section-content">
+            <p>
+              But even then, the foundation was cracked. The Founder held the
+              keys to the kingdom but lacked the heart for its day-to-day
+              governance. To keep the peace, the
+              <span class="highlight">"Admin Rights"</span> were distributed
+              like candy—a gift of power that, in hindsight, sowed the first
+              noxious seeds of discord. Egos clashed in the vacuum of true
+              leadership, and the first fractures began to show in our armor.
+            </p>
+          </div>
+        </article>
+
+        <article class="chronicle-section">
+          <div class="section-header">
+            <span class="section-number">II</span>
+            <h2 class="section-title">The First Schism</h2>
+            <span class="section-year">(2021–2022)</span>
+          </div>
+          <div class="section-content">
+            <p>
+              As the seasons turned, the first great rift appeared. Differences
+              in philosophy became impassable canyons, and the original council
+              splintered. Many fled to start their own tribes, leaving Ascension
+              to question its own soul. We tried to pivot, softening our jagged
+              edges to welcome more travelers, but the
+              <span class="highlight">"Original Sin"</span> remained: a world
+              without a dedicated architect is a world that eventually falls to
+              ruin. The server performance degraded, the trolls invaded our
+              sanctuary, and the reliability of our home began to crumble under
+              the weight of neglect.
+            </p>
+          </div>
+        </article>
+
+        <article class="chronicle-section">
+          <div class="section-header">
+            <span class="section-number">III</span>
+            <h2 class="section-title">The Great Silence & The Shift</h2>
+            <span class="section-year">(2022–2024)</span>
+          </div>
+          <div class="section-content">
+            <p>
+              In 2022, a shadow fell over the record. Donuts, a central figure
+              of the council, vanished into the mists for six months. This
+              <span class="highlight">"shot over the bow"</span> was a stark
+              wake-up call to the Founder—a realization that a community is not
+              just comprised of code, plugins, and servers, but a living,
+              breathing pulse of people that requires care.
+            </p>
+          </div>
+          <div class="section-content">
+            <p>
+              When he returned, the world had changed. The server was moved to a
+              new host, and technical spirits were summoned to stabilize the
+              land. But beneath the surface, a civil war of the mind was
+              brewing. One side screamed for the return of the ancient "Old
+              Ways" of hardcore brutality; the other sought a casual haven of
+              mods and maps. Because the voices of the people were ignored, the
+              cracks only widened, threatening to swallow us whole.
+            </p>
+          </div>
+        </article>
+
+        <article class="chronicle-section">
+          <div class="section-header">
+            <span class="section-number">IV</span>
+            <h2 class="section-title">The Purge of the Old Guard</h2>
+            <span class="section-year">(2024)</span>
+          </div>
+          <div class="section-content">
+            <p>
+              By mid-2024, the golden age was but a fading memory. The halls of
+              Ascension were quiet, its elders inactive or gone. In the vacuum
+              of leadership, a new power rose beside the Founder, whispering
+              poison. This led to the
+              <span class="highlight">"Great Split"</span>—a final, bitter
+              debate over the community’s future that would seal our fate.
+            </p>
+          </div>
+          <div class="section-content">
+            <p>
+              The choice was made: the Founder surrendered the keys to a single
+              autocrat. Overnight, the "Purge" began. Lifelong allies were cast
+              out without trial, and the custom maps and configurations we had
+              called home were burned to the ground in a desperate attempt to
+              force a return to the past. Seeing the writing on the wall,
+              Donuts—the last of the original council—walked away from the
+              ruins, vowing to build something better.
+            </p>
+          </div>
+        </article>
+
+        <article class="chronicle-section">
+          <div class="section-header">
+            <span class="section-number">V</span>
+            <h2 class="section-title">The Rise of Demonik & The Path Ahead</h2>
+            <span class="section-year">(2024–2025)</span>
+          </div>
+          <div class="section-content">
+            <p>
+              We did not leave to start a war; we left to build a sanctuary.
+              Demonik was forged on a sacred vow: that no single crown should
+              rule. We are a collective, built on the bedrock belief that a
+              community’s voice is its greatest strength, not a nuisance to be
+              silenced.
+            </p>
+          </div>
+          <div class="section-content">
+            <p>
+              We became a lighthouse for the exiled, the banned, and the
+              ignored. Through the
+              <span class="highlight">"Mass Exodus,"</span> our numbers swelled
+              as refugees flooded our gates. While the road has been rocky and
+              the nights long, we have built something far stronger than a mere
+              server. We have built a brotherhood.
+            </p>
+          </div>
+        </article>
+
+        <article class="chronicle-section">
+          <div class="section-header">
+            <span class="section-number">VI</span>
+            <h2 class="section-title">The Horizon</h2>
+            <span class="section-year">(2026 & Beyond)</span>
+          </div>
+          <div class="section-content">
+            <p>
+              As we look toward 2026, the fires of our new home burn brighter
+              than ever. We have weathered the storms of the past and emerged
+              tempered like steel. Our gates remain open, and we look forward to
+              welcoming even more of you into our ranks. Whether you are a
+              veteran of the 2020 fires or a traveler who joined us yesterday,
+              your story is now part of ours.
+            </p>
+          </div>
+          <div class="section-content">
+            <p class="highlight">
+              The chronicle is still being written. Let’s make the next chapters
+              legendary.
+            </p>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Demonik L4D2 Server. All rights reserved.</p>
+      <p style="margin-top: 10px">
+        <a
+          href="tos.html"
+          style="color: #666; text-decoration: none; margin: 0 10px"
+          >Terms of Service</a
+        >
+        |
+        <a
+          href="privacy.html"
+          style="color: #666; text-decoration: none; margin: 0 10px"
+          >Privacy Policy</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
