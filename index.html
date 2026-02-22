@@ -599,34 +599,42 @@
           if (!isOnline) throw new Error("Server Reported Offline");
 
           // 1. Map Translation
-          const rawMap = fields.name ? fields.name.stringValue : "Unknown";
-          // Try to get friendly name specifically for vanilla maps first
-          let friendlyMap = VANILLA_MAPS[json.fields.map?.stringValue.toLowerCase()];
-          
+          let friendlyMap = fields.friendly_map ? fields.friendly_map.stringValue : "";
+
           if (!friendlyMap) {
-            // Custom Map Logic
-            if (rawMap && rawMap !== "Unknown") {
-               // Extract map name from "Server Name | Map Name [Chapter]" format
-               const parts = rawMap.split('|');
-               
-               if (parts.length > 1) {
-                   let mapPart = parts[parts.length - 1].trim();
-                   
-                   // Check for chapter info
-                   // Match [1-3] or [1] and capture just the first digit(s)
-                   const chapterMatch = mapPart.match(/\[(\d+)(?:-\d+)?\]/);
-                   let cleanName = mapPart.replace(/\[.*?\]/, '').trim();
-                   
-                   friendlyMap = cleanName;
-                   if (chapterMatch) {
-                       friendlyMap += ` Chapter ${chapterMatch[1]}`;
-                   }
-               } else {
-                   // No pipe separator found, fallback to generic state
-                   friendlyMap = "Idle";
-               }
-            } else {
-               friendlyMap = "Scanning...";
+            const rawMap = fields.name ? fields.name.stringValue : "Unknown";
+            const mapCode = fields.map ? fields.map.stringValue : "";
+            // Try to get friendly name specifically for vanilla maps first
+            friendlyMap = VANILLA_MAPS[mapCode.toLowerCase()];
+            
+            if (!friendlyMap) {
+              // Custom Map Logic
+              if (rawMap && rawMap !== "Unknown") {
+                 // Extract map name from "Server Name | Map Name [Chapter]" format
+                 const parts = rawMap.split('|');
+                 
+                 if (parts.length > 1) {
+                     let mapPart = parts[parts.length - 1].trim();
+                     if (mapPart === "") {
+                         friendlyMap = mapCode || "Idle";
+                     } else {
+                         // Check for chapter info
+                         // Match [1-3] or [1] and capture just the first digit(s)
+                         const chapterMatch = mapPart.match(/\[(\d+)(?:-\d+)?\]/);
+                         let cleanName = mapPart.replace(/\[.*?\]/, '').trim();
+                         
+                         friendlyMap = cleanName;
+                         if (chapterMatch) {
+                             friendlyMap += ` Chapter ${chapterMatch[1]}`;
+                         }
+                     }
+                 } else {
+                     // No pipe separator found, fallback to generic state
+                     friendlyMap = mapCode || "Idle";
+                 }
+              } else {
+                 friendlyMap = mapCode ? mapCode : "Scanning...";
+              }
             }
           }
           mapEl.innerText = friendlyMap;
