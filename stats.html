@@ -3,11 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Join DEMONIK L4D2 Coop-20 Server. Experience 20-player coop gameplay with exclusive mods, custom maps, and server events."
-    />
-    <title>DEMONIK L4D2 | Coop-20 Server</title>
+    <title>Server Stats | DEMONIK L4D2</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,6 +27,15 @@
 
       body {
         background-color: var(--bg-color);
+        background-image: linear-gradient(
+            to bottom,
+            rgba(10, 10, 10, 0.8),
+            rgba(10, 10, 10, 0.95)
+          ),
+          url("motd.jpg");
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
         color: var(--text-color);
         font-family: "Roboto", sans-serif;
         line-height: 1.6;
@@ -41,7 +46,6 @@
 
       h1,
       h2,
-      h3,
       nav a {
         font-family: "Oswald", sans-serif;
         text-transform: uppercase;
@@ -111,140 +115,35 @@
         width: 100%;
       }
 
-      /* Hero Section */
-      .hero {
+      main {
         flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4rem 2rem;
-        background:
-          linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
-          url("motd.jpg");
-        background-size: cover;
-        background-position: center;
-        text-align: center;
-      }
-
-      .hero-content {
         max-width: 800px;
-        animation: fadeIn 1s ease-out;
+        margin: 4rem auto;
+        padding: 0 2rem;
       }
 
       h1 {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
-        line-height: 1.1;
-      }
-
-      .subtitle {
-        font-size: 1.5rem;
-        color: var(--text-muted);
-        margin-bottom: 2.5rem;
-        font-weight: 300;
-      }
-
-      .cta-container {
-        margin-bottom: 20px;
-      }
-
-      .cta-button {
-        display: inline-block;
-        background: var(--accent-color);
-        color: white;
-        padding: 1rem 2.5rem;
-        font-family: "Oswald", sans-serif;
-        font-size: 1.2rem;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        border: 1px solid var(--accent-color);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .cta-button.large {
-        font-size: 1.5rem;
-        padding: 1.2rem 3rem;
-      }
-
-      .cta-button:hover {
-        background: transparent;
-        color: var(--accent-color);
-        box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
-      }
-
-      .secondary-button {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-color);
-        padding: 0.8rem 2rem;
-        font-family: "Oswald", sans-serif;
-        font-size: 1rem;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin: 10px;
-      }
-
-      .secondary-button:hover {
-        color: var(--bg-color);
-        border-color: var(--text-color);
-        background: var(--text-color);
-      }
-
-      .brand-name {
-        display: block;
-        font-family: "Oswald", sans-serif;
-        font-size: 5rem;
-        font-weight: 700;
-        color: var(--accent-color);
-        line-height: 1;
-        margin-bottom: 10px;
-        text-shadow: 0 0 30px rgba(229, 9, 20, 0.2);
-        opacity: 0;
-        animation: fadeIn 1s ease-out forwards;
-      }
-
-      .tagline {
-        font-family: "Oswald", sans-serif;
         font-size: 3rem;
-        color: #f5f5f5;
-        letter-spacing: 3px;
-        margin-bottom: 1rem;
-        text-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
-        text-transform: uppercase;
-      }
-
-      .features-list {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 2rem 0 3rem 0; /* Extra margin bottom */
-        flex-wrap: wrap;
-        font-family: "Oswald", sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 1.2rem; /* Slightly larger */
-        color: #fff;
-        gap: 15px;
-      }
-
-      .feature-item {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-      }
-
-      .feature-separator {
         color: var(--accent-color);
-        font-weight: 700;
-        text-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+        margin-bottom: 2rem;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 0.5rem;
+        text-align: center;
       }
 
-      /* Footer */
+      h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--text-color);
+        text-align: center;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: var(--text-muted);
+        text-align: center;
+      }
+
       footer {
         text-align: center;
         padding: 2rem;
@@ -252,6 +151,16 @@
         color: #666;
         font-size: 0.9rem;
         border-top: 1px solid #1a1a1a;
+      }
+
+      footer a {
+        color: #666;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+
+      footer a:hover {
+        color: var(--accent-color);
       }
 
       @keyframes fadeIn {
@@ -278,11 +187,32 @@
           font-size: 0.9rem;
         }
         h1 {
-          font-size: 2.5rem;
+          font-size: 2.5rem; /* Reduce heading size for mobile */
+          text-align: center;
         }
-        .subtitle {
-          font-size: 1.2rem;
+        main {
+          margin: 2rem auto;
         }
+      }
+
+      /* GAMETRACKER WIDGET STYLES */
+      .gametracker-widget {
+        text-align: center;
+        margin-bottom: 40px;
+        animation: fadeIn 1s ease-out;
+      }
+      .gametracker-widget img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(229, 9, 20, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .gametracker-widget img:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(229, 9, 20, 0.4);
+        border-color: var(--accent-color);
       }
 
       /* SERVER WIDGET STYLES */
@@ -294,7 +224,7 @@
         border-top: 3px solid var(--accent-color);
         border-radius: 8px;
         width: 100%;
-        max-width: 500px;
+        max-width: 600px;
         margin: 0 auto 30px auto;
         padding: 25px;
         text-align: left;
@@ -361,11 +291,6 @@
         color: #fff;
         line-height: 1.2;
       }
-      /* .player-list {
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      } */
       .player-item {
         display: flex;
         justify-content: space-between;
@@ -391,6 +316,20 @@
       .offline-msg a:hover {
         text-decoration: underline;
       }
+      
+      .tsarvar-tracker {
+        text-align: center;
+        margin-top: 40px;
+      }
+      .tsarvar-tracker a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+      .tsarvar-tracker a:hover {
+        color: var(--accent-color);
+      }
     </style>
   </head>
   <body>
@@ -399,7 +338,7 @@
         <img src="host.jpg" alt="DEMONIK" />
       </a>
       <nav>
-        <a href="/" class="active">HOME</a>
+        <a href="/">HOME</a>
         <a href="lore.html">LORE</a>
         <a
           href="https://steamcommunity.com/sharedfiles/filedetails/?id=3681622958"
@@ -407,7 +346,7 @@
           rel="noopener noreferrer"
           >CUSTOM MAPS</a
         >
-        <a href="stats.html">STATS</a>
+        <a href="stats.html" class="active">STATS</a>
         <a
           href="https://discord.gg/wGU8ndUCh7"
           target="_blank"
@@ -422,162 +361,70 @@
         >
       </nav>
     </header>
-    <main class="hero">
-      <div class="hero-content">
-        <span class="brand-name">WELCOME TO DEMONIK</span>
-        <h2 class="tagline">L4D2 CUSTOM SERVER</h2>
+    <main>
+      <h1>Server Stats & Ranking</h1>
+      <p>View our worldwide ranking and real-time player stats</p>
 
-        <div class="features-list">
-          <span class="feature-item">20-Player Coop</span>
-          <span class="feature-separator">//</span>
-          <span class="feature-item">Exclusive Mods</span>
-          <span class="feature-separator">//</span>
-          <span class="feature-item">Custom Maps</span>
-          <span class="feature-separator">//</span>
-          <span class="feature-item">Server Events</span>
-        </div>
-
-        <div class="cta-container">
-          <a href="steam://connect/98.142.13.139:27015" class="cta-button large"
-            >CONNECT TO THE SERVER NOW!</a
-          >
-        </div>
-
-        <div style="margin-bottom: 30px">
-
-          <a
-            href="https://steamcommunity.com/groups/DemonikLFD2"
-            class="secondary-button"
-            target="_blank"
-            rel="noopener noreferrer"
-            >JOIN STEAM GROUP</a
-          >
-          <a
-            href="https://discord.gg/wGU8ndUCh7"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="secondary-button"
-            >JOIN DISCORD</a
-          >
-        </div>
-
-        <!-- SERVER STATUS WIDGET -->
-        <div class="server-widget" id="server-widget">
-          <div class="widget-header">
-            <div class="status-badge">
-              <div class="status-dot" id="status-dot"></div>
-              <span>Server Status</span>
-            </div>
-            <button class="refresh-btn" onclick="fetchServerData()">
-              Refresh
-            </button>
+      <!-- SERVER RANK WIDGET -->
+      <div class="server-widget" id="rank-widget" style="margin-bottom: 20px;">
+        <div class="widget-header">
+          <div class="status-badge">
+            <span style="color: var(--accent-color);">Worldwide Rank</span>
           </div>
-
-          <div class="widget-info">
-            <div>
-              <div class="info-label">Current Map</div>
-              <div class="info-value" id="map-name">Loading...</div>
-            </div>
-            <div style="text-align: right">
-              <div class="info-label">Survivors</div>
-              <div class="info-value" id="player-count">--/20</div>
-            </div>
+        </div>
+        <div class="widget-info" style="margin-bottom: 0;">
+          <div>
+            <div class="info-label">Current Position</div>
+            <div class="info-value" id="server-rank" style="color: var(--accent-color); font-size: 2rem;">--</div>
           </div>
+          <div style="text-align: right">
+            <div class="info-label">USA Regional Rank</div>
+            <div class="info-value" id="usa-rank" style="font-size: 2rem;">--</div>
+          </div>
+        </div>
+      </div>
 
-          <div class="player-list" id="player-list">
-            Items injected by JS
-            <div
-              style="
-                padding: 15px;
-                text-align: center;
-                color: #888;
-                font-size: 0.9rem;
-              "
-            >
-              Scanning server...
-            </div>
+      <!-- SERVER STATUS WIDGET -->
+      <div class="server-widget" id="server-widget">
+        <div class="widget-header">
+          <div class="status-badge">
+            <div class="status-dot" id="status-dot"></div>
+            <span>Server Status</span>
+          </div>
+          <button class="refresh-btn" onclick="fetchServerData()">
+            Refresh
+          </button>
+        </div>
+
+        <div class="widget-info">
+          <div>
+            <div class="info-label">Current Map</div>
+            <div class="info-value" id="map-name">Loading...</div>
+          </div>
+          <div style="text-align: right">
+            <div class="info-label">Survivors</div>
+            <div class="info-value" id="player-count">--/20</div>
           </div>
         </div>
 
-        <!-- DONATIONS SECTION -->
-        <div
-          class="server-widget"
-          style="text-align: center; margin-bottom: 30px"
-        >
-          <h3
-            style="
-              color: var(--accent-color);
-              font-size: 1.5rem;
-              margin-bottom: 15px;
-              text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
-            "
-          >
-            SUPPORT THE SERVER
-          </h3>
-          <p
-            style="
-              color: var(--text-muted);
-              margin-bottom: 20px;
-              font-size: 0.95rem;
-            "
-          >
-            Help keep DEMONIK running and get access to exclusive perks!
-          </p>
+        <div class="player-list" id="player-list">
           <div
             style="
-              display: flex;
-              justify-content: center;
-              gap: 15px;
-              flex-wrap: wrap;
+              padding: 15px;
+              text-align: center;
+              color: #888;
+              font-size: 0.9rem;
             "
           >
-            <a
-              href="https://www.venmo.com/u/DemonikLFD2"
-              class="secondary-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="margin: 0; display: flex; align-items: center; gap: 8px"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M12.91 3.55c3.55 0 5.16 2.05 5.16 4.79 0 4.19-4.82 12.08-8.88 12.08-1.55 0-2.31-1.05-2.61-3.23l-1.05-8.62c-.17-1.42-.87-2.05-1.92-2.18v-2.1h4.08l.87 7.21c.26 2.05 1.5 2.5 2.18 2.5 1.74 0 4.14-5.35 4.14-7.53 0-1.05-.52-1.42-1.39-1.42-1.05 0-1.83.61-2.09 1.48l-1.92-.56c.43-1.66 1.78-2.48 3.43-2.48z"
-                />
-              </svg>
-              VENMO
-            </a>
-            <a
-              href="https://cash.app/$DemonikLFD2"
-              class="secondary-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="margin: 0; display: flex; align-items: center; gap: 8px"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="12" y1="1" x2="12" y2="23"></line>
-                <path
-                  d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-                ></path>
-              </svg>
-              CASH.APP
-            </a>
+            Scanning server...
           </div>
         </div>
+      </div>
+      
+      <div class="tsarvar-tracker">
+        <a href="https://tsarvar.com/en/servers/left-4-dead-2/98.142.13.139:27015" target="_blank" rel="noopener noreferrer">
+          View full historical stats on Tsarvar
+        </a>
       </div>
     </main>
     <footer>
@@ -766,6 +613,17 @@
           }
 
           countEl.innerText = `${count}/${max}`;
+          
+          // --- RANK WIDGET UPDATE ---
+          const rankEl = document.getElementById("server-rank");
+          const usaRankEl = document.getElementById("usa-rank");
+          
+          const rank = fields.world_rank ? fields.world_rank.integerValue : "N/A";
+          const usaRank = fields.usa_rank ? fields.usa_rank.integerValue : "N/A";
+          
+          rankEl.innerText = rank !== "N/A" ? `#${rank}` : "--";
+          usaRankEl.innerText = usaRank !== "N/A" ? `#${usaRank}` : "--";
+          // --------------------------
 
           if (players.length > 0) {
             listEl.innerHTML = players
@@ -791,11 +649,13 @@
           // Offline / Error State
           mapEl.innerText = "OFFLINE";
           countEl.innerText = "0/20";
+          document.getElementById("server-rank").innerText = "--";
+          document.getElementById("usa-rank").innerText = "--";
           dotEl.style.backgroundColor = "#dc2626"; // Red
           dotEl.style.boxShadow = "0 0 10px #dc2626";
           listEl.innerHTML = `
             <div class="offline-msg">
-              Server may be offline, start the Discord Bot to sync status.
+              Server may be offline. Start the Discord Bot to sync status.
             </div>
           `;
         } finally {
