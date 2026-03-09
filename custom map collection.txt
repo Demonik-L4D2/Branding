@@ -1,0 +1,32 @@
+[h1]👹 DEMONIK L4D2 | Official Custom Maps 👹[/h1]
+
+Welcome to the official custom map collection for the [b]DEMONIK L4D2[/b] community! 
+These campaigns are specifically curated and tested for our [b]20-player co-op[/b] experience to ensure maximum stability and variety.
+
+[hr][/hr]
+
+[h2]🎮 HOW TO JOIN[/h2]
+To avoid missing map errors and ensure a smooth connection to our servers, please click the [b]"Subscribe to All"[/b] button below before joining.
+
+[hr][/hr]
+
+[h2]🌐 COMMUNITY LINKS[/h2]
+[list]
+[*] 🌍 [b]Website:[/b] [url=https://demonik-l4d2.com]Demonik-L4D2.com[/url]
+[*] 💬 [b]Discord:[/b] [url=https://discord.gg/wGU8ndUCh7]Join our Discord[/url]
+[*] 👥 [b]Steam Group:[/b] [url=https://steamcommunity.com/groups/DemonikLFD2]Demonik-L4D2 Group[/url]
+[*] 📺 [b]YouTube:[/b] [url=https://www.youtube.com/@DemonikLFD2]DemonikL4D2 Channel[/url]
+[*] 📊 [b]Stats:[/b] [url=https://www.gametracker.com/server_info/98.142.13.139:27015/]Game Tracker Server Stats[/url]
+[/list]
+
+[hr][/hr]
+
+[h2]📦 WHAT'S INCLUDED?[/h2]
+[list]
+[*] 🗺️ [b]Custom Campaigns:[/b] Hand-picked maps optimized for high-player counts.
+[*] ⏱️ [b]Survival Maps:[/b] Exclusive areas for community server events.
+[/list]
+
+[hr][/hr]
+
+[i]⚠️ [b]Note:[/b] If you experience any crashes while loading a map, please restart your Steam client to ensure all workshop files have finished downloading.[/i]
