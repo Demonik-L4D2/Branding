@@ -77,7 +77,9 @@
 
       nav {
         display: flex;
-        gap: 2rem;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       nav a {
@@ -88,7 +90,8 @@
         position: relative;
       }
 
-      nav a:hover {
+      nav a:hover,
+      nav a.active {
         color: var(--accent-color);
       }
 
@@ -103,7 +106,8 @@
         transition: width 0.3s ease;
       }
 
-      nav a:hover::after {
+      nav a:hover::after,
+      nav a.active::after {
         width: 100%;
       }
 
@@ -264,6 +268,10 @@
       @media (max-width: 768px) {
         header {
           flex-direction: column;
+          gap: 0.5rem;
+          padding: 1rem;
+        }
+        nav {
           gap: 1rem;
         }
         h1 {
@@ -388,6 +396,7 @@
         <img src="host.jpg" alt="DEMONIK" />
       </a>
       <nav>
+        <a href="/" class="active">HOME</a>
         <a href="https://www.gametracker.com/server_info/98.142.13.139:27015/"
           >STATS</a
         >
@@ -427,36 +436,7 @@
           >
         </div>
 
-        <!-- SERVER STATUS WIDGET -->
-        <div class="server-widget" id="server-widget">
-          <div class="widget-header">
-            <div class="status-badge">
-              <div class="status-dot" id="status-dot"></div>
-              <span>Server Status</span>
-            </div>
-            <button class="refresh-btn" onclick="fetchServerData()">Refresh</button>
-          </div>
-
-          <div class="widget-info">
-            <div>
-              <div class="info-label">Current Map</div>
-              <div class="info-value" id="map-name">Loading...</div>
-            </div>
-            <div style="text-align: right;">
-              <div class="info-label">Survivors</div>
-              <div class="info-value" id="player-count">--/20</div>
-            </div>
-          </div>
-
-          <div class="player-list" id="player-list">
-            <!-- Items injected by JS -->
-            <div style="padding: 15px; text-align: center; color: #888; font-size: 0.9rem;">
-              Scanning server...
-            </div>
-          </div>
-        </div>
-
-        <div>
+        <div style="margin-bottom: 30px">
           <a
             href="https://steamcommunity.com/groups/DemonikLFD2"
             class="secondary-button"
@@ -471,6 +451,124 @@
             class="secondary-button"
             >JOIN DISCORD</a
           >
+        </div>
+
+        <!-- SERVER STATUS WIDGET -->
+        <div class="server-widget" id="server-widget">
+          <div class="widget-header">
+            <div class="status-badge">
+              <div class="status-dot" id="status-dot"></div>
+              <span>Server Status</span>
+            </div>
+            <button class="refresh-btn" onclick="fetchServerData()">
+              Refresh
+            </button>
+          </div>
+
+          <div class="widget-info">
+            <div>
+              <div class="info-label">Current Map</div>
+              <div class="info-value" id="map-name">Loading...</div>
+            </div>
+            <div style="text-align: right">
+              <div class="info-label">Survivors</div>
+              <div class="info-value" id="player-count">--/20</div>
+            </div>
+          </div>
+
+          <div class="player-list" id="player-list">
+            Items injected by JS
+            <div
+              style="
+                padding: 15px;
+                text-align: center;
+                color: #888;
+                font-size: 0.9rem;
+              "
+            >
+              Scanning server...
+            </div>
+          </div>
+        </div>
+
+        <!-- DONATIONS SECTION -->
+        <div
+          class="server-widget"
+          style="text-align: center; margin-bottom: 30px"
+        >
+          <h3
+            style="
+              color: var(--accent-color);
+              font-size: 1.5rem;
+              margin-bottom: 15px;
+              text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+            "
+          >
+            SUPPORT THE SERVER
+          </h3>
+          <p
+            style="
+              color: var(--text-muted);
+              margin-bottom: 20px;
+              font-size: 0.95rem;
+            "
+          >
+            Help keep DEMONIK running and get access to exclusive perks!
+          </p>
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 15px;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              href="https://www.venmo.com/u/DemonikLFD2"
+              class="secondary-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="margin: 0; display: flex; align-items: center; gap: 8px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12.91 3.55c3.55 0 5.16 2.05 5.16 4.79 0 4.19-4.82 12.08-8.88 12.08-1.55 0-2.31-1.05-2.61-3.23l-1.05-8.62c-.17-1.42-.87-2.05-1.92-2.18v-2.1h4.08l.87 7.21c.26 2.05 1.5 2.5 2.18 2.5 1.74 0 4.14-5.35 4.14-7.53 0-1.05-.52-1.42-1.39-1.42-1.05 0-1.83.61-2.09 1.48l-1.92-.56c.43-1.66 1.78-2.48 3.43-2.48z"
+                />
+              </svg>
+              VENMO
+            </a>
+            <a
+              href="https://cash.app/$DemonikLFD2"
+              class="secondary-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="margin: 0; display: flex; align-items: center; gap: 8px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path
+                  d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                ></path>
+              </svg>
+              CASH.APP
+            </a>
+          </div>
         </div>
       </div>
     </main>
@@ -490,82 +588,80 @@
         >
       </p>
     </footer>
-  </body>
-    </footer>
 
     <script>
       const VANILLA_MAPS = {
         // Dead Center
-        "c1m1_hotel": "Dead Center: The Hotel",
-        "c1m2_streets": "Dead Center: Streets",
-        "c1m3_mall": "Dead Center: Mall",
-        "c1m4_atrium": "Dead Center: Atrium",
+        c1m1_hotel: "Dead Center: The Hotel",
+        c1m2_streets: "Dead Center: Streets",
+        c1m3_mall: "Dead Center: Mall",
+        c1m4_atrium: "Dead Center: Atrium",
         // Dark Carnival
-        "c2m1_highway": "Dark Carnival: Highway",
-        "c2m2_fairgrounds": "Dark Carnival: Fairgrounds",
-        "c2m3_coaster": "Dark Carnival: Coaster",
-        "c2m4_barns": "Dark Carnival: Barns",
-        "c2m5_concert": "Dark Carnival: Concert",
+        c2m1_highway: "Dark Carnival: Highway",
+        c2m2_fairgrounds: "Dark Carnival: Fairgrounds",
+        c2m3_coaster: "Dark Carnival: Coaster",
+        c2m4_barns: "Dark Carnival: Barns",
+        c2m5_concert: "Dark Carnival: Concert",
         // Swamp Fever
-        "c3m1_plankcountry": "Swamp Fever: Plank Country",
-        "c3m2_swamp": "Swamp Fever: Swamp",
-        "c3m3_shantytown": "Swamp Fever: Shanty Town",
-        "c3m4_plantation": "Swamp Fever: Plantation",
+        c3m1_plankcountry: "Swamp Fever: Plank Country",
+        c3m2_swamp: "Swamp Fever: Swamp",
+        c3m3_shantytown: "Swamp Fever: Shanty Town",
+        c3m4_plantation: "Swamp Fever: Plantation",
         // Hard Rain
-        "c4m1_milltown_a": "Hard Rain: Milltown",
-        "c4m2_sugarmill_a": "Hard Rain: Sugar Mill",
-        "c4m3_sugarmill_b": "Hard Rain: Mill Escape",
-        "c4m4_milltown_b": "Hard Rain: Return to Town",
-        "c4m5_milltown_escape": "Hard Rain: Escape",
+        c4m1_milltown_a: "Hard Rain: Milltown",
+        c4m2_sugarmill_a: "Hard Rain: Sugar Mill",
+        c4m3_sugarmill_b: "Hard Rain: Mill Escape",
+        c4m4_milltown_b: "Hard Rain: Return to Town",
+        c4m5_milltown_escape: "Hard Rain: Escape",
         // The Parish
-        "c5m1_waterfront": "The Parish: Waterfront",
-        "c5m2_park": "The Parish: Park",
-        "c5m3_cemetery": "The Parish: Cemetery",
-        "c5m4_quarter": "The Parish: Quarter",
-        "c5m5_bridge": "The Parish: Bridge",
+        c5m1_waterfront: "The Parish: Waterfront",
+        c5m2_park: "The Parish: Park",
+        c5m3_cemetery: "The Parish: Cemetery",
+        c5m4_quarter: "The Parish: Quarter",
+        c5m5_bridge: "The Parish: Bridge",
         // The Passing
-        "c6m1_riverbank": "The Passing: Riverbank",
-        "c6m2_bedlam": "The Passing: Underground",
-        "c6m3_port": "The Passing: Port",
+        c6m1_riverbank: "The Passing: Riverbank",
+        c6m2_bedlam: "The Passing: Underground",
+        c6m3_port: "The Passing: Port",
         // The Sacrifice
-        "c7m1_docks": "The Sacrifice: Docks",
-        "c7m2_barge": "The Sacrifice: Barge",
-        "c7m3_port": "The Sacrifice: Port",
+        c7m1_docks: "The Sacrifice: Docks",
+        c7m2_barge: "The Sacrifice: Barge",
+        c7m3_port: "The Sacrifice: Port",
         // No Mercy
-        "c8m1_apartment": "No Mercy: Apartments",
-        "c8m2_subway": "No Mercy: Subway",
-        "c8m3_sewers": "No Mercy: Sewers",
-        "c8m4_interior": "No Mercy: Hospital",
-        "c8m5_rooftop": "No Mercy: Rooftop",
+        c8m1_apartment: "No Mercy: Apartments",
+        c8m2_subway: "No Mercy: Subway",
+        c8m3_sewers: "No Mercy: Sewers",
+        c8m4_interior: "No Mercy: Hospital",
+        c8m5_rooftop: "No Mercy: Rooftop",
         // Crash Course
-        "c9m1_alleys": "Crash Course: The Alleys",
-        "c9m2_lots": "Crash Course: The Truck Depot",
+        c9m1_alleys: "Crash Course: The Alleys",
+        c9m2_lots: "Crash Course: The Truck Depot",
         // Death Toll
-        "c10m1_caves": "Death Toll: The Turnpike",
-        "c10m2_drainage": "Death Toll: The Drains",
-        "c10m3_ranchhouse": "Death Toll: The Church",
-        "c10m4_mainstreet": "Death Toll: The Town",
-        "c10m5_houseboat": "Death Toll: Boathouse",
+        c10m1_caves: "Death Toll: The Turnpike",
+        c10m2_drainage: "Death Toll: The Drains",
+        c10m3_ranchhouse: "Death Toll: The Church",
+        c10m4_mainstreet: "Death Toll: The Town",
+        c10m5_houseboat: "Death Toll: Boathouse",
         // Dead Air
-        "c11m1_greenhouse": "Dead Air: Greenhouse",
-        "c11m2_offices": "Dead Air: Crane",
-        "c11m3_garage": "Dead Air: Garage",
-        "c11m4_terminal": "Dead Air: Terminal",
-        "c11m5_runway": "Dead Air: Runway",
+        c11m1_greenhouse: "Dead Air: Greenhouse",
+        c11m2_offices: "Dead Air: Crane",
+        c11m3_garage: "Dead Air: Garage",
+        c11m4_terminal: "Dead Air: Terminal",
+        c11m5_runway: "Dead Air: Runway",
         // Blood Harvest
-        "c12m1_hilltop": "Blood Harvest: The Woods",
-        "c12m2_traintunnel": "Blood Harvest: The Tunnel",
-        "c12m3_bridge": "Blood Harvest: The Bridge",
-        "c12m4_barn": "Blood Harvest: The Train Station",
-        "c12m5_cornfield": "Blood Harvest: Farmhouse",
+        c12m1_hilltop: "Blood Harvest: The Woods",
+        c12m2_traintunnel: "Blood Harvest: The Tunnel",
+        c12m3_bridge: "Blood Harvest: The Bridge",
+        c12m4_barn: "Blood Harvest: The Train Station",
+        c12m5_cornfield: "Blood Harvest: Farmhouse",
         // Cold Stream
-        "c13m1_alpinecreek": "Cold Stream: Alpine Creek",
-        "c13m2_southpinestream": "Cold Stream: South Pine Stream",
-        "c13m3_memorialbridge": "Cold Stream: Memorial Bridge",
-        "c13m4_cutthroatcreek": "Cold Stream: Cutthroat Creek",
+        c13m1_alpinecreek: "Cold Stream: Alpine Creek",
+        c13m2_southpinestream: "Cold Stream: South Pine Stream",
+        c13m3_memorialbridge: "Cold Stream: Memorial Bridge",
+        c13m4_cutthroatcreek: "Cold Stream: Cutthroat Creek",
         // The Last Stand
-        "c14m1_junkyard": "The Last Stand: The Junkyard",
-        "c14m2_lighthouse": "The Last Stand: The Lighthouse",
+        c14m1_junkyard: "The Last Stand: The Junkyard",
+        c14m2_lighthouse: "The Last Stand: The Lighthouse",
       };
 
       // Firestore REST API URL (Read-only public access required for this document)
@@ -580,92 +676,108 @@
         const btn = document.querySelector(".refresh-btn");
 
         // UI Reset
-        if(btn) btn.innerText = "REFRESHING...";
+        if (btn) btn.innerText = "REFRESHING...";
         dotEl.style.backgroundColor = "#eab308"; // Yellow (Loading)
         dotEl.style.boxShadow = "none";
-        
+
         try {
           const response = await fetch(API_URL);
           if (!response.ok) throw new Error("API Network Error");
-          
+
           const json = await response.json();
           // Firestore returns fields wrapped in types: { fields: { map: { stringValue: "..." } } }
           const fields = json.fields;
-          
+
           if (!fields) throw new Error("Invalid Data Format");
-          
+
           const isOnline = fields.online ? fields.online.booleanValue : false;
-          
+
           if (!isOnline) throw new Error("Server Reported Offline");
 
           // 1. Map Translation
-          let friendlyMap = fields.friendly_map ? fields.friendly_map.stringValue : "";
+          let friendlyMap = fields.friendly_map
+            ? fields.friendly_map.stringValue
+            : "";
 
           if (!friendlyMap) {
             const rawMap = fields.name ? fields.name.stringValue : "Unknown";
             const mapCode = fields.map ? fields.map.stringValue : "";
             // Try to get friendly name specifically for vanilla maps first
             friendlyMap = VANILLA_MAPS[mapCode.toLowerCase()];
-            
+
             if (!friendlyMap) {
               // Custom Map Logic
               if (rawMap && rawMap !== "Unknown") {
-                 // Extract map name from "Server Name | Map Name [Chapter]" format
-                 const parts = rawMap.split('|');
-                 
-                 if (parts.length > 1) {
-                     let mapPart = parts[parts.length - 1].trim();
-                     if (mapPart === "") {
-                         friendlyMap = mapCode || "Idle";
-                     } else {
-                         // Check for chapter info
-                         // Match [1-3] or [1] and capture just the first digit(s)
-                         const chapterMatch = mapPart.match(/\[(\d+)(?:-\d+)?\]/);
-                         let cleanName = mapPart.replace(/\[.*?\]/, '').trim();
-                         
-                         friendlyMap = cleanName;
-                         if (chapterMatch) {
-                             friendlyMap += ` Chapter ${chapterMatch[1]}`;
-                         }
-                     }
-                 } else {
-                     // No pipe separator found, fallback to generic state
-                     friendlyMap = mapCode || "Idle";
-                 }
+                // Extract map name from "Server Name | Map Name [Chapter]" format
+                const parts = rawMap.split("|");
+
+                if (parts.length > 1) {
+                  let mapPart = parts[parts.length - 1].trim();
+                  if (mapPart === "") {
+                    friendlyMap = mapCode || "Idle";
+                  } else {
+                    // Check for chapter info
+                    // Match [1-3] or [1] and capture just the first digit(s)
+                    const chapterMatch = mapPart.match(/\[(\d+)(?:-\d+)?\]/);
+                    let cleanName = mapPart.replace(/\[.*?\]/, "").trim();
+
+                    friendlyMap = cleanName;
+                    if (chapterMatch) {
+                      friendlyMap += ` Chapter ${chapterMatch[1]}`;
+                    }
+                  }
+                } else {
+                  // No pipe separator found, fallback to generic state
+                  friendlyMap = mapCode || "Idle";
+                }
               } else {
-                 friendlyMap = mapCode ? mapCode : "Scanning...";
+                friendlyMap = mapCode ? mapCode : "Scanning...";
               }
             }
           }
           mapEl.innerText = friendlyMap;
 
           // 2. Update UI
-          const count = fields.players ? parseInt(fields.players.integerValue) : 0;
-          const max = fields.max_players ? parseInt(fields.max_players.integerValue) : 20;
-          
+          const count = fields.players
+            ? parseInt(fields.players.integerValue)
+            : 0;
+          const max = fields.max_players
+            ? parseInt(fields.max_players.integerValue)
+            : 20;
+
           // Parse Player List (Array of Strings)
           let players = [];
-          if (fields.player_list && fields.player_list.arrayValue && fields.player_list.arrayValue.values) {
-             players = fields.player_list.arrayValue.values.map(v => v.stringValue);
+          if (
+            fields.player_list &&
+            fields.player_list.arrayValue &&
+            fields.player_list.arrayValue.values
+          ) {
+            players = fields.player_list.arrayValue.values.map(
+              (v) => v.stringValue,
+            );
           }
-          
+
           countEl.innerText = `${count}/${max}`;
-          
+
           if (players.length > 0) {
-            listEl.innerHTML = players.map(p => `
+            listEl.innerHTML = players
+              .map(
+                (p) => `
               <div class="player-item">
                 <span style="max-width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${p}</span>
                 <span style="color:#16a34a; font-size:0.7rem; font-weight:bold; align-self:center;">ONLINE</span>
               </div>
-            `).join("");
+            `,
+              )
+              .join("");
           } else {
-            listEl.innerHTML = '<div style="padding:15px; text-align:center; color:#888;">The server is currently empty.</div>';
+            listEl.innerHTML =
+              '<div style="padding:15px; text-align:center; color:#888;">The server is currently empty.</div>';
           }
-    
+
           // Success State
           dotEl.style.backgroundColor = "#16a34a"; // Green
           dotEl.style.boxShadow = "0 0 10px #16a34a";
-
         } catch (e) {
           console.error("Widget Error:", e);
           // Offline / Error State
@@ -679,7 +791,7 @@
             </div>
           `;
         } finally {
-          if(btn) btn.innerText = "REFRESH";
+          if (btn) btn.innerText = "REFRESH";
         }
       }
 
