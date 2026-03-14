@@ -362,27 +362,10 @@
       </nav>
     </header>
     <main>
-      <h1>Server Stats & Ranking</h1>
-      <p>View our worldwide ranking and real-time player stats</p>
+      <h1>Server Status</h1>
+      <p>View real-time player stats and current map</p>
 
-      <!-- SERVER RANK WIDGET -->
-      <div class="server-widget" id="rank-widget" style="margin-bottom: 20px;">
-        <div class="widget-header">
-          <div class="status-badge">
-            <span style="color: var(--accent-color);">Worldwide Rank</span>
-          </div>
-        </div>
-        <div class="widget-info" style="margin-bottom: 0;">
-          <div>
-            <div class="info-label">Current Position</div>
-            <div class="info-value" id="server-rank" style="color: var(--accent-color); font-size: 2rem;">--</div>
-          </div>
-          <div style="text-align: right">
-            <div class="info-label">USA Regional Rank</div>
-            <div class="info-value" id="usa-rank" style="font-size: 2rem;">--</div>
-          </div>
-        </div>
-      </div>
+
 
       <!-- SERVER STATUS WIDGET -->
       <div class="server-widget" id="server-widget">
@@ -421,11 +404,7 @@
         </div>
       </div>
       
-      <div class="tsarvar-tracker">
-        <a href="https://tsarvar.com/en/servers/left-4-dead-2/98.142.13.139:27015" target="_blank" rel="noopener noreferrer">
-          View full historical stats on Tsarvar
-        </a>
-      </div>
+
     </main>
     <footer>
       <p>&copy; 2026 Demonik L4D2 Server. All rights reserved.</p>
@@ -614,16 +593,7 @@
 
           countEl.innerText = `${count}/${max}`;
           
-          // --- RANK WIDGET UPDATE ---
-          const rankEl = document.getElementById("server-rank");
-          const usaRankEl = document.getElementById("usa-rank");
-          
-          const rank = fields.world_rank ? fields.world_rank.integerValue : "N/A";
-          const usaRank = fields.usa_rank ? fields.usa_rank.integerValue : "N/A";
-          
-          rankEl.innerText = rank !== "N/A" ? `#${rank}` : "--";
-          usaRankEl.innerText = usaRank !== "N/A" ? `#${usaRank}` : "--";
-          // --------------------------
+
 
           if (players.length > 0) {
             listEl.innerHTML = players
@@ -649,8 +619,7 @@
           // Offline / Error State
           mapEl.innerText = "OFFLINE";
           countEl.innerText = "0/20";
-          document.getElementById("server-rank").innerText = "--";
-          document.getElementById("usa-rank").innerText = "--";
+
           dotEl.style.backgroundColor = "#dc2626"; // Red
           dotEl.style.boxShadow = "0 0 10px #dc2626";
           listEl.innerHTML = `
