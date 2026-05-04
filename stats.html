@@ -349,6 +349,27 @@
       .tsarvar-tracker a:hover {
         color: var(--accent-color);
       }
+      .secondary-button {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        padding: 0.8rem 2rem;
+        font-family: "Oswald", sans-serif;
+        font-size: 1rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 10px;
+      }
+
+      .secondary-button:hover {
+        color: var(--bg-color);
+        border-color: var(--text-color);
+        background: var(--text-color);
+      }
     </style>
   </head>
   <body>
@@ -416,6 +437,86 @@
       </div>
       
 
+    
+        <!-- DONATIONS SECTION -->
+        <div
+          class="server-widget"
+          style="text-align: center; margin-bottom: 30px"
+        >
+          <h3
+            style="
+              color: var(--accent-color);
+              font-size: 1.5rem;
+              margin-bottom: 15px;
+              text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+            "
+          >
+            SUPPORT THE SERVER
+          </h3>
+          <p
+            style="
+              color: var(--text-muted);
+              margin-bottom: 20px;
+              font-size: 0.95rem;
+            "
+          >
+            Help keep DEMONIK running and get access to exclusive perks!
+          </p>
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 15px;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              href="https://www.venmo.com/u/DemonikLFD2"
+              class="secondary-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="margin: 0; display: flex; align-items: center; gap: 8px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12.91 3.55c3.55 0 5.16 2.05 5.16 4.79 0 4.19-4.82 12.08-8.88 12.08-1.55 0-2.31-1.05-2.61-3.23l-1.05-8.62c-.17-1.42-.87-2.05-1.92-2.18v-2.1h4.08l.87 7.21c.26 2.05 1.5 2.5 2.18 2.5 1.74 0 4.14-5.35 4.14-7.53 0-1.05-.52-1.42-1.39-1.42-1.05 0-1.83.61-2.09 1.48l-1.92-.56c.43-1.66 1.78-2.48 3.43-2.48z"
+                />
+              </svg>
+              VENMO
+            </a>
+            <a
+              href="https://cash.app/$DemonikLFD2"
+              class="secondary-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="margin: 0; display: flex; align-items: center; gap: 8px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path
+                  d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                ></path>
+              </svg>
+              CASH.APP
+            </a>
+          </div>
+        </div>
     </main>
     <footer>
       <p>&copy; 2026 Demonik L4D2 Server. All rights reserved.</p>
