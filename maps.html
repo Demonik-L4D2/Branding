@@ -704,11 +704,11 @@
              const steamIdMatch = url.match(/id=(\d+)/);
              const steamId = steamIdMatch ? steamIdMatch[1] : null;
              
-             // Fetch image from the root fields if it exists
+             // Fetch image from the nested steam_data map if it exists
              let imageUrl = "motd.jpg"; // Fallback image
-             if (steamId && fields[steamId] && fields[steamId].mapValue && fields[steamId].mapValue.fields) {
-                const steamData = fields[steamId].mapValue.fields;
-                if (steamData.image && steamData.image.stringValue) {
+             if (steamId && fields.steam_data && fields.steam_data.mapValue && fields.steam_data.mapValue.fields[steamId]) {
+                const steamData = fields.steam_data.mapValue.fields[steamId].mapValue.fields;
+                if (steamData && steamData.image && steamData.image.stringValue) {
                    imageUrl = steamData.image.stringValue;
                 }
              }
