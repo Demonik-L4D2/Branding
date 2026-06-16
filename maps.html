@@ -672,7 +672,7 @@
       setInterval(fetchDiscordData, 60000);
 
       const PROJECT_ID = "discord-bot-482803";
-      const MAPS_API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/bot_data/maps`;
+      const MAPS_API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/server_status/maps_public`;
 
       async function fetchFeaturedMaps() {
         const gridEl = document.getElementById("featured-maps-grid");
