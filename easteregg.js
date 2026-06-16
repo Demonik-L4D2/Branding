@@ -12,7 +12,6 @@ function playEerieSound() {
 
 function triggerEasterEgg() {
     playEerieSound();
-    document.body.style.animation = 'shake 0.5s infinite';
     
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -20,13 +19,13 @@ function triggerEasterEgg() {
     overlay.style.left = '0';
     overlay.style.width = '100vw';
     overlay.style.height = '100vh';
-    overlay.style.backgroundColor = 'black';
-    overlay.style.zIndex = '9999';
+    overlay.style.backgroundColor = '#6b0000'; // Deep blood red
+    overlay.style.zIndex = '2147483647'; // Max z-index to cover EVERYTHING
     overlay.style.display = 'flex';
     overlay.style.alignItems = 'center';
     overlay.style.justifyContent = 'center';
     overlay.style.opacity = '0';
-    overlay.style.transition = 'opacity 1.5s ease';
+    overlay.style.transition = 'opacity 0.5s ease, background-color 3.5s ease';
     overlay.style.pointerEvents = 'all';
 
     const text = document.createElement('div');
@@ -42,6 +41,13 @@ function triggerEasterEgg() {
     
     overlay.appendChild(text);
     document.body.appendChild(overlay);
+
+    // Apply shake to all children EXCEPT the overlay so 'position: fixed' isn't broken by a transformed parent
+    Array.from(document.body.children).forEach(child => {
+        if (child !== overlay && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE') {
+            child.style.animation = 'shake 0.5s infinite';
+        }
+    });
 
     if (!document.getElementById('shake-style')) {
         const style = document.createElement('style');
@@ -67,6 +73,7 @@ function triggerEasterEgg() {
     setTimeout(() => {
         overlay.style.opacity = '1';
         text.style.opacity = '1';
+        overlay.style.backgroundColor = 'black'; // Slowly fades to black like dying
     }, 50);
 
     setTimeout(() => {
