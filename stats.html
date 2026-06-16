@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -456,6 +456,11 @@
             Scanning server...
           </div>
         </div>
+
+        <div class="widget-graph-container" id="graph-container" style="display: none; margin-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; animation: fadeIn 0.8s ease-out;">
+          <div class="info-label" style="margin-bottom: 15px; text-align: center;">24-Hour Player Activity</div>
+          <img id="activity-graph" src="" alt="Player Activity Graph" style="width: 100%; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); object-fit: contain;">
+        </div>
       </div>
       
 
@@ -713,7 +718,31 @@
               }
             }
           }
-          mapEl.innerText = friendlyMap;
+
+          const mapUrl = fields.map_url ? fields.map_url.stringValue : null;
+          if (mapUrl) {
+            // External link SVG icon
+            const linkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px; vertical-align: baseline; opacity: 0.8;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>`;
+            
+            mapEl.innerHTML = `<a href="${mapUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; border-bottom: 1px solid var(--accent-color); padding-bottom: 2px; transition: all 0.3s ease; pointer-events: auto; display: inline-flex; align-items: center; text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);">${friendlyMap}${linkIcon}</a>`;
+            
+            // Add hover effect
+            const mapLink = mapEl.querySelector("a");
+            if (mapLink) {
+                mapLink.addEventListener("mouseover", () => {
+                  mapLink.style.color = "#fff";
+                  mapLink.style.borderColor = "#fff";
+                  mapLink.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.5)";
+                });
+                mapLink.addEventListener("mouseout", () => {
+                  mapLink.style.color = "var(--accent-color)";
+                  mapLink.style.borderColor = "var(--accent-color)";
+                  mapLink.style.textShadow = "0 0 10px rgba(229, 9, 20, 0.3)";
+                });
+            }
+          } else {
+            mapEl.innerText = friendlyMap;
+          }
 
           // 2. Update UI
           const count = fields.players
@@ -753,6 +782,18 @@
           } else {
             listEl.innerHTML =
               '<div style="padding:15px; text-align:center; color:#888;">The server is currently empty.</div>';
+          }
+
+          // Handle Activity Graph
+          const graphContainer = document.getElementById("graph-container");
+          const graphImg = document.getElementById("activity-graph");
+          if (fields.chart_url && fields.chart_url.stringValue) {
+            // Append timestamp to bust browser cache
+            const cacheBuster = `?t=${new Date().getTime()}`;
+            graphImg.src = fields.chart_url.stringValue + cacheBuster;
+            graphContainer.style.display = "block";
+          } else {
+            graphContainer.style.display = "none";
           }
 
           // Success State
