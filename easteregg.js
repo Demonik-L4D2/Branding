@@ -82,6 +82,7 @@ function triggerEasterEgg() {
     }, 2500);
 
     setTimeout(() => {
+      sessionStorage.setItem('hordeUnlocked', 'true');
       window.location.href = 'lore.html';
     }, 4000);
 }
