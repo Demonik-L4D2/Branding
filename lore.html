@@ -29,6 +29,21 @@
         padding: 0;
       }
 
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color);
+      }
+
       body {
         background-color: var(--bg-color);
         color: var(--text-color);
@@ -37,6 +52,15 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        opacity: 0;
+        animation: fadePageIn 2.5s ease-in-out forwards;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      @keyframes fadePageIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
 
       h1,
@@ -139,6 +163,7 @@
           url("motd.jpg");
         background-size: cover;
         background-position: center;
+        background-attachment: fixed;
         border-bottom: 1px solid #333;
       }
 
@@ -176,6 +201,13 @@
         background: rgba(255, 255, 255, 0.03);
         padding: 2rem;
         border-radius: 0 8px 8px 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .intro-text.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       /* timeline / sections */
@@ -184,6 +216,13 @@
         position: relative;
         padding-left: 2rem;
         border-left: 1px solid #333;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .chronicle-section.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       .chronicle-section:last-child {
@@ -579,6 +618,19 @@
         >
       </p>
     </footer>
+    <!-- The First Fire Background -->
+    <div class="campfire-container">
+      <div class="fire">
+        <div class="flame"></div>
+        <div class="flame"></div>
+        <div class="flame"></div>
+        <div class="flame"></div>
+      </div>
+      <div class="logs">
+        <div class="log"></div>
+        <div class="log"></div>
+      </div>
+    </div>
     <script>
       async function fetchDiscordData() {
         try {
@@ -599,6 +651,146 @@
 
       fetchDiscordData();
       setInterval(fetchDiscordData, 60000);
+
+      // Floating Embers Effect
+      const emberStyle = document.createElement('style');
+      emberStyle.innerHTML = `
+        .ember {
+          position: fixed;
+          bottom: -20px;
+          width: 4px;
+          height: 4px;
+          background-color: #ff5722;
+          border-radius: 50%;
+          box-shadow: 0 0 10px 2px #ff5722, 0 0 20px 2px #e50914;
+          opacity: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+        @keyframes floatUp {
+          0% { transform: translate(0, 0) scale(1); opacity: 0; }
+          20% { opacity: 0.8; }
+          100% { transform: translate(var(--drift), -100vh) scale(0.5); opacity: 0; }
+        }
+
+        .campfire-container {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          z-index: 0;
+          opacity: 0.15;
+          filter: blur(3px);
+          pointer-events: none;
+        }
+
+        /* Large background glow to act as the fire's light */
+        .campfire-container::before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          width: 80vw;
+          min-width: 400px;
+          height: 250px;
+          background: radial-gradient(ellipse at bottom, rgba(229, 9, 20, 0.25) 0%, rgba(229, 9, 20, 0) 70%);
+          z-index: -1;
+          border-radius: 50%;
+          animation: glowPulse 2s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+          0% { opacity: 0.7; transform: scale(0.9); }
+          100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .fire {
+          position: relative;
+          width: 60px;
+          height: 60px;
+        }
+
+        .flame {
+          position: absolute;
+          bottom: 0;
+          width: 20px;
+          height: 40px;
+          background: #ff5722;
+          border-radius: 50% 50% 20% 20%;
+          box-shadow: 0 0 20px #ff5722, 0 0 40px #e50914;
+          animation: flicker 0.5s infinite alternate;
+          transform-origin: bottom center;
+          mix-blend-mode: screen;
+        }
+        .flame:nth-child(1) { left: 10px; height: 50px; background: #ff9800; animation-duration: 0.4s; }
+        .flame:nth-child(2) { left: 25px; height: 45px; background: #ff5722; animation-duration: 0.6s; }
+        .flame:nth-child(3) { left: 15px; height: 60px; background: #ffeb3b; animation-duration: 0.5s; z-index: 2; }
+        .flame:nth-child(4) { left: 30px; height: 35px; background: #e50914; animation-duration: 0.45s; }
+
+        @keyframes flicker {
+          0% { transform: scaleY(1) scaleX(1) rotate(-2deg); opacity: 0.8; }
+          100% { transform: scaleY(1.2) scaleX(0.9) rotate(2deg); opacity: 1; }
+        }
+
+        .logs {
+          position: relative;
+          width: 80px;
+          height: 20px;
+          margin-top: -10px;
+        }
+        .log {
+          position: absolute;
+          width: 70px;
+          height: 15px;
+          background: #3e2723;
+          border-radius: 10px;
+          box-shadow: inset 0 -3px 5px rgba(0,0,0,0.5);
+        }
+        .log:nth-child(1) { transform: rotate(15deg); left: 0; }
+        .log:nth-child(2) { transform: rotate(-15deg); right: 0; }
+      `;
+      document.head.appendChild(emberStyle);
+
+      function createEmber() {
+        const ember = document.createElement('div');
+        ember.className = 'ember';
+        ember.style.left = (Math.random() * window.innerWidth) + 'px';
+        
+        const duration = Math.random() * 5 + 4; // 4s to 9s
+        ember.style.animation = `floatUp ${duration}s ease-in forwards`;
+        
+        const drift = (Math.random() - 0.5) * 300; // -150px to 150px
+        ember.style.setProperty('--drift', drift + 'px');
+        
+        // Append it as a background element
+        document.body.appendChild(ember);
+        
+        setTimeout(() => ember.remove(), duration * 1000);
+      }
+      
+      setInterval(createEmber, 400); // Create an ember every 400ms
+
+      // Scroll Reveal Effect
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+      };
+      
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); 
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.chronicle-section, .intro-text').forEach(el => {
+        observer.observe(el);
+      });
     </script>
   </body>
 </html>

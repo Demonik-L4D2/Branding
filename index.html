@@ -446,7 +446,7 @@
       </a>
       <nav>
         <a href="/" class="active">HOME</a>
-        <a href="lore.html">LORE</a>
+
         <a href="maps.html">CUSTOM MAPS</a>
         <a href="stats.html">STATS</a>
         <a href="steam.html">STEAM GROUP</a>
@@ -1020,6 +1020,207 @@
         fetchServerData();
         fetchDiscordData();
       }, 60000);
+
+      // KONAMI CODE EASTER EGG
+      const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      let konamiIndex = 0;
+
+      function playEerieSound() {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+
+        // 1. The High Shriek (Oscillator)
+        const shriekOsc = ctx.createOscillator();
+        const shriekGain = ctx.createGain();
+        shriekOsc.type = 'sawtooth';
+        shriekOsc.frequency.setValueAtTime(1200, ctx.currentTime); // High pitch start
+        shriekOsc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 1.5); // Drops to low pitch
+
+        shriekGain.gain.setValueAtTime(0, ctx.currentTime);
+        shriekGain.gain.linearRampToValueAtTime(1.5, ctx.currentTime + 0.1);
+        shriekGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2);
+
+        // 2. The Horde Roar/Rumble (Noise)
+        const bufferSize = ctx.sampleRate * 2.5; 
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1; // White noise
+        }
+        const noiseSrc = ctx.createBufferSource();
+        noiseSrc.buffer = noiseBuffer;
+        
+        const noiseFilter = ctx.createBiquadFilter();
+        noiseFilter.type = 'lowpass';
+        noiseFilter.frequency.setValueAtTime(800, ctx.currentTime);
+        noiseFilter.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 2.5);
+
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.setValueAtTime(0, ctx.currentTime);
+        noiseGain.gain.linearRampToValueAtTime(2, ctx.currentTime + 0.5); // Loud roar
+        noiseGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2.5);
+
+        // 3. Distortion for the gritty zombie texture
+        const distortion = ctx.createWaveShaper();
+        function makeDistortionCurve(amount) {
+          const k = amount;
+          const n_samples = 44100;
+          const curve = new Float32Array(n_samples);
+          const deg = Math.PI / 180;
+          for (let i = 0; i < n_samples; ++i) {
+            const x = i * 2 / n_samples - 1;
+            curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
+          }
+          return curve;
+        }
+        distortion.curve = makeDistortionCurve(400); // Heavy distortion
+        distortion.oversample = '4x';
+
+        // Routing
+        shriekOsc.connect(shriekGain);
+        shriekGain.connect(distortion);
+
+        noiseSrc.connect(noiseFilter);
+        noiseFilter.connect(noiseGain);
+        noiseGain.connect(distortion);
+
+        distortion.connect(ctx.destination);
+
+        // Note: To use a real MP3 file instead, simply uncomment the following:
+        // const audio = new Audio('path_to_your_horde_sound.mp3');
+        // audio.play();
+
+        // Start Synth
+        shriekOsc.start(ctx.currentTime);
+        shriekOsc.stop(ctx.currentTime + 2);
+        noiseSrc.start(ctx.currentTime);
+      }
+
+      function triggerEasterEgg() {
+          playEerieSound();
+          document.body.style.animation = 'shake 0.5s infinite';
+          
+          const overlay = document.createElement('div');
+          overlay.style.position = 'fixed';
+          overlay.style.top = '0';
+          overlay.style.left = '0';
+          overlay.style.width = '100vw';
+          overlay.style.height = '100vh';
+          overlay.style.backgroundColor = 'black';
+          overlay.style.zIndex = '9999';
+          overlay.style.display = 'flex';
+          overlay.style.alignItems = 'center';
+          overlay.style.justifyContent = 'center';
+          overlay.style.opacity = '0';
+          overlay.style.transition = 'opacity 1.5s ease';
+          overlay.style.pointerEvents = 'all';
+
+          const text = document.createElement('div');
+          text.style.color = '#e50914';
+          text.style.fontFamily = '"Oswald", sans-serif';
+          text.style.fontSize = 'min(10vw, 4rem)';
+          text.style.textTransform = 'uppercase';
+          text.style.opacity = '0';
+          text.style.transition = 'opacity 1.5s ease 1s';
+          text.style.textAlign = 'center';
+          text.style.padding = '20px';
+          text.innerText = 'The Horde Approaches...';
+          
+          overlay.appendChild(text);
+          document.body.appendChild(overlay);
+
+          if (!document.getElementById('shake-style')) {
+              const style = document.createElement('style');
+              style.id = 'shake-style';
+              style.innerHTML = `
+                  @keyframes shake {
+                      0% { transform: translate(1px, 1px) rotate(0deg); }
+                      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+                      20% { transform: translate(-3px, 0px) rotate(1deg); }
+                      30% { transform: translate(3px, 2px) rotate(0deg); }
+                      40% { transform: translate(1px, -1px) rotate(1deg); }
+                      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+                      60% { transform: translate(-3px, 1px) rotate(0deg); }
+                      70% { transform: translate(3px, 1px) rotate(-1deg); }
+                      80% { transform: translate(-1px, -1px) rotate(1deg); }
+                      90% { transform: translate(1px, 2px) rotate(0deg); }
+                      100% { transform: translate(1px, -2px) rotate(-1deg); }
+                  }
+              `;
+              document.head.appendChild(style);
+          }
+
+          setTimeout(() => {
+              overlay.style.opacity = '1';
+              text.style.opacity = '1';
+          }, 50);
+
+          setTimeout(() => {
+              text.style.transition = 'opacity 1s ease';
+              text.style.opacity = '0';
+          }, 2500);
+
+          setTimeout(() => {
+            window.location.href = 'lore.html';
+          }, 4000);
+      }
+
+      function handleInput(input) {
+        if (input === konamiCode[konamiIndex]) {
+          konamiIndex++;
+          if (konamiIndex === konamiCode.length) {
+            triggerEasterEgg();
+            konamiIndex = 0;
+          }
+        } else {
+          konamiIndex = 0;
+        }
+      }
+
+      // Keyboard support
+      document.addEventListener('keydown', (e) => {
+        const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+        handleInput(key);
+      });
+
+      // Mobile support (Swipes + Taps)
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, {passive: true});
+
+      document.addEventListener('touchend', e => {
+        let touchEndX = e.changedTouches[0].screenX;
+        let touchEndY = e.changedTouches[0].screenY;
+        
+        const dx = touchEndX - touchStartX;
+        const dy = touchEndY - touchStartY;
+        const absDx = Math.abs(dx);
+        const absDy = Math.abs(dy);
+        
+        // Threshold for tap vs swipe
+        if (Math.max(absDx, absDy) < 30) {
+            // Treat as tap. Map the last 2 inputs of Konami to taps for mobile users.
+            if (konamiCode[konamiIndex] === 'b' || konamiCode[konamiIndex] === 'a') {
+                handleInput(konamiCode[konamiIndex]); 
+            } else {
+                handleInput('tap'); // will reset
+            }
+            return;
+        }
+        
+        if (absDx > absDy) {
+          if (dx > 0) handleInput('ArrowRight');
+          else handleInput('ArrowLeft');
+        } else {
+          if (dy > 0) handleInput('ArrowDown');
+          else handleInput('ArrowUp');
+        }
+      }, {passive: true});
     </script>
   </body>
 </html>
