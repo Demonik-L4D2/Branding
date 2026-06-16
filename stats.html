@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -439,6 +439,201 @@
             <div class="info-value" id="map-name">Loading...</div>
           </div>
           <div style="text-align: right">
+        margin: 0 auto 30px auto;
+        padding: 25px;
+        text-align: left;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        animation: fadeIn 1s ease-out;
+      }
+      .widget-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 15px;
+      }
+      .status-badge {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Oswald", sans-serif;
+        font-size: 1.3rem;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        background-color: #444; /* Default gray */
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+      }
+      .refresh-btn {
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+      }
+      .refresh-btn:hover {
+        color: var(--accent-color);
+      }
+      .widget-info {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .info-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+        font-weight: 700;
+      }
+      .info-value {
+        font-family: "Oswald", sans-serif;
+        font-size: 1.4rem;
+        color: #fff;
+        line-height: 1.2;
+      }
+      .player-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.95rem;
+        color: #e0e0e0;
+      }
+      .player-item:last-child {
+        border-bottom: none;
+      }
+      .offline-msg {
+        text-align: center;
+        padding: 25px;
+        color: #bbb;
+        font-size: 0.95rem;
+      }
+      .offline-msg a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .offline-msg a:hover {
+        text-decoration: underline;
+      }
+      
+      .tsarvar-tracker {
+        text-align: center;
+        margin-top: 40px;
+      }
+      .tsarvar-tracker a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+      .tsarvar-tracker a:hover {
+        color: var(--accent-color);
+      }
+      .secondary-button {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        padding: 0.8rem 2rem;
+        font-family: "Oswald", sans-serif;
+        font-size: 1rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 10px;
+      }
+
+      .secondary-button:hover {
+        color: var(--bg-color);
+        border-color: var(--text-color);
+        background: var(--text-color);
+      }
+
+      .footer-socials {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 25px 0;
+      }
+      .footer-socials a {
+        color: #666;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footer-socials a:hover {
+        color: var(--accent-color);
+        transform: translateY(-3px);
+      }
+      .footer-socials svg {
+        width: 28px;
+        height: 28px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <img src="host.jpg" alt="DEMONIK" />
+      </a>
+      <nav>
+        <a href="/">HOME</a>
+
+        <a
+          href="maps.html"
+          >CUSTOM MAPS</a
+        >
+        <a href="stats.html" class="active">STATS</a>
+        <a
+          href="steam.html"
+          >STEAM GROUP</a
+        >
+        <a href="discord.html"
+        >DISCORD</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Server Status</h1>
+      <p>View real-time player stats and current map</p>
+
+
+
+      <!-- SERVER STATUS WIDGET -->
+      <div class="server-widget" id="server-widget">
+        <div class="widget-header">
+          <div class="status-badge">
+            <div class="status-dot" id="status-dot"></div>
+            <span>Server Status</span>
+          </div>
+          <button class="refresh-btn" onclick="fetchServerData()">
+            Refresh
+          </button>
+        </div>
+
+        <div class="widget-info">
+          <div>
+            <div class="info-label">Current Map</div>
+            <div class="info-value" id="map-name">Loading...</div>
+          </div>
+          <div style="text-align: right">
             <div class="info-label">Survivors</div>
             <div class="info-value" id="player-count">--/20</div>
           </div>
@@ -455,6 +650,11 @@
           >
             Scanning server...
           </div>
+        </div>
+
+        <div class="widget-graph-container" id="graph-container" style="display: none; margin-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; animation: fadeIn 0.8s ease-out;">
+          <div class="info-label" style="margin-bottom: 15px; text-align: center;">24-Hour Player Activity</div>
+          <img id="activity-graph" src="" alt="Player Activity Graph" style="width: 100%; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); object-fit: contain;">
         </div>
       </div>
       
@@ -565,200 +765,6 @@
       </p>
     
       <p style="color: #0a0a0a; font-size: 0.8rem; margin-top: 20px;">The Horde slumbers... but the ancient sequence can wake them. ▲ ▲ ▼ ▼ ◄ ► ◄ ► B A</p>
-    </footer>
-
-    <script>
-      const VANILLA_MAPS = {
-        // Dead Center
-        c1m1_hotel: "Dead Center: The Hotel",
-        c1m2_streets: "Dead Center: Streets",
-        c1m3_mall: "Dead Center: Mall",
-        c1m4_atrium: "Dead Center: Atrium",
-        // Dark Carnival
-        c2m1_highway: "Dark Carnival: Highway",
-        c2m2_fairgrounds: "Dark Carnival: Fairgrounds",
-        c2m3_coaster: "Dark Carnival: Coaster",
-        c2m4_barns: "Dark Carnival: Barns",
-        c2m5_concert: "Dark Carnival: Concert",
-        // Swamp Fever
-        c3m1_plankcountry: "Swamp Fever: Plank Country",
-        c3m2_swamp: "Swamp Fever: Swamp",
-        c3m3_shantytown: "Swamp Fever: Shanty Town",
-        c3m4_plantation: "Swamp Fever: Plantation",
-        // Hard Rain
-        c4m1_milltown_a: "Hard Rain: Milltown",
-        c4m2_sugarmill_a: "Hard Rain: Sugar Mill",
-        c4m3_sugarmill_b: "Hard Rain: Mill Escape",
-        c4m4_milltown_b: "Hard Rain: Return to Town",
-        c4m5_milltown_escape: "Hard Rain: Escape",
-        // The Parish
-        c5m1_waterfront: "The Parish: Waterfront",
-        c5m2_park: "The Parish: Park",
-        c5m3_cemetery: "The Parish: Cemetery",
-        c5m4_quarter: "The Parish: Quarter",
-        c5m5_bridge: "The Parish: Bridge",
-        // The Passing
-        c6m1_riverbank: "The Passing: Riverbank",
-        c6m2_bedlam: "The Passing: Underground",
-        c6m3_port: "The Passing: Port",
-        // The Sacrifice
-        c7m1_docks: "The Sacrifice: Docks",
-        c7m2_barge: "The Sacrifice: Barge",
-        c7m3_port: "The Sacrifice: Port",
-        // No Mercy
-        c8m1_apartment: "No Mercy: Apartments",
-        c8m2_subway: "No Mercy: Subway",
-        c8m3_sewers: "No Mercy: Sewers",
-        c8m4_interior: "No Mercy: Hospital",
-        c8m5_rooftop: "No Mercy: Rooftop",
-        // Crash Course
-        c9m1_alleys: "Crash Course: The Alleys",
-        c9m2_lots: "Crash Course: The Truck Depot",
-        // Death Toll
-        c10m1_caves: "Death Toll: The Turnpike",
-        c10m2_drainage: "Death Toll: The Drains",
-        c10m3_ranchhouse: "Death Toll: The Church",
-        c10m4_mainstreet: "Death Toll: The Town",
-        c10m5_houseboat: "Death Toll: Boathouse",
-        // Dead Air
-        c11m1_greenhouse: "Dead Air: Greenhouse",
-        c11m2_offices: "Dead Air: Crane",
-        c11m3_garage: "Dead Air: Garage",
-        c11m4_terminal: "Dead Air: Terminal",
-        c11m5_runway: "Dead Air: Runway",
-        // Blood Harvest
-        c12m1_hilltop: "Blood Harvest: The Woods",
-        c12m2_traintunnel: "Blood Harvest: The Tunnel",
-        c12m3_bridge: "Blood Harvest: The Bridge",
-        c12m4_barn: "Blood Harvest: The Train Station",
-        c12m5_cornfield: "Blood Harvest: Farmhouse",
-        // Cold Stream
-        c13m1_alpinecreek: "Cold Stream: Alpine Creek",
-        c13m2_southpinestream: "Cold Stream: South Pine Stream",
-        c13m3_memorialbridge: "Cold Stream: Memorial Bridge",
-        c13m4_cutthroatcreek: "Cold Stream: Cutthroat Creek",
-        // The Last Stand
-        c14m1_junkyard: "The Last Stand: The Junkyard",
-        c14m2_lighthouse: "The Last Stand: The Lighthouse",
-      };
-
-      // Firestore REST API URL (Read-only public access required for this document)
-      const PROJECT_ID = "discord-bot-482803";
-      const API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/server_status/latest`;
-
-      async function fetchServerData() {
-        const mapEl = document.getElementById("map-name");
-        const countEl = document.getElementById("player-count");
-        const listEl = document.getElementById("player-list");
-        const dotEl = document.getElementById("status-dot");
-        const btn = document.querySelector(".refresh-btn");
-
-        // UI Reset
-        if (btn) btn.innerText = "REFRESHING...";
-        dotEl.style.backgroundColor = "#eab308"; // Yellow (Loading)
-        dotEl.style.boxShadow = "none";
-
-        try {
-          const response = await fetch(API_URL);
-          if (!response.ok) throw new Error("API Network Error");
-
-          const json = await response.json();
-          // Firestore returns fields wrapped in types: { fields: { map: { stringValue: "..." } } }
-          const fields = json.fields;
-
-          if (!fields) throw new Error("Invalid Data Format");
-
-          const isOnline = fields.online ? fields.online.booleanValue : false;
-
-          if (!isOnline) throw new Error("Server Reported Offline");
-
-          // 1. Map Translation
-          let friendlyMap = fields.friendly_map
-            ? fields.friendly_map.stringValue
-            : "";
-
-          if (!friendlyMap) {
-            const rawMap = fields.name ? fields.name.stringValue : "Unknown";
-            const mapCode = fields.map ? fields.map.stringValue : "";
-            // Try to get friendly name specifically for vanilla maps first
-            friendlyMap = VANILLA_MAPS[mapCode.toLowerCase()];
-
-            if (!friendlyMap) {
-              // Custom Map Logic
-              if (rawMap && rawMap !== "Unknown") {
-                // Extract map name from "Server Name | Map Name [Chapter]" format
-                const parts = rawMap.split("|");
-
-                if (parts.length > 1) {
-                  let mapPart = parts[parts.length - 1].trim();
-                  if (mapPart === "") {
-                    friendlyMap = mapCode || "Idle";
-                  } else {
-                    // Check for chapter info
-                    // Match [1-3] or [1] and capture just the first digit(s)
-                    const chapterMatch = mapPart.match(/\[(\d+)(?:-\d+)?\]/);
-                    let cleanName = mapPart.replace(/\[.*?\]/, "").trim();
-
-                    friendlyMap = cleanName;
-                    if (chapterMatch) {
-                      friendlyMap += ` Chapter ${chapterMatch[1]}`;
-                    }
-                  }
-                } else {
-                  // No pipe separator found, fallback to generic state
-                  friendlyMap = mapCode || "Idle";
-                }
-              } else {
-                friendlyMap = mapCode ? mapCode : "Scanning...";
-              }
-            }
-          }
-          mapEl.innerText = friendlyMap;
-
-          // 2. Update UI
-          const count = fields.players
-            ? parseInt(fields.players.integerValue)
-            : 0;
-          const max = fields.max_players
-            ? parseInt(fields.max_players.integerValue)
-            : 20;
-
-          // Parse Player List (Array of Strings)
-          let players = [];
-          if (
-            fields.player_list &&
-            fields.player_list.arrayValue &&
-            fields.player_list.arrayValue.values
-          ) {
-            players = fields.player_list.arrayValue.values.map(
-              (v) => v.stringValue,
-            );
-          }
-
-          countEl.innerText = `${count}/${max}`;
-          
-
-
-          if (players.length > 0) {
-            listEl.innerHTML = players
-              .map(
-                (p) => `
-              <div class="player-item">
-                <span style="max-width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${p}</span>
-                <span style="color:#16a34a; font-size:0.7rem; font-weight:bold; align-self:center;">ONLINE</span>
-              </div>
-            `,
-              )
-              .join("");
-          } else {
-            listEl.innerHTML =
-              '<div style="padding:15px; text-align:center; color:#888;">The server is currently empty.</div>';
-          }
-
-          // Success State
-          dotEl.style.backgroundColor = "#16a34a"; // Green
-          dotEl.style.boxShadow = "0 0 10px #16a34a";
-        } catch (e) {
           console.error("Widget Error:", e);
           // Offline / Error State
           mapEl.innerText = "OFFLINE";
