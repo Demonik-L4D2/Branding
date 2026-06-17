@@ -349,6 +349,37 @@
       .tsarvar-tracker a:hover {
         color: var(--accent-color);
       }
+
+      .cta-container {
+        margin-bottom: 20px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--accent-color);
+        color: white;
+        padding: 1rem 2.5rem;
+        font-family: "Oswald", sans-serif;
+        font-size: 1.2rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        border: 1px solid var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .cta-button.large {
+        font-size: 1.5rem;
+        padding: 1.2rem 3rem;
+      }
+
+      .cta-button:hover {
+        background: transparent;
+        color: var(--accent-color);
+        box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+      }
+
       .secondary-button {
         display: inline-block;
         background: rgba(255, 255, 255, 0.1);
@@ -419,7 +450,26 @@
       <h1>Server Status</h1>
       <p>View real-time player stats and current map</p>
 
+      <div class="cta-container" style="text-align: center; margin-bottom: 2rem;">
+        <a href="steam://connect/98.142.13.139:27015" class="cta-button large"
+          >CONNECT TO THE SERVER NOW!</a
+        >
+      </div>
 
+      <!-- SERVER RANKING WIDGET -->
+      <a href="https://tsarvar.com/en/servers/left-4-dead-2/98.142.13.139:27015" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block; margin-bottom: 30px;">
+        <div class="server-widget" id="ranking-widget" style="margin: 0 auto; display: flex; justify-content: space-around; text-align: center; border-top: 3px solid #facc15; animation: fadeIn 1.2s ease-out; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <div style="flex: 1; padding: 10px;">
+            <div class="info-label" style="color: #facc15; font-size: 0.9rem;">World Rank</div>
+            <div class="info-value" id="world-rank" style="font-size: 2.8rem; text-shadow: 0 0 15px rgba(250, 204, 21, 0.4);">--</div>
+          </div>
+          <div style="width: 1px; background: rgba(255,255,255,0.1); margin: 15px 0;"></div>
+          <div style="flex: 1; padding: 10px;">
+            <div class="info-label" style="color: #facc15; font-size: 0.9rem;">USA Rank</div>
+            <div class="info-value" id="usa-rank" style="font-size: 2.8rem; text-shadow: 0 0 15px rgba(250, 204, 21, 0.4);">--</div>
+          </div>
+        </div>
+      </a>
 
       <!-- SERVER STATUS WIDGET -->
       <div class="server-widget" id="server-widget">
@@ -794,6 +844,16 @@
             graphContainer.style.display = "block";
           } else {
             graphContainer.style.display = "none";
+          }
+
+          // Handle Rankings
+          const worldRankEl = document.getElementById("world-rank");
+          const usaRankEl = document.getElementById("usa-rank");
+          if (fields.world_rank) {
+            worldRankEl.innerText = `#${fields.world_rank.stringValue || fields.world_rank.integerValue || '--'}`;
+          }
+          if (fields.usa_rank) {
+            usaRankEl.innerText = `#${fields.usa_rank.stringValue || fields.usa_rank.integerValue || '--'}`;
           }
 
           // Success State
