@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -449,12 +449,29 @@
       <h1>STEAM GROUP</h1>
       <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join the Demonik L4D2 Community on Steam</p>
       
-      <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-        Stay up to date with server announcements, special events, and connect with other survivors directly through our official Steam Group!
-      </p>
-      
-      <div style="margin: 0 auto 30px auto; width: 100%; max-width: 600px; text-align: center;">
-        <a href="https://steamcommunity.com/groups/DemonikLFD2" class="primary-button">JOIN STEAM GROUP</a>
+      <div class="server-widget steam-widget" id="steam-widget" style="border-top-color: var(--accent-color);">
+        <div class="widget-header" style="justify-content: flex-start; gap: 15px; border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+          <img src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" alt="Demonik Avatar" style="width: 60px; height: 60px; border-radius: 8px; border: 2px solid var(--accent-color); box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);">
+          <div style="flex-grow: 1;">
+            <div style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: #fff; letter-spacing: 1px; text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);">DEMONIK L4D2</div>
+            <div style="color: var(--accent-color); font-size: 0.9rem; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">Official Steam Group</div>
+          </div>
+          <a href="https://steamcommunity.com/groups/DemonikLFD2" class="primary-button" style="margin: 0; padding: 0.6rem 1.5rem; font-size: 1rem; border-color: var(--accent-color); background: rgba(229, 9, 20, 0.1); color: #fff; transition: all 0.3s ease;" onmouseover="this.style.background='var(--accent-color)'" onmouseout="this.style.background='rgba(229, 9, 20, 0.1)'">JOIN GROUP</a>
+        </div>
+        <div class="widget-info" style="grid-template-columns: repeat(3, 1fr); text-align: center; gap: 10px; margin-bottom: 0; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(229, 9, 20, 0.2);">
+          <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+            <div class="info-label" style="color: #aaa;">Total Members</div>
+            <div class="info-value" id="steam-members" style="font-size: 2rem;">--</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-bottom: 2px solid var(--accent-color);">
+            <div class="info-label" style="color: var(--accent-color);">In-Game</div>
+            <div class="info-value" id="steam-ingame" style="color: var(--accent-color); font-size: 2rem; text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);">--</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-bottom: 2px solid #fff;">
+            <div class="info-label" style="color: #fff;">Online</div>
+            <div class="info-value" id="steam-online" style="color: #fff; font-size: 2rem; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">--</div>
+          </div>
+        </div>
       </div>
     
         <!-- DONATIONS SECTION -->
@@ -583,8 +600,36 @@
         }
       }
 
+      async function fetchSteamData() {
+        try {
+          const PROJECT_ID = "demonik-l4d2";
+          const API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/server_status/latest`;
+          const response = await fetch(API_URL);
+          if (!response.ok) throw new Error("Firestore API Error");
+          
+          const data = await response.json();
+          const fields = data.fields;
+          
+          if (fields) {
+            if (fields.steam_members && fields.steam_members.stringValue) {
+                document.getElementById("steam-members").innerText = fields.steam_members.stringValue;
+            }
+            if (fields.steam_in_game && fields.steam_in_game.stringValue) {
+                document.getElementById("steam-ingame").innerText = fields.steam_in_game.stringValue;
+            }
+            if (fields.steam_online && fields.steam_online.stringValue) {
+                document.getElementById("steam-online").innerText = fields.steam_online.stringValue;
+            }
+          }
+        } catch (e) {
+          console.error("Steam Widget Error:", e);
+        }
+      }
+
       fetchDiscordData();
+      fetchSteamData();
       setInterval(fetchDiscordData, 60000);
+      setInterval(fetchSteamData, 60000);
     </script>
   <script src="easteregg.js"></script>
   </body>
