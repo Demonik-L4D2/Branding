@@ -186,6 +186,27 @@
         color: var(--accent-color);
       }
 
+      .cta-button {
+        display: inline-block;
+        background: var(--accent-color);
+        color: white;
+        padding: 1rem 2.5rem;
+        font-family: "Oswald", sans-serif;
+        font-size: 1.2rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        border: 1px solid var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .cta-button:hover {
+        background: transparent;
+        color: var(--accent-color);
+        box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+      }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -450,7 +471,7 @@
       <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join the Demonik L4D2 Community on Steam</p>
 
       <div style="margin: 0 auto 30px auto; width: 100%; max-width: 600px; text-align: center;">
-        <a href="https://steamcommunity.com/groups/DemonikLFD2" class="primary-button" style="padding: 0.8rem 2rem; font-size: 1.1rem; border-color: var(--accent-color); background: rgba(229, 9, 20, 0.1); color: #fff; transition: all 0.3s ease;" onmouseover="this.style.background='var(--accent-color)'" onmouseout="this.style.background='rgba(229, 9, 20, 0.1)'">JOIN STEAM GROUP</a>
+        <a href="https://steamcommunity.com/groups/DemonikLFD2" class="cta-button">JOIN STEAM GROUP</a>
       </div>
       
       <div class="server-widget steam-widget" id="steam-widget" style="border-top-color: var(--accent-color);">
