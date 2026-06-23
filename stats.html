@@ -417,21 +417,18 @@
       }
 
       .refresh-btn {
-        background: transparent;
+        background: none;
+        border: none;
         color: var(--text-muted);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 5px 10px;
-        border-radius: 4px;
         cursor: pointer;
-        font-family: "Oswald", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 0.8rem;
         text-transform: uppercase;
-        transition: all 0.3s ease;
+        letter-spacing: 1px;
+        transition: color 0.3s;
       }
       .refresh-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        border-color: #fff;
+        color: var(--accent-color);
       }
 
       .discord-button {
