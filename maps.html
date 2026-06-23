@@ -738,6 +738,7 @@
              if (!url || !url.includes("id=")) continue; // Must be custom map with workshop link
              
              const playtime = m.playtime ? parseInt(m.playtime.integerValue) : 0;
+             const allTimePlaytime = m.all_time_playtime ? parseInt(m.all_time_playtime.integerValue) : 0;
              const name = m.name ? m.name.stringValue : "Unknown Map";
              
              // Extract steam ID
@@ -757,12 +758,16 @@
                 name,
                 url,
                 playtime,
+                allTimePlaytime,
                 imageUrl
              });
           }
           
-          // Sort descending by playtime
-          mapDataList.sort((a, b) => b.playtime - a.playtime);
+          // Sort descending by playtime, tie-break with all-time playtime
+          mapDataList.sort((a, b) => {
+              if (b.playtime !== a.playtime) return b.playtime - a.playtime;
+              return b.allTimePlaytime - a.allTimePlaytime;
+          });
           
           // Take Top 4
           const top4 = mapDataList.slice(0, 4);
