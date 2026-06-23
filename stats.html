@@ -402,6 +402,38 @@
         background: var(--text-color);
       }
 
+      .content-box {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 3px solid var(--accent-color);
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        max-width: 800px;
+        margin: 0 auto 30px auto;
+        text-align: center;
+      }
+
+      .refresh-btn {
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: "Oswald", sans-serif;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+      }
+      .refresh-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-color: #fff;
+      }
+
       .discord-button {
         display: inline-block;
         background: #5865F2;
@@ -469,11 +501,14 @@
       </nav>
     </header>
     <main>
-      <div style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
-        <h1 style="margin-bottom: 15px;">Community Leaderboards</h1>
-        <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">
-          Your rank is determined by your total <strong>Points</strong> earned across all game modes. Every kill, heal, revive, and survival minute contributes to your score. The database is wiped completely clean on the first of every month, giving everyone a fresh chance to climb the ranks and claim the #1 spot!
+      <div class="content-box">
+        <h1 style="margin-bottom: 15px; font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: var(--accent-color); text-transform: uppercase;">Community Leaderboards</h1>
+        <p style="color: var(--text-color); font-size: 1.1rem; line-height: 1.6;">
+          Your rank is determined by your total <strong style="color: var(--accent-color);">Points</strong> earned across all game modes. Every kill, heal, revive, and survival minute contributes to your score. The database is wiped completely clean on the first of every month, giving everyone a fresh chance to climb the ranks and claim the #1 spot!
         </p>
+        <div style="margin-top: 20px;">
+          <a href="https://discord.com/channels/1260090854840733696/1361074040147804402/1468822164412039342" target="_blank" rel="noopener noreferrer" class="discord-button" style="font-size: 0.9rem; padding: 0.5rem 1.5rem;">VIEW FULL POINT BREAKDOWN IN DISCORD</a>
+        </div>
       </div>
       <div class="cta-container" style="text-align: center; margin-bottom: 2rem;">
         <a href="steam://connect/98.142.13.139:27015" class="cta-button large"
@@ -488,7 +523,10 @@
         
         <!-- THIS WEEK -->
         <div class="server-widget" style="margin-bottom: 0;">
-          <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent-color); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 15px; margin-top: 0; text-align: left;">THIS WEEK'S TOP 10</h2>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 15px;">
+            <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent-color); margin: 0; text-align: left;">THIS WEEK'S TOP 10</h2>
+            <button class="refresh-btn" onclick="fetchLeaderboardData()">Refresh</button>
+          </div>
           <div class="player-list" id="weekly-leaderboard">
             <div style="padding: 15px; text-align: center; color: #888;">Loading weekly scores...</div>
           </div>
@@ -496,7 +534,10 @@
 
         <!-- THIS MONTH -->
         <div class="server-widget" style="margin-bottom: 0;">
-          <h2 style="font-family: 'Oswald', sans-serif; color: var(--text-color); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 15px; margin-top: 0; text-align: left;">MONTHLY TOP 10</h2>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 15px;">
+            <h2 style="font-family: 'Oswald', sans-serif; color: var(--text-color); margin: 0; text-align: left;">MONTHLY TOP 10</h2>
+            <button class="refresh-btn" onclick="fetchLeaderboardData()">Refresh</button>
+          </div>
           <div class="player-list" id="monthly-leaderboard">
             <div style="padding: 15px; text-align: center; color: #888;">Loading monthly scores...</div>
           </div>

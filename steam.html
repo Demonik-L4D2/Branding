@@ -413,6 +413,19 @@
         border-color: var(--text-color);
         background: var(--text-color);
       }
+      .content-box {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 3px solid var(--accent-color);
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        max-width: 800px;
+        margin: 0 auto 30px auto;
+        text-align: center;
+      }
       .discord-body-button {
         display: inline-flex !important;
         align-items: center;
@@ -467,11 +480,17 @@
     </header>
 
         <main>
-      <h1>STEAM GROUP</h1>
-      <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join the Demonik L4D2 Community on Steam</p>
+      <div class="content-box">
+        <h1 style="margin-bottom: 15px; font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: var(--accent-color); text-transform: uppercase;">STEAM GROUP</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color);">Join the Demonik L4D2 Community on Steam</p>
+        
+        <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">
+          While our Discord is the best place to chat and interact with the community, joining our Steam Group ensures you can easily connect to our servers, join off your friends, and get notified about exclusive special events! As a member, you'll also get a custom Demonik tag in-game. Make sure your profile is public and click below to join!
+        </p>
 
-      <div style="margin: 0 auto 30px auto; width: 100%; max-width: 600px; text-align: center;">
-        <a href="https://steamcommunity.com/groups/DemonikLFD2" class="cta-button">JOIN STEAM GROUP</a>
+        <div style="margin-top: 25px;">
+          <a href="https://steamcommunity.com/groups/DemonikLFD2" class="primary-button">JOIN STEAM GROUP</a>
+        </div>
       </div>
       
       <div class="server-widget steam-widget" id="steam-widget" style="border-top-color: var(--accent-color);">
