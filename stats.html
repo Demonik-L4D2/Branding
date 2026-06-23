@@ -402,6 +402,28 @@
         background: var(--text-color);
       }
 
+      .discord-button {
+        display: inline-block;
+        background: #5865F2;
+        color: white;
+        padding: 0.8rem 2rem;
+        font-family: "Oswald", sans-serif;
+        font-size: 1.1rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        border: 1px solid #5865F2;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 10px;
+      }
+
+      .discord-button:hover {
+        background: transparent;
+        color: #5865F2;
+        box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+      }
+
       .footer-socials {
         display: flex;
         justify-content: center;
@@ -447,8 +469,8 @@
       </nav>
     </header>
     <main>
-      <h1>Server Status</h1>
-      <p>View real-time player stats and current map</p>
+      <h1>Community Leaderboards</h1>
+      <p>View the top survivors of the week and month</p>
 
       <div class="cta-container" style="text-align: center; margin-bottom: 2rem;">
         <a href="steam://connect/98.142.13.139:27015" class="cta-button large"
@@ -481,7 +503,7 @@
         <div class="server-widget" style="text-align: center; background: rgba(20, 20, 20, 0.8); border-top-color: #5865F2;">
           <h3 style="color: #fff; font-family: 'Oswald', sans-serif; margin-bottom: 15px;">HISTORICAL RECORDS</h3>
           <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Looking for past champions? All historical Top 10 leaderboards are archived in our Discord.</p>
-          <a href="https://discord.com/channels/1260090854840733696/1434671748238016653" target="_blank" rel="noopener noreferrer" class="primary-button" style="background: #5865F2; border-color: #5865F2;">VIEW ARCHIVES IN DISCORD</a>
+          <a href="https://discord.com/channels/1260090854840733696/1434671748238016653" target="_blank" rel="noopener noreferrer" class="discord-button">VIEW ARCHIVES IN DISCORD</a>
         </div>
       </div>
       
