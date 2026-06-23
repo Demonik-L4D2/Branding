@@ -692,7 +692,7 @@
       };
 
       // Firestore REST API URL (Read-only public access required for this document)
-      const LEADERBOARD_API = `https://firestore.googleapis.com/v1/projects/discord-bot-482803/databases/(default)/documents/server_status/leaderboards`;
+      const LEADERBOARD_API = `https://firestore.googleapis.com/v1/projects/discord-bot-482803/databases/(default)/documents/server_status/latest`;
 
       async function fetchLeaderboardData() {
         const weeklyEl = document.getElementById("weekly-leaderboard");
@@ -729,14 +729,14 @@
             }).join("");
           };
 
-          if (fields.weekly && fields.weekly.arrayValue) {
-              weeklyEl.innerHTML = renderList(fields.weekly.arrayValue);
+          if (fields.weekly_leaderboard && fields.weekly_leaderboard.arrayValue) {
+              weeklyEl.innerHTML = renderList(fields.weekly_leaderboard.arrayValue);
           } else {
               weeklyEl.innerHTML = '<div style="padding:15px; text-align:center; color:#888;">No scores recorded yet.</div>';
           }
 
-          if (fields.monthly && fields.monthly.arrayValue) {
-              monthlyEl.innerHTML = renderList(fields.monthly.arrayValue);
+          if (fields.monthly_leaderboard && fields.monthly_leaderboard.arrayValue) {
+              monthlyEl.innerHTML = renderList(fields.monthly_leaderboard.arrayValue);
           } else {
               monthlyEl.innerHTML = '<div style="padding:15px; text-align:center; color:#888;">No scores recorded yet.</div>';
           }
