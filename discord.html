@@ -449,9 +449,156 @@
         color: var(--accent-color);
         transform: translateY(-3px);
       }
-      .footer-socials svg {
+       .footer-socials svg {
         width: 28px;
         height: 28px;
+      }
+
+      /* EVENTS WIDGET STYLES */
+      .event-card {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+      }
+      .event-card:last-child {
+        margin-bottom: 0;
+      }
+      .event-card:hover {
+        border-color: rgba(88, 101, 242, 0.4);
+        box-shadow: 0 4px 15px rgba(88, 101, 242, 0.1);
+        transform: translateY(-2px);
+      }
+      .event-cover {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .event-cover-placeholder {
+        width: 100%;
+        height: 120px;
+        background: linear-gradient(135deg, #1f1f1f 0%, #2b2d31 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+      }
+      .event-cover-placeholder::after {
+        content: "🎮 DEMONIK EVENT";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Oswald", sans-serif;
+        color: rgba(255, 255, 255, 0.15);
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+      }
+      .event-details {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .event-badge {
+        align-self: flex-start;
+        font-family: "Oswald", sans-serif;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .event-badge.active {
+        background: rgba(220, 38, 38, 0.2);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.4);
+      }
+      .event-badge.scheduled {
+        background: rgba(88, 101, 242, 0.2);
+        color: #5865f2;
+        border: 1px solid rgba(88, 101, 242, 0.4);
+      }
+      .event-badge.active::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background-color: #ef4444;
+        border-radius: 50%;
+        display: inline-block;
+        animation: event-pulse 1.5s infinite;
+      }
+      @keyframes event-pulse {
+        0% { transform: scale(0.9); opacity: 0.6; }
+        50% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(0.9); opacity: 0.6; }
+      }
+      .event-title {
+        font-family: "Oswald", sans-serif;
+        font-size: 1.2rem;
+        color: #fff;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-align: left;
+      }
+      .event-time {
+        font-size: 0.8rem;
+        color: #a0a0a0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-align: left;
+      }
+      .event-desc {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+        text-align: left;
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .event-location {
+        font-size: 0.8rem;
+        color: #5865f2;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 4px;
+        font-weight: 500;
+        text-align: left;
+      }
+      .event-btn {
+        margin-top: 10px;
+        background: #5865f2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-family: "Oswald", sans-serif;
+        font-size: 0.9rem;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: block;
+      }
+      .event-btn:hover {
+        background: #4752c4;
+        box-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
+        color: white;
       }
     </style>
   </head>
@@ -491,8 +638,20 @@
         </div>
       </div>
       
-      <!-- DISCORD WIDGET -->
-      <div class="server-widget" id="discord-widget" style="border-top-color: #5865F2;">
+      <!-- WIDGETS CONTAINER -->
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+          width: 100%;
+          max-width: 1050px;
+          margin: 0 auto 30px auto;
+        "
+      >
+        <!-- DISCORD WIDGET -->
+        <div class="server-widget" id="discord-widget" style="border-top-color: #5865F2; margin: 0; flex: 1; min-width: 320px;">
         <div class="widget-header" style="justify-content: flex-start; gap: 15px; border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
           <div style="width: 60px; height: 60px; border-radius: 8px; border: 2px solid #5865F2; background: #5865F2; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(88, 101, 242, 0.5);">
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.23 10.23 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.086 2.157 2.419 0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.086 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z"/></svg>
@@ -532,6 +691,30 @@
           </div>
         </div>
       </div>
+
+      <!-- DISCORD EVENTS WIDGET -->
+      <div
+        class="server-widget"
+        id="events-widget"
+        style="margin: 0; flex: 1; min-width: 320px; border-top-color: #5865F2;"
+      >
+        <div class="widget-header">
+          <div class="status-badge" style="color: #5865F2;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
+            <span>Discord Events</span>
+          </div>
+          <button class="refresh-btn" onclick="fetchServerEvents()" style="color: #5865F2;">
+            Refresh
+          </button>
+        </div>
+
+        <div id="events-list" style="display: flex; flex-direction: column; gap: 15px;">
+          <div style="padding: 15px; text-align: center; color: #888; font-size: 0.9rem;">
+            Loading events...
+          </div>
+        </div>
+      </div>
+    </div>
 
       <!-- PERKS GRID -->
       <div class="perks-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto 40px auto;">
@@ -760,12 +943,155 @@
         }
       }
 
-fetchDiscordData();
+      const PROJECT_ID = "discord-bot-482803";
+      const API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/server_status/latest`;
+
+      async function fetchServerEvents() {
+        const btn = document.querySelector("#events-widget .refresh-btn");
+        if (btn) btn.innerText = "REFRESHING...";
+
+        try {
+          const response = await fetch(API_URL);
+          if (!response.ok) throw new Error("API Network Error");
+          const json = await response.json();
+          const fields = json.fields;
+          if (!fields) throw new Error("Invalid Data Format");
+
+          let discordEvents = [];
+          if (
+            fields.discord_events &&
+            fields.discord_events.arrayValue &&
+            fields.discord_events.arrayValue.values
+          ) {
+            discordEvents = fields.discord_events.arrayValue.values.map((val) => {
+              const m = val.mapValue ? val.mapValue.fields : {};
+              return {
+                id: m.id ? m.id.stringValue : "",
+                name: m.name ? m.name.stringValue : "",
+                description: m.description ? m.description.stringValue : "",
+                start_time: m.start_time ? m.start_time.stringValue : "",
+                end_time: m.end_time && m.end_time.stringValue ? m.end_time.stringValue : null,
+                status: m.status ? m.status.stringValue : "",
+                location: m.location ? m.location.stringValue : "",
+                url: m.url ? m.url.stringValue : "",
+                cover_url: m.cover_url && m.cover_url.stringValue ? m.cover_url.stringValue : null
+              };
+            });
+          }
+          renderDiscordEvents(discordEvents);
+        } catch (e) {
+          console.error("Events Widget Error:", e);
+          const eventsListEl = document.getElementById("events-list");
+          if (eventsListEl) {
+            eventsListEl.innerHTML = `
+              <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
+                <div style="font-weight: bold; color: #dc2626; margin-bottom: 4px;">Events Unavailable</div>
+                <div style="font-size: 0.85rem; color: #666;">Could not sync events from the Discord bot.</div>
+              </div>
+            `;
+          }
+        } finally {
+          if (btn) btn.innerText = "Refresh";
+        }
+      }
+
+      function formatEventTime(isoString) {
+        const date = new Date(isoString);
+        return date.toLocaleDateString(undefined, {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit'
+        });
+      }
+
+      function getRelativeEventTime(isoString, status) {
+        const now = new Date();
+        const eventTime = new Date(isoString);
+        const diffMs = eventTime - now;
+        const diffMins = Math.round(diffMs / 60000);
+        const diffHours = Math.round(diffMs / 3600000);
+        const diffDays = Math.round(diffMs / 86400000);
+
+        if (status === 'active') {
+          return 'Live Now';
+        }
+
+        if (diffMins < 0) {
+          return 'Started';
+        }
+        if (diffMins < 60) {
+          return `Starts in ${diffMins}m`;
+        }
+        if (diffHours < 24) {
+          return `Starts in ${diffHours}h`;
+        }
+        return `Starts in ${diffDays}d`;
+      }
+
+      function renderDiscordEvents(discordEvents) {
+        const eventsListEl = document.getElementById("events-list");
+        if (!eventsListEl) return;
+
+        if (discordEvents.length > 0) {
+          eventsListEl.innerHTML = discordEvents.map(event => {
+            const badgeClass = event.status === 'active' ? 'active' : 'scheduled';
+            const badgeText = event.status === 'active' ? 'Live Now' : 'Upcoming';
+            const relativeTime = getRelativeEventTime(event.start_time, event.status);
+            const formattedTime = formatEventTime(event.start_time);
+            
+            const coverHtml = event.cover_url 
+              ? `<img src="${event.cover_url}" class="event-cover" alt="${event.name}" />`
+              : `<div class="event-cover-placeholder"></div>`;
+            
+            const descHtml = event.description 
+              ? `<div class="event-desc">${event.description}</div>`
+              : '';
+
+            const locHtml = event.location
+              ? `<div class="event-location">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C10.3 20 2 12.3 2 10a10 10 0 0 1 20 0c0 2.3-8.3 10-10 11.7z"/></svg>
+                   <span>${event.location}</span>
+                 </div>`
+              : '';
+
+            return `
+              <div class="event-card">
+                ${coverHtml}
+                <div class="event-details">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="event-badge ${badgeClass}">${badgeText}</span>
+                    <span class="event-time" style="font-weight: bold; color: #5865F2;">${relativeTime}</span>
+                  </div>
+                  <h4 class="event-title">${event.name}</h4>
+                  <div class="event-time">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>${formattedTime}</span>
+                  </div>
+                  ${descHtml}
+                  ${locHtml}
+                  <a href="${event.url}" target="_blank" rel="noopener noreferrer" class="event-btn">Join Event</a>
+                </div>
+              </div>
+            `;
+          }).join("");
+        } else {
+          eventsListEl.innerHTML = `
+            <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
+              <div style="font-size: 1.5rem; margin-bottom: 8px;">📅</div>
+              <div style="font-weight: bold; color: #eee; margin-bottom: 4px;">No Events Scheduled</div>
+              <div style="font-size: 0.85rem; color: #666;">Check back later or join Discord to suggest an event!</div>
+            </div>
+          `;
+        }
+      }
+
+      fetchDiscordData();
+      fetchServerEvents();
       setInterval(fetchDiscordData, 60000);
+      setInterval(fetchServerEvents, 60000);
     </script>
   <script src="easteregg.js"></script>
   </body>
-</html>
-
-
 
