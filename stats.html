@@ -156,9 +156,11 @@
 
       main {
         flex: 1;
+        width: 100%;
         max-width: 800px;
         margin: 4rem auto;
         padding: 0 2rem;
+        box-sizing: border-box;
       }
 
       h1 {
@@ -214,6 +216,10 @@
       }
 
       @media (max-width: 768px) {
+        html, body {
+          overflow-x: hidden;
+          max-width: 100%;
+        }
         header {
           flex-direction: column;
           gap: 0.5rem;
@@ -226,11 +232,28 @@
           font-size: 0.9rem;
         }
         h1 {
-          font-size: 2.5rem; /* Reduce heading size for mobile */
+          font-size: 2rem !important; /* Reduce heading size for mobile */
           text-align: center;
         }
         main {
           margin: 2rem auto;
+          padding: 0 1rem !important;
+        }
+        .content-box {
+          padding: 20px !important;
+        }
+        .server-widget, .secondary-button, .primary-button, .discord-button {
+          min-width: 0 !important;
+          max-width: 100% !important;
+          box-sizing: border-box;
+        }
+        .footer-socials {
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+        footer p a {
+          display: inline-block;
+          margin: 5px 10px !important;
         }
       }
 

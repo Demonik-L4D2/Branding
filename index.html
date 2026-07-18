@@ -42,13 +42,13 @@
       rel="stylesheet"
     />
     <style>
-      :root {
-        --bg-color: #0a0a0a;
-        --card-bg: #1f1f1f;
-        --accent-color: #e50914;
-        --text-color: #f5f5f5;
-        --text-muted: #a0a0a0;
-      }
+            :root {
+              --bg-color: #0a0a0a;
+              --card-bg: #1f1f1f;
+              --accent-color: #e50914;
+              --text-color: #f5f5f5;
+              --text-muted: #a0a0a0;
+            }
 
       * {
         box-sizing: border-box;
@@ -56,616 +56,618 @@
         padding: 0;
       }
 
-      html,
-      body {
-        overflow-x: hidden !important;
-        max-width: 100% !important;
-        width: 100% !important;
-      }
+            html,
+            body {
+              overflow-x: hidden !important;
+              max-width: 100% !important;
+              width: 100% !important;
+            }
 
-      body {
-        background-color: var(--bg-color);
-        background-image:
-          linear-gradient(
-            to bottom,
-            rgba(10, 10, 10, 0.8),
-            rgba(10, 10, 10, 0.95)
-          ),
-          url("motd.jpg");
-        background-size: cover;
-        background-position: center top;
-        background-attachment: fixed;
-        color: var(--text-color);
-        font-family: "Roboto", sans-serif;
-        line-height: 1.6;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
+            body {
+              background-color: var(--bg-color);
+              background-image:
+                linear-gradient(
+                  to bottom,
+                  rgba(10, 10, 10, 0.8),
+                  rgba(10, 10, 10, 0.95)
+                ),
+                url("motd.jpg");
+              background-size: cover;
+              background-position: center top;
+              background-attachment: fixed;
+              color: var(--text-color);
+              font-family: "Roboto", sans-serif;
+              line-height: 1.6;
+              min-height: 100vh;
+              display: flex;
+              flex-direction: column;
+            }
 
-      h1,
-      h2,
-      h3,
-      nav a {
-        font-family: "Oswald", sans-serif;
-        text-transform: uppercase;
-      }
+            h1,
+            h2,
+            h3,
+            nav a {
+              font-family: "Oswald", sans-serif;
+              text-transform: uppercase;
+            }
 
-      /* Header & Nav */
-      header {
-        background: rgba(10, 10, 10, 0.95);
-        padding: 1rem 2rem;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        border-bottom: 1px solid #333;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        backdrop-filter: blur(10px);
-      }
+            /* Header & Nav */
+            header {
+              background: rgba(10, 10, 10, 0.95);
+              padding: 1rem 2rem;
+              position: sticky;
+              top: 0;
+              z-index: 100;
+              border-bottom: 1px solid #333;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              backdrop-filter: blur(10px);
+            }
 
-      .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--accent-color);
-        letter-spacing: 2px;
-        text-decoration: none;
-      }
+            .logo {
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: var(--accent-color);
+              letter-spacing: 2px;
+              text-decoration: none;
+            }
 
-      .logo img {
-        height: 50px;
-        width: auto;
-        vertical-align: middle;
-      }
+            .logo img {
+              height: 50px;
+              width: auto;
+              vertical-align: middle;
+            }
 
-      nav {
-        display: flex;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-      }
+            nav {
+              display: flex;
+              gap: 1.5rem;
+              flex-wrap: wrap;
+              justify-content: center;
+              align-items: center;
+            }
 
-      nav a {
-        color: var(--text-color);
-        text-decoration: none;
-        font-size: 1.1rem;
-        transition: color 0.3s ease;
-        position: relative;
-      }
+            nav a {
+              color: var(--text-color);
+              text-decoration: none;
+              font-size: 1.1rem;
+              transition: color 0.3s ease;
+              position: relative;
+            }
 
-      nav a:hover,
-      nav a.active {
-        color: var(--accent-color);
-      }
+            nav a:hover,
+            nav a.active {
+              color: var(--accent-color);
+            }
 
-      nav a::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -4px;
-        left: 0;
-        background-color: var(--accent-color);
-        transition: width 0.3s ease;
-      }
+            nav a::after {
+              content: "";
+              position: absolute;
+              width: 0;
+              height: 2px;
+              bottom: -4px;
+              left: 0;
+              background-color: var(--accent-color);
+              transition: width 0.3s ease;
+            }
 
-      nav a:hover::after,
-      nav a.active::after {
-        width: 100%;
-      }
+            nav a:hover::after,
+            nav a.active::after {
+              width: 100%;
+            }
 
-      .discord-online-dot {
-        width: 8px;
-        height: 8px;
-        background-color: #23a559;
-        border-radius: 50%;
-        box-shadow: 0 0 8px rgba(35, 165, 89, 0.6);
-      }
+            .discord-online-dot {
+              width: 8px;
+              height: 8px;
+              background-color: #23a559;
+              border-radius: 50%;
+              box-shadow: 0 0 8px rgba(35, 165, 89, 0.6);
+            }
 
-      .discord-online-text {
-        font-size: 0.85rem;
-        color: #a0a0a0;
-        font-family: "Roboto", sans-serif;
-        text-transform: none;
-        letter-spacing: normal;
-      }
+            .discord-online-text {
+              font-size: 0.85rem;
+              color: #a0a0a0;
+              font-family: "Roboto", sans-serif;
+              text-transform: none;
+              letter-spacing: normal;
+            }
 
-      .discord-body-button {
-        display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-      }
+            .discord-body-button {
+              display: inline-flex !important;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
+            }
 
-      /* Hero Section */
-      .hero {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4rem 2rem;
-        text-align: center;
-      }
+            /* Hero Section */
+            .hero {
+              flex: 1;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 4rem 2rem;
+              text-align: center;
+              box-sizing: border-box;
+            }
 
-      .hero-content {
-        max-width: 800px;
-        animation: fadeIn 1s ease-out;
-      }
+            .hero-content {
+              max-width: 800px;
+              animation: fadeIn 1s ease-out;
+            }
 
-      h1 {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
-        line-height: 1.1;
-      }
+            h1 {
+              font-size: 4rem;
+              margin-bottom: 1rem;
+              text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+              line-height: 1.1;
+            }
 
-      .subtitle {
-        font-size: 1.5rem;
-        color: var(--text-muted);
-        margin-bottom: 2.5rem;
-        font-weight: 300;
-      }
+            .subtitle {
+              font-size: 1.5rem;
+              color: var(--text-muted);
+              margin-bottom: 2.5rem;
+              font-weight: 300;
+            }
 
-      .cta-container {
-        margin-bottom: 20px;
-      }
+            .cta-container {
+              margin-bottom: 20px;
+            }
 
-      .cta-button {
-        display: inline-block;
-        background: var(--accent-color);
-        color: white;
-        padding: 1rem 2.5rem;
-        font-family: "Oswald", sans-serif;
-        font-size: 1.2rem;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        border: 1px solid var(--accent-color);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
+            .cta-button {
+              display: inline-block;
+              background: var(--accent-color);
+              color: white;
+              padding: 1rem 2.5rem;
+              font-family: "Oswald", sans-serif;
+              font-size: 1.2rem;
+              text-decoration: none;
+              border-radius: 4px;
+              transition: all 0.3s ease;
+              border: 1px solid var(--accent-color);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            }
 
-      .cta-button.large {
-        font-size: 1.5rem;
-        padding: 1.2rem 3rem;
-      }
+            .cta-button.large {
+              font-size: 1.5rem;
+              padding: 1.2rem 3rem;
+            }
 
-      .cta-button:hover {
-        background: transparent;
-        color: var(--accent-color);
-        box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
-      }
+            .cta-button:hover {
+              background: transparent;
+              color: var(--accent-color);
+              box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+            }
 
-      .secondary-button {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-color);
-        padding: 0.8rem 2rem;
-        font-family: "Oswald", sans-serif;
-        font-size: 1rem;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin: 10px;
-      }
+            .secondary-button {
+              display: inline-block;
+              background: rgba(255, 255, 255, 0.1);
+              color: var(--text-color);
+              padding: 0.8rem 2rem;
+              font-family: "Oswald", sans-serif;
+              font-size: 1rem;
+              text-decoration: none;
+              border-radius: 4px;
+              transition: all 0.3s ease;
+              border: 1px solid rgba(255, 255, 255, 0.4);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              margin: 10px;
+            }
 
-      .secondary-button:hover {
-        color: var(--bg-color);
-        border-color: var(--text-color);
-        background: var(--text-color);
-      }
+            .secondary-button:hover {
+              color: var(--bg-color);
+              border-color: var(--text-color);
+              background: var(--text-color);
+            }
 
-      .brand-name {
-        display: block;
-        font-family: "Oswald", sans-serif;
-        font-size: 5rem;
-        font-weight: 700;
-        color: var(--accent-color);
-        line-height: 1;
-        margin-bottom: 10px;
-        text-shadow: 0 0 30px rgba(229, 9, 20, 0.2);
-        opacity: 0;
-        animation: fadeIn 1s ease-out forwards;
-      }
+            .brand-name {
+              display: block;
+              font-family: "Oswald", sans-serif;
+              font-size: 5rem;
+              font-weight: 700;
+              color: var(--accent-color);
+              line-height: 1;
+              margin-bottom: 10px;
+              text-shadow: 0 0 30px rgba(229, 9, 20, 0.2);
+              opacity: 0;
+              animation: fadeIn 1s ease-out forwards;
+            }
 
-      .tagline {
-        font-family: "Oswald", sans-serif;
-        font-size: 3rem;
-        color: #f5f5f5;
-        letter-spacing: 3px;
-        margin-bottom: 1rem;
-        text-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
-        text-transform: uppercase;
-      }
+            .tagline {
+              font-family: "Oswald", sans-serif;
+              font-size: 3rem;
+              color: #f5f5f5;
+              letter-spacing: 3px;
+              margin-bottom: 1rem;
+              text-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+              text-transform: uppercase;
+            }
 
-      .features-list {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 2rem 0 3rem 0; /* Extra margin bottom */
-        flex-wrap: wrap;
-        font-family: "Oswald", sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 1.2rem; /* Slightly larger */
-        color: #fff;
-        gap: 15px;
-      }
+            .features-list {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin: 2rem 0 3rem 0; /* Extra margin bottom */
+              flex-wrap: wrap;
+              font-family: "Oswald", sans-serif;
+              text-transform: uppercase;
+              letter-spacing: 2px;
+              font-size: 1.2rem; /* Slightly larger */
+              color: #fff;
+              gap: 15px;
+            }
 
-      .feature-item {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-      }
+            .feature-item {
+              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            }
 
-      .footer-socials {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin: 25px 0;
-      }
-      .footer-socials a {
-        color: #666;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .footer-socials a:hover {
-        color: var(--accent-color);
-        transform: translateY(-3px);
-      }
-      .footer-socials svg {
-        width: 28px;
-        height: 28px;
-      }
+            .footer-socials {
+              display: flex;
+              justify-content: center;
+              gap: 30px;
+              margin: 25px 0;
+            }
+            .footer-socials a {
+              color: #666;
+              transition: all 0.3s ease;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .footer-socials a:hover {
+              color: var(--accent-color);
+              transform: translateY(-3px);
+            }
+            .footer-socials svg {
+              width: 28px;
+              height: 28px;
+            }
 
-      .feature-separator {
-        color: var(--accent-color);
-        font-weight: 700;
-        text-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
-      }
+            .feature-separator {
+              color: var(--accent-color);
+              font-weight: 700;
+              text-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+            }
 
-      /* Footer */
-      footer {
-        text-align: center;
-        padding: 2rem;
-        background: #050505;
-        color: #666;
-        font-size: 0.9rem;
-        border-top: 1px solid #1a1a1a;
-      }
+            /* Footer */
+            footer {
+              text-align: center;
+              padding: 2rem;
+              background: #050505;
+              color: #666;
+              font-size: 0.9rem;
+              border-top: 1px solid #1a1a1a;
+            }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+            @keyframes fadeIn {
+              from {
+                opacity: 0;
+                transform: translateY(20px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
 
-      @media (max-width: 768px) {
-        header {
-          flex-direction: column;
-          gap: 0.5rem;
-          padding: 1rem;
-        }
-        nav {
-          gap: 0.8rem;
-        }
-        nav a {
-          font-size: 0.9rem;
-        }
-        h1 {
-          font-size: 2rem !important;
-        }
-        .subtitle {
-          font-size: 1.2rem;
-        }
-        .hero {
-          padding: 2rem 1rem !important;
-        }
-        .brand-name {
-          font-size: 2.2rem !important;
-        }
-        .tagline {
-          font-size: 1.4rem !important;
-          white-space: normal !important;
-        }
-        .features-list {
-          font-size: 0.95rem !important;
-          gap: 8px !important;
-          margin: 1.5rem 0 2rem 0 !important;
-        }
-        .cta-button.large {
-          padding: 1rem 1.5rem !important;
-          font-size: 1.1rem !important;
-          max-width: 100% !important;
-          box-sizing: border-box;
-        }
-        .server-widget,
-        .secondary-button,
-        .primary-button,
-        .discord-button {
-          min-width: 0 !important;
-          max-width: 100% !important;
-          flex-basis: 100% !important;
-          box-sizing: border-box !important;
-        }
-        .hero-content {
-          width: 100% !important;
-          max-width: 100% !important;
-        }
-      }
+            @media (max-width: 768px) {
+              header {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+              }
+              nav {
+                gap: 0.8rem;
+              }
+              nav a {
+                font-size: 0.9rem;
+              }
+              h1 {
+                font-size: 2rem !important;
+              }
+              .subtitle {
+                font-size: 1.2rem;
+              }
+              .hero {
+                padding: 2rem 1rem !important;
+              }
+              .brand-name {
+                font-size: 2.2rem !important;
+              }
+              .tagline {
+                font-size: 1.4rem !important;
+                white-space: normal !important;
+              }
+              .features-list {
+                font-size: 0.95rem !important;
+                gap: 8px !important;
+                margin: 1.5rem 0 2rem 0 !important;
+              }
+              .cta-button.large {
+                padding: 1rem 1.5rem !important;
+                font-size: 1.1rem !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+              }
+              .server-widget,
+              .secondary-button,
+              .primary-button,
+              .discord-button {
+                min-width: 0 !important;
+                max-width: 100% !important;
+                flex-basis: 100% !important;
+                box-sizing: border-box !important;
+              }
+              .hero-content {
+                width: 100% !important;
+                max-width: 100% !important;
+              }
+            }
 
-      /* SERVER WIDGET STYLES */
-      .server-widget {
-        background: rgba(20, 20, 20, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-top: 3px solid var(--accent-color);
-        border-radius: 8px;
-        width: 100%;
-        max-width: 500px;
-        margin: 0 auto 30px auto;
-        padding: 25px;
-        text-align: left;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-        animation: fadeIn 1s ease-out;
-      }
-      .widget-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 15px;
-      }
-      .status-badge {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-family: "Oswald", sans-serif;
-        font-size: 1.3rem;
-        color: #fff;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      .status-dot {
-        width: 10px;
-        height: 10px;
-        background-color: #444; /* Default gray */
-        border-radius: 50%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        transition: all 0.3s ease;
-      }
-      .refresh-btn {
-        background: none;
-        border: none;
-        color: var(--text-muted);
-        cursor: pointer;
-        font-family: "Roboto", sans-serif;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: color 0.3s;
-      }
-      .refresh-btn:hover {
-        color: var(--accent-color);
-      }
-      .widget-info {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 15px;
-        margin-bottom: 20px;
-      }
-      .info-label {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 5px;
-        font-weight: 700;
-      }
-      .info-value {
-        font-family: "Oswald", sans-serif;
-        font-size: 1.4rem;
-        color: #fff;
-        line-height: 1.2;
-      }
-      /* .player-list {
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      } */
-      .player-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 15px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        font-size: 0.95rem;
-        color: #e0e0e0;
-      }
-      .player-item:last-child {
-        border-bottom: none;
-      }
-      .offline-msg {
-        text-align: center;
-        padding: 25px;
-        color: #bbb;
-        font-size: 0.95rem;
-      }
-      .offline-msg a {
-        color: var(--accent-color);
-        text-decoration: none;
-        font-weight: bold;
-      }
-      .offline-msg a:hover {
-        text-decoration: underline;
-      }
+            /* SERVER WIDGET STYLES */
+            .server-widget {
+              background: rgba(20, 20, 20, 0.6);
+              backdrop-filter: blur(12px);
+              -webkit-backdrop-filter: blur(12px);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              border-top: 3px solid var(--accent-color);
+              border-radius: 8px;
+              width: 100%;
+              max-width: 500px;
+              margin: 0 auto 30px auto;
+              padding: 25px;
+              text-align: left;
+              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+              animation: fadeIn 1s ease-out;
+            }
+            .widget-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+              padding-bottom: 15px;
+            }
+            .status-badge {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              font-family: "Oswald", sans-serif;
+              font-size: 1.3rem;
+              color: #fff;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            }
+            .status-dot {
+              width: 10px;
+              height: 10px;
+              background-color: #444; /* Default gray */
+              border-radius: 50%;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+              transition: all 0.3s ease;
+            }
+            .refresh-btn {
+              background: none;
+              border: none;
+              color: var(--text-muted);
+              cursor: pointer;
+              font-family: "Roboto", sans-serif;
+              font-size: 0.8rem;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              transition: color 0.3s;
+            }
+            .refresh-btn:hover {
+              color: var(--accent-color);
+            }
+            .widget-info {
+              display: grid;
+              grid-template-columns: 1fr auto;
+              gap: 15px;
+              margin-bottom: 20px;
+            }
+            .info-label {
+              font-size: 0.75rem;
+              color: var(--text-muted);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              margin-bottom: 5px;
+              font-weight: 700;
+            }
+            .info-value {
+              font-family: "Oswald", sans-serif;
+              font-size: 1.4rem;
+              color: #fff;
+              line-height: 1.2;
+            }
+            /* .player-list {
+              background: rgba(0, 0, 0, 0.2);
+              border-radius: 4px;
+              border: 1px solid rgba(255, 255, 255, 0.05);
+            } */
+            .player-item {
+              display: flex;
+              justify-content: space-between;
+              padding: 10px 15px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+              font-size: 0.95rem;
+              color: #e0e0e0;
+            }
+            .player-item:last-child {
+              border-bottom: none;
+            }
+            .offline-msg {
+              text-align: center;
+              padding: 25px;
+              color: #bbb;
+              font-size: 0.95rem;
+            }
+            .offline-msg a {
+              color: var(--accent-color);
+              text-decoration: none;
+              font-weight: bold;
+            }
+            .offline-msg a:hover {
+              text-decoration: underline;
+            }
 
-      /* EVENTS WIDGET STYLES */
-      .event-card {
-        background: rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 6px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 15px;
-      }
-      .event-card:last-child {
-        margin-bottom: 0;
-      }
-      .event-card:hover {
-        border-color: rgba(88, 101, 242, 0.4);
-        box-shadow: 0 4px 15px rgba(88, 101, 242, 0.1);
-        transform: translateY(-2px);
-      }
-      .event-cover {
-        width: 100%;
-        height: 120px;
-        object-fit: cover;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      .event-cover-placeholder {
-        width: 100%;
-        height: 120px;
-        background: linear-gradient(135deg, #1f1f1f 0%, #2b2d31 100%);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        position: relative;
-      }
-      .event-cover-placeholder::after {
-        content: "🎮 DEMONIK EVENT";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-family: "Oswald", sans-serif;
-        color: rgba(255, 255, 255, 0.15);
-        font-size: 1.2rem;
-        letter-spacing: 2px;
-      }
-      .event-details {
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .event-badge {
-        align-self: flex-start;
-        font-family: "Oswald", sans-serif;
-        font-size: 0.75rem;
-        padding: 2px 8px;
-        border-radius: 4px;
-        text-transform: uppercase;
-        font-weight: 700;
-        letter-spacing: 1px;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-      }
-      .event-badge.active {
-        background: rgba(220, 38, 38, 0.2);
-        color: #ef4444;
-        border: 1px solid rgba(239, 68, 68, 0.4);
-      }
-      .event-badge.scheduled {
-        background: rgba(88, 101, 242, 0.2);
-        color: #5865f2;
-        border: 1px solid rgba(88, 101, 242, 0.4);
-      }
-      .event-badge.active::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        background-color: #ef4444;
-        border-radius: 50%;
-        display: inline-block;
-        animation: event-pulse 1.5s infinite;
-      }
-      @keyframes event-pulse {
-        0% {
-          transform: scale(0.9);
-          opacity: 0.6;
-        }
-        50% {
-          transform: scale(1.2);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(0.9);
-          opacity: 0.6;
-        }
-      }
-      .event-title {
-        font-family: "Oswald", sans-serif;
-        font-size: 1.2rem;
-        color: #fff;
-        line-height: 1.2;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        text-align: left;
-      }
-      .event-time {
-        font-size: 0.8rem;
-        color: #a0a0a0;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        text-align: left;
-      }
-      .event-desc {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        line-height: 1.4;
-        text-align: left;
-        display: -webkit-box;
-        line-clamp: 3;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      .event-location {
-        font-size: 0.8rem;
-        color: #5865f2;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 4px;
-        font-weight: 500;
-        text-align: left;
-      }
-      .event-btn {
-        margin-top: 10px;
-        background: #5865f2;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 8px 12px;
-        font-family: "Oswald", sans-serif;
-        font-size: 0.9rem;
-        text-align: center;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        display: block;
-      }
-      .event-btn:hover {
-        background: #4752c4;
-        box-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
-        color: white;
-      }
+            /* EVENTS WIDGET STYLES */
+            .event-card {
+              background: rgba(0, 0, 0, 0.3);
+              border: 1px solid rgba(255, 255, 255, 0.05);
+              border-radius: 6px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              display: flex;
+              flex-direction: column;
+              margin-bottom: 15px;
+            }
+            .event-card:last-child {
+              margin-bottom: 0;
+            }
+            .event-card:hover {
+              border-color: rgba(88, 101, 242, 0.4);
+              box-shadow: 0 4px 15px rgba(88, 101, 242, 0.1);
+              transform: translateY(-2px);
+            }
+            .event-cover {
+              width: 100%;
+              height: 120px;
+              object-fit: cover;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .event-cover-placeholder {
+              width: 100%;
+              height: 120px;
+              background: linear-gradient(135deg, #1f1f1f 0%, #2b2d31 100%);
+              border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+              position: relative;
+            }
+            .event-cover-placeholder::after {
+              content: "🎮 DEMONIK EVENT";
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              font-family: "Oswald", sans-serif;
+              color: rgba(255, 255, 255, 0.15);
+              font-size: 1.2rem;
+              letter-spacing: 2px;
+            }
+            .event-details {
+              padding: 15px;
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+            }
+            .event-badge {
+              align-self: flex-start;
+              font-family: "Oswald", sans-serif;
+              font-size: 0.75rem;
+              padding: 2px 8px;
+              border-radius: 4px;
+              text-transform: uppercase;
+              font-weight: 700;
+              letter-spacing: 1px;
+              display: inline-flex;
+              align-items: center;
+              gap: 5px;
+            }
+            .event-badge.active {
+              background: rgba(220, 38, 38, 0.2);
+              color: #ef4444;
+              border: 1px solid rgba(239, 68, 68, 0.4);
+            }
+            .event-badge.scheduled {
+              background: rgba(88, 101, 242, 0.2);
+              color: #5865f2;
+              border: 1px solid rgba(88, 101, 242, 0.4);
+            }
+            .event-badge.active::before {
+              content: "";
+              width: 6px;
+              height: 6px;
+              background-color: #ef4444;
+              border-radius: 50%;
+              display: inline-block;
+              animation: event-pulse 1.5s infinite;
+            }
+            @keyframes event-pulse {
+              0% {
+                transform: scale(0.9);
+                opacity: 0.6;
+              }
+              50% {
+                transform: scale(1.2);
+                opacity: 1;
+              }
+              100% {
+                transform: scale(0.9);
+                opacity: 0.6;
+              }
+            }
+            .event-title {
+              font-family: "Oswald", sans-serif;
+              font-size: 1.2rem;
+              color: #fff;
+              line-height: 1.2;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              text-align: left;
+            }
+            .event-time {
+              font-size: 0.8rem;
+              color: #a0a0a0;
+              display: flex;
+              align-items: center;
+              gap: 6px;
+              text-align: left;
+            }
+            .event-desc {
+              font-size: 0.85rem;
+              color: var(--text-muted);
+              line-height: 1.4;
+              text-align: left;
+              display: -webkit-box;
+              line-clamp: 3;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+            .event-location {
+              font-size: 0.8rem;
+              color: #5865f2;
+              display: flex;
+              align-items: center;
+              gap: 6px;
+              margin-top: 4px;
+              font-weight: 500;
+              text-align: left;
+            }
+            .event-btn {
+              margin-top: 10px;
+              background: #5865f2;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              padding: 8px 12px;
+              font-family: "Oswald", sans-serif;
+              font-size: 0.9rem;
+              text-align: center;
+              text-decoration: none;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              transition: all 0.2s ease;
+              cursor: pointer;
+              display: block;
+            }
+            .event-btn:hover {
+              background: #4752c4;
+              box-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
+              color: white;
+            }
     </style>
   </head>
   <body>
@@ -1036,529 +1038,587 @@
     </footer>
 
     <script>
-      const VANILLA_MAPS = {
-        // Dead Center
-        c1m1_hotel: "Dead Center: The Hotel",
-        c1m2_streets: "Dead Center: Streets",
-        c1m3_mall: "Dead Center: Mall",
-        c1m4_atrium: "Dead Center: Atrium",
-        // Dark Carnival
-        c2m1_highway: "Dark Carnival: Highway",
-        c2m2_fairgrounds: "Dark Carnival: Fairgrounds",
-        c2m3_coaster: "Dark Carnival: Coaster",
-        c2m4_barns: "Dark Carnival: Barns",
-        c2m5_concert: "Dark Carnival: Concert",
-        // Swamp Fever
-        c3m1_plankcountry: "Swamp Fever: Plank Country",
-        c3m2_swamp: "Swamp Fever: Swamp",
-        c3m3_shantytown: "Swamp Fever: Shanty Town",
-        c3m4_plantation: "Swamp Fever: Plantation",
-        // Hard Rain
-        c4m1_milltown_a: "Hard Rain: Milltown",
-        c4m2_sugarmill_a: "Hard Rain: Sugar Mill",
-        c4m3_sugarmill_b: "Hard Rain: Mill Escape",
-        c4m4_milltown_b: "Hard Rain: Return to Town",
-        c4m5_milltown_escape: "Hard Rain: Escape",
-        // The Parish
-        c5m1_waterfront: "The Parish: Waterfront",
-        c5m2_park: "The Parish: Park",
-        c5m3_cemetery: "The Parish: Cemetery",
-        c5m4_quarter: "The Parish: Quarter",
-        c5m5_bridge: "The Parish: Bridge",
-        // The Passing
-        c6m1_riverbank: "The Passing: Riverbank",
-        c6m2_bedlam: "The Passing: Underground",
-        c6m3_port: "The Passing: Port",
-        // The Sacrifice
-        c7m1_docks: "The Sacrifice: Docks",
-        c7m2_barge: "The Sacrifice: Barge",
-        c7m3_port: "The Sacrifice: Port",
-        // No Mercy
-        c8m1_apartment: "No Mercy: Apartments",
-        c8m2_subway: "No Mercy: Subway",
-        c8m3_sewers: "No Mercy: Sewers",
-        c8m4_interior: "No Mercy: Hospital",
-        c8m5_rooftop: "No Mercy: Rooftop",
-        // Crash Course
-        c9m1_alleys: "Crash Course: The Alleys",
-        c9m2_lots: "Crash Course: The Truck Depot",
-        // Death Toll
-        c10m1_caves: "Death Toll: The Turnpike",
-        c10m2_drainage: "Death Toll: The Drains",
-        c10m3_ranchhouse: "Death Toll: The Church",
-        c10m4_mainstreet: "Death Toll: The Town",
-        c10m5_houseboat: "Death Toll: Boathouse",
-        // Dead Air
-        c11m1_greenhouse: "Dead Air: Greenhouse",
-        c11m2_offices: "Dead Air: Crane",
-        c11m3_garage: "Dead Air: Garage",
-        c11m4_terminal: "Dead Air: Terminal",
-        c11m5_runway: "Dead Air: Runway",
-        // Blood Harvest
-        c12m1_hilltop: "Blood Harvest: The Woods",
-        c12m2_traintunnel: "Blood Harvest: The Tunnel",
-        c12m3_bridge: "Blood Harvest: The Bridge",
-        c12m4_barn: "Blood Harvest: The Train Station",
-        c12m5_cornfield: "Blood Harvest: Farmhouse",
-        // Cold Stream
-        c13m1_alpinecreek: "Cold Stream: Alpine Creek",
-        c13m2_southpinestream: "Cold Stream: South Pine Stream",
-        c13m3_memorialbridge: "Cold Stream: Memorial Bridge",
-        c13m4_cutthroatcreek: "Cold Stream: Cutthroat Creek",
-        // The Last Stand
-        c14m1_junkyard: "The Last Stand: The Junkyard",
-        c14m2_lighthouse: "The Last Stand: The Lighthouse",
-      };
+            const VANILLA_MAPS = {
+              // Dead Center
+              c1m1_hotel: "Dead Center: The Hotel",
+              c1m2_streets: "Dead Center: Streets",
+              c1m3_mall: "Dead Center: Mall",
+              c1m4_atrium: "Dead Center: Atrium",
+              // Dark Carnival
+              c2m1_highway: "Dark Carnival: Highway",
+              c2m2_fairgrounds: "Dark Carnival: Fairgrounds",
+              c2m3_coaster: "Dark Carnival: Coaster",
+              c2m4_barns: "Dark Carnival: Barns",
+              c2m5_concert: "Dark Carnival: Concert",
+              // Swamp Fever
+              c3m1_plankcountry: "Swamp Fever: Plank Country",
+              c3m2_swamp: "Swamp Fever: Swamp",
+              c3m3_shantytown: "Swamp Fever: Shanty Town",
+              c3m4_plantation: "Swamp Fever: Plantation",
+              // Hard Rain
+              c4m1_milltown_a: "Hard Rain: Milltown",
+              c4m2_sugarmill_a: "Hard Rain: Sugar Mill",
+              c4m3_sugarmill_b: "Hard Rain: Mill Escape",
+              c4m4_milltown_b: "Hard Rain: Return to Town",
+              c4m5_milltown_escape: "Hard Rain: Escape",
+              // The Parish
+              c5m1_waterfront: "The Parish: Waterfront",
+              c5m2_park: "The Parish: Park",
+              c5m3_cemetery: "The Parish: Cemetery",
+              c5m4_quarter: "The Parish: Quarter",
+              c5m5_bridge: "The Parish: Bridge",
+              // The Passing
+              c6m1_riverbank: "The Passing: Riverbank",
+              c6m2_bedlam: "The Passing: Underground",
+              c6m3_port: "The Passing: Port",
+              // The Sacrifice
+              c7m1_docks: "The Sacrifice: Docks",
+              c7m2_barge: "The Sacrifice: Barge",
+              c7m3_port: "The Sacrifice: Port",
+              // No Mercy
+              c8m1_apartment: "No Mercy: Apartments",
+              c8m2_subway: "No Mercy: Subway",
+              c8m3_sewers: "No Mercy: Sewers",
+              c8m4_interior: "No Mercy: Hospital",
+              c8m5_rooftop: "No Mercy: Rooftop",
+              // Crash Course
+              c9m1_alleys: "Crash Course: The Alleys",
+              c9m2_lots: "Crash Course: The Truck Depot",
+              // Death Toll
+              c10m1_caves: "Death Toll: The Turnpike",
+              c10m2_drainage: "Death Toll: The Drains",
+              c10m3_ranchhouse: "Death Toll: The Church",
+              c10m4_mainstreet: "Death Toll: The Town",
+              c10m5_houseboat: "Death Toll: Boathouse",
+              // Dead Air
+              c11m1_greenhouse: "Dead Air: Greenhouse",
+              c11m2_offices: "Dead Air: Crane",
+              c11m3_garage: "Dead Air: Garage",
+              c11m4_terminal: "Dead Air: Terminal",
+              c11m5_runway: "Dead Air: Runway",
+              // Blood Harvest
+              c12m1_hilltop: "Blood Harvest: The Woods",
+              c12m2_traintunnel: "Blood Harvest: The Tunnel",
+              c12m3_bridge: "Blood Harvest: The Bridge",
+              c12m4_barn: "Blood Harvest: The Train Station",
+              c12m5_cornfield: "Blood Harvest: Farmhouse",
+              // Cold Stream
+              c13m1_alpinecreek: "Cold Stream: Alpine Creek",
+              c13m2_southpinestream: "Cold Stream: South Pine Stream",
+              c13m3_memorialbridge: "Cold Stream: Memorial Bridge",
+              c13m4_cutthroatcreek: "Cold Stream: Cutthroat Creek",
+              // The Last Stand
+              c14m1_junkyard: "The Last Stand: The Junkyard",
+              c14m2_lighthouse: "The Last Stand: The Lighthouse",
+            };
 
-      // Firestore REST API URL (Read-only public access required for this document)
-      const PROJECT_ID = "discord-bot-482803";
-      const API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/server_status/latest`;
+            // Firestore REST API URL (Read-only public access required for this document)
+            const PROJECT_ID = "discord-bot-482803";
+            const API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/server_status/latest`;
 
-      async function fetchServerData() {
-        const mapEl = document.getElementById("map-name");
-        const countEl = document.getElementById("player-count");
-        const listEl = document.getElementById("player-list");
-        const dotEl = document.getElementById("status-dot");
-        const btn = document.querySelector("#server-widget .refresh-btn");
+            async function fetchServerData() {
+              const mapEl = document.getElementById("map-name");
+              const countEl = document.getElementById("player-count");
+              const listEl = document.getElementById("player-list");
+              const dotEl = document.getElementById("status-dot");
+              const btn = document.querySelector("#server-widget .refresh-btn");
 
-        // UI Reset
-        if (btn) btn.innerText = "REFRESHING...";
-        dotEl.style.backgroundColor = "#eab308"; // Yellow (Loading)
-        dotEl.style.boxShadow = "none";
+              // UI Reset
+              if (btn) btn.innerText = "REFRESHING...";
+              dotEl.style.backgroundColor = "#eab308"; // Yellow (Loading)
+              dotEl.style.boxShadow = "none";
 
-        try {
-          const response = await fetch(API_URL);
-          if (!response.ok) throw new Error("API Network Error");
+              try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error("API Network Error");
 
-          const json = await response.json();
-          // Firestore returns fields wrapped in types: { fields: { map: { stringValue: "..." } } }
-          const fields = json.fields;
+                const json = await response.json();
+                // Firestore returns fields wrapped in types: { fields: { map: { stringValue: "..." } } }
+                const fields = json.fields;
 
-          if (!fields) throw new Error("Invalid Data Format");
+                if (!fields) throw new Error("Invalid Data Format");
 
-          const isOnline = fields.online ? fields.online.booleanValue : false;
+                const isOnline = fields.online ? fields.online.booleanValue : false;
 
-          if (!isOnline) throw new Error("Server Reported Offline");
+                if (!isOnline) throw new Error("Server Reported Offline");
 
-          // 1. Map Translation
-          let friendlyMap = fields.friendly_map
-            ? fields.friendly_map.stringValue
-            : "";
+                // 1. Map Translation
+                let friendlyMap = fields.friendly_map
+                  ? fields.friendly_map.stringValue
+                  : "";
 
-          if (!friendlyMap) {
-            const rawMap = fields.name ? fields.name.stringValue : "Unknown";
-            const mapCode = fields.map ? fields.map.stringValue : "";
-            // Try to get friendly name specifically for vanilla maps first
-            friendlyMap = VANILLA_MAPS[mapCode.toLowerCase()];
+                if (!friendlyMap) {
+                  const rawMap = fields.name ? fields.name.stringValue : "Unknown";
+                  const mapCode = fields.map ? fields.map.stringValue : "";
+                  // Try to get friendly name specifically for vanilla maps first
+                  friendlyMap = VANILLA_MAPS[mapCode.toLowerCase()];
 
-            if (!friendlyMap) {
-              // Custom Map Logic
-              if (rawMap && rawMap !== "Unknown") {
-                // Extract map name from "Server Name | Map Name [Chapter]" format
-                const parts = rawMap.split("|");
+                  if (!friendlyMap) {
+                    // Custom Map Logic
+                    if (rawMap && rawMap !== "Unknown") {
+                      // Extract map name from "Server Name | Map Name [Chapter]" format
+                      const parts = rawMap.split("|");
 
-                if (parts.length > 1) {
-                  let mapPart = parts[parts.length - 1].trim();
-                  if (mapPart === "") {
-                    friendlyMap = mapCode || "Idle";
-                  } else {
-                    // Check for chapter info
-                    // Match [1-3] or [1] and capture just the first digit(s)
-                    const chapterMatch = mapPart.match(/\[(\d+)(?:-\d+)?\]/);
-                    let cleanName = mapPart.replace(/\[.*?\]/, "").trim();
+                      if (parts.length > 1) {
+                        let mapPart = parts[parts.length - 1].trim();
+                        if (mapPart === "") {
+                          friendlyMap = mapCode || "Idle";
+                        } else {
+                          // Check for chapter info
+                          // Match [1-3] or [1] and capture just the first digit(s)
+                          const chapterMatch = mapPart.match(/\[(\d+)(?:-\d+)?\]/);
+                          let cleanName = mapPart.replace(/\[.*?\]/, "").trim();
 
-                    friendlyMap = cleanName;
-                    if (chapterMatch) {
-                      friendlyMap += ` Chapter ${chapterMatch[1]}`;
+                          friendlyMap = cleanName;
+                          if (chapterMatch) {
+                            friendlyMap += ` Chapter ${chapterMatch[1]}`;
+                          }
+                        }
+                      } else {
+                        // No pipe separator found, fallback to generic state
+                        friendlyMap = mapCode || "Idle";
+                      }
+                    } else {
+                      friendlyMap = mapCode ? mapCode : "Scanning...";
                     }
                   }
-                } else {
-                  // No pipe separator found, fallback to generic state
-                  friendlyMap = mapCode || "Idle";
                 }
-              } else {
-                friendlyMap = mapCode ? mapCode : "Scanning...";
-              }
-            }
-          }
 
-          const mapUrl = fields.map_url ? fields.map_url.stringValue : null;
-          if (mapUrl) {
-            // External link SVG icon
-            const linkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px; vertical-align: baseline; opacity: 0.8;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>`;
+                const mapUrl = fields.map_url ? fields.map_url.stringValue : null;
+                if (mapUrl) {
+                  // External link SVG icon
+                  const linkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px; vertical-align: baseline; opacity: 0.8;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>`;
 
-            mapEl.innerHTML = `<a href="${mapUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; border-bottom: 1px solid var(--accent-color); padding-bottom: 2px; transition: all 0.3s ease; pointer-events: auto; display: inline-flex; align-items: center; text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);">${friendlyMap}${linkIcon}</a>`;
+                  mapEl.innerHTML = `<a href="${mapUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; border-bottom: 1px solid var(--accent-color); padding-bottom: 2px; transition: all 0.3s ease; pointer-events: auto; display: inline-flex; align-items: center; text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);">${friendlyMap}${linkIcon}</a>`;
 
-            // Add hover effect
-            const mapLink = mapEl.querySelector("a");
-            if (mapLink) {
-              mapLink.addEventListener("mouseover", () => {
-                mapLink.style.color = "#fff";
-                mapLink.style.borderColor = "#fff";
-                mapLink.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.5)";
-              });
-              mapLink.addEventListener("mouseout", () => {
-                mapLink.style.color = "var(--accent-color)";
-                mapLink.style.borderColor = "var(--accent-color)";
-                mapLink.style.textShadow = "0 0 10px rgba(229, 9, 20, 0.3)";
-              });
-            }
-          } else {
-            mapEl.innerText = friendlyMap;
-          }
+                  // Add hover effect
+                  const mapLink = mapEl.querySelector("a");
+                  if (mapLink) {
+                    mapLink.addEventListener("mouseover", () => {
+                      mapLink.style.color = "#fff";
+                      mapLink.style.borderColor = "#fff";
+                      mapLink.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.5)";
+                    });
+                    mapLink.addEventListener("mouseout", () => {
+                      mapLink.style.color = "var(--accent-color)";
+                      mapLink.style.borderColor = "var(--accent-color)";
+                      mapLink.style.textShadow = "0 0 10px rgba(229, 9, 20, 0.3)";
+                    });
+                  }
+                } else {
+                  mapEl.innerText = friendlyMap;
+                }
 
-          // 2. Update UI
-          const count = fields.players
-            ? parseInt(fields.players.integerValue)
-            : 0;
-          const max = fields.max_players
-            ? parseInt(fields.max_players.integerValue)
-            : 20;
+                // 2. Update UI
+                const count = fields.players
+                  ? parseInt(fields.players.integerValue)
+                  : 0;
+                const max = fields.max_players
+                  ? parseInt(fields.max_players.integerValue)
+                  : 20;
 
-          // Parse Player List (Array of Strings)
-          let players = [];
-          if (
-            fields.player_list &&
-            fields.player_list.arrayValue &&
-            fields.player_list.arrayValue.values
-          ) {
-            players = fields.player_list.arrayValue.values.map(
-              (v) => v.stringValue,
-            );
-          }
+                // Parse Player List (Array of Strings)
+                let players = [];
+                if (
+                  fields.player_list &&
+                  fields.player_list.arrayValue &&
+                  fields.player_list.arrayValue.values
+                ) {
+                  players = fields.player_list.arrayValue.values.map(
+                    (v) => v.stringValue,
+                  );
+                }
 
-          countEl.innerText = `${count}/${max}`;
+                countEl.innerText = `${count}/${max}`;
 
-          if (players.length > 0) {
-            listEl.innerHTML = players
-              .map(
-                (p) => `
-              <div class="player-item">
-                <span style="max-width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${p}</span>
-                <span style="color:#16a34a; font-size:0.7rem; font-weight:bold; align-self:center;">ONLINE</span>
-              </div>
-            `,
-              )
-              .join("");
-          } else {
-            listEl.innerHTML =
-              '<div style="padding:15px; text-align:center; color:#888;">The server is currently empty.</div>';
-          }
-
-          // Handle Activity Graph
-          const graphContainer = document.getElementById("graph-container");
-          const graphImg = document.getElementById("activity-graph");
-          if (fields.chart_url && fields.chart_url.stringValue) {
-            // Append timestamp to bust browser cache
-            const cacheBuster = `?t=${new Date().getTime()}`;
-            graphImg.src = fields.chart_url.stringValue + cacheBuster;
-            graphContainer.style.display = "block";
-          } else {
-            if (graphContainer) graphContainer.style.display = "none";
-          }
-
-          // Parse Discord Events (Array of Maps)
-          let discordEvents = [];
-          if (
-            fields.discord_events &&
-            fields.discord_events.arrayValue &&
-            fields.discord_events.arrayValue.values
-          ) {
-            discordEvents = fields.discord_events.arrayValue.values.map(
-              (val) => {
-                const m = val.mapValue ? val.mapValue.fields : {};
-                return {
-                  id: m.id ? m.id.stringValue : "",
-                  name: m.name ? m.name.stringValue : "",
-                  description: m.description ? m.description.stringValue : "",
-                  start_time: m.start_time ? m.start_time.stringValue : "",
-                  end_time:
-                    m.end_time && m.end_time.stringValue
-                      ? m.end_time.stringValue
-                      : null,
-                  status: m.status ? m.status.stringValue : "",
-                  location: m.location ? m.location.stringValue : "",
-                  url: m.url ? m.url.stringValue : "",
-                  cover_url:
-                    m.cover_url && m.cover_url.stringValue
-                      ? m.cover_url.stringValue
-                      : null,
-                };
-              },
-            );
-          }
-          renderDiscordEvents(discordEvents);
-
-          // Success State
-          dotEl.style.backgroundColor = "#16a34a"; // Green
-          dotEl.style.boxShadow = "0 0 10px #16a34a";
-        } catch (e) {
-          console.error("Widget Error:", e);
-          // Offline / Error State
-          mapEl.innerText = "OFFLINE";
-          countEl.innerText = "0/20";
-          dotEl.style.backgroundColor = "#dc2626"; // Red
-          dotEl.style.boxShadow = "0 0 10px #dc2626";
-          listEl.innerHTML = `
-            <div class="offline-msg">
-              Server may be offline, start the Discord Bot to sync status.
-            </div>
-          `;
-
-          const eventsListEl = document.getElementById("events-list");
-          if (eventsListEl) {
-            eventsListEl.innerHTML = `
-              <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
-                <div style="font-weight: bold; color: #dc2626; margin-bottom: 4px;">Events Unavailable</div>
-                <div style="font-size: 0.85rem; color: #666;">Could not sync events from the Discord bot.</div>
-              </div>
-            `;
-          }
-        } finally {
-          if (btn) btn.innerText = "REFRESH";
-        }
-      }
-
-      async function fetchEventsData() {
-        const btn = document.querySelector("#events-widget .refresh-btn");
-        if (btn) btn.innerText = "REFRESHING...";
-
-        try {
-          const response = await fetch(API_URL);
-          if (!response.ok) throw new Error("API Network Error");
-
-          const json = await response.json();
-          const fields = json.fields;
-
-          // Parse Discord Events (Array of Maps)
-          let discordEvents = [];
-          if (
-            fields.discord_events &&
-            fields.discord_events.arrayValue &&
-            fields.discord_events.arrayValue.values
-          ) {
-            discordEvents = fields.discord_events.arrayValue.values.map(
-              (val) => {
-                const m = val.mapValue ? val.mapValue.fields : {};
-                return {
-                  id: m.id ? m.id.stringValue : "",
-                  name: m.name ? m.name.stringValue : "",
-                  description: m.description ? m.description.stringValue : "",
-                  start_time: m.start_time ? m.start_time.stringValue : "",
-                  end_time:
-                    m.end_time && m.end_time.stringValue
-                      ? m.end_time.stringValue
-                      : null,
-                  status: m.status ? m.status.stringValue : "",
-                  location: m.location ? m.location.stringValue : "",
-                  url: m.url ? m.url.stringValue : "",
-                  cover_url:
-                    m.cover_url && m.cover_url.stringValue
-                      ? m.cover_url.stringValue
-                      : null,
-                };
-              },
-            );
-          }
-          renderDiscordEvents(discordEvents);
-        } catch (e) {
-          console.error("Events Refresh Error:", e);
-          const eventsListEl = document.getElementById("events-list");
-          if (eventsListEl) {
-            eventsListEl.innerHTML = `
-              <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
-                <div style="font-weight: bold; color: #dc2626; margin-bottom: 4px;">Events Unavailable</div>
-                <div style="font-size: 0.85rem; color: #666;">Could not sync events from the Discord bot.</div>
-              </div>
-            `;
-          }
-        } finally {
-          if (btn) btn.innerText = "Refresh";
-        }
-      }
-
-      function formatEventTime(isoString) {
-        const date = new Date(isoString);
-        return date.toLocaleDateString(undefined, {
-          weekday: "short",
-          month: "short",
-          day: "numeric",
-          hour: "numeric",
-          minute: "2-digit",
-        });
-      }
-
-      function getRelativeEventTime(isoString, status) {
-        const now = new Date();
-        const eventTime = new Date(isoString);
-        const diffMs = eventTime - now;
-        const diffMins = Math.round(diffMs / 60000);
-        const diffHours = Math.round(diffMs / 3600000);
-        const diffDays = Math.round(diffMs / 86400000);
-
-        if (status === "active") {
-          return "Live Now";
-        }
-
-        if (diffMins < 0) {
-          return "Started";
-        }
-        if (diffMins < 60) {
-          return `Starts in ${diffMins}m`;
-        }
-        if (diffHours < 24) {
-          return `Starts in ${diffHours}h`;
-        }
-        return `Starts in ${diffDays}d`;
-      }
-
-      function renderDiscordEvents(discordEvents) {
-        const eventsListEl = document.getElementById("events-list");
-        if (!eventsListEl) return;
-
-        if (discordEvents.length > 0) {
-          eventsListEl.innerHTML = discordEvents
-            .map((event) => {
-              const badgeClass =
-                event.status === "active" ? "active" : "scheduled";
-              const badgeText =
-                event.status === "active" ? "Live Now" : "Upcoming";
-              const relativeTime = getRelativeEventTime(
-                event.start_time,
-                event.status,
-              );
-              const formattedTime = formatEventTime(event.start_time);
-
-              const coverHtml = event.cover_url
-                ? `<img src="${event.cover_url}" class="event-cover" alt="${event.name}" />`
-                : `<div class="event-cover-placeholder"></div>`;
-
-              const descHtml = event.description
-                ? `<div class="event-desc">${event.description}</div>`
-                : "";
-
-              const locHtml = event.location
-                ? `<div class="event-location">
-                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C10.3 20 2 12.3 2 10a10 10 0 0 1 20 0c0 2.3-8.3 10-10 11.7z"/></svg>
-                   <span>${event.location}</span>
-                 </div>`
-                : "";
-
-              return `
-              <div class="event-card">
-                ${coverHtml}
-                <div class="event-details">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span class="event-badge ${badgeClass}">${badgeText}</span>
-                    <span class="event-time" style="font-weight: bold; color: #5865F2;">${relativeTime}</span>
-                  </div>
-                  <h4 class="event-title">${event.name}</h4>
-                  <div class="event-time">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <span>${formattedTime}</span>
-                  </div>
-                  ${descHtml}
-                  ${locHtml}
-                  <a href="${event.url}" target="_blank" rel="noopener noreferrer" class="event-btn">Join Event</a>
-                </div>
-              </div>
-            `;
-            })
-            .join("");
-        } else {
-          eventsListEl.innerHTML = `
-            <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
-              <div style="font-size: 1.5rem; margin-bottom: 8px;">📅</div>
-              <div style="font-weight: bold; color: #eee; margin-bottom: 4px;">No Events Scheduled</div>
-              <div style="font-size: 0.85rem; color: #666;">Check back later or join Discord to suggest an event!</div>
-            </div>
-          `;
-        }
-      }
-
-      async function fetchDiscordData() {
-        const btn = document.querySelector("#discord-widget .refresh-btn");
-        if (btn) btn.innerText = "REFRESHING...";
-
-        try {
-          const response = await fetch(
-            "https://discord.com/api/guilds/1260090854840733696/widget.json",
-          );
-          if (!response.ok) throw new Error("Discord API Error");
-          const data = await response.json();
-          if (data.presence_count !== undefined) {
-            const countEls = document.querySelectorAll(".discord-count");
-            const dotEls = document.querySelectorAll(".discord-dot");
-            const statusTexts = document.querySelectorAll(
-              ".discord-status-text",
-            );
-
-            countEls.forEach(
-              (el) => (el.innerText = `${data.presence_count} Online`),
-            );
-            dotEls.forEach((el) => {
-              el.style.display = "block";
-              el.style.backgroundColor = "#23a559";
-              el.style.boxShadow = "0 0 10px #23a559";
-            });
-            statusTexts.forEach((el) => (el.innerText = "ONLINE"));
-
-            const widgetList = document.getElementById("discord-player-list");
-            if (widgetList) {
-              if (data.members && data.members.length > 0) {
-                const displayMembers = data.members.slice(0, 5);
-                widgetList.innerHTML =
-                  displayMembers
+                if (players.length > 0) {
+                  listEl.innerHTML = players
                     .map(
-                      (m) => `
-                   <div class="player-item">
-                     <div style="display: flex; align-items: center; gap: 10px;">
-                       <img src="${m.avatar_url}" style="width: 24px; height: 24px; border-radius: 50%;" />
-                       <span style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${m.username}</span>
-                     </div>
-                     <span style="color:#16a34a; font-size:0.7rem; font-weight:bold; align-self:center;">${(m.status || "online").toUpperCase()}</span>
-                   </div>
-                 `,
+                      (p) => `
+                    <div class="player-item">
+                      <span style="max-width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${p}</span>
+                      <span style="color:#16a34a; font-size:0.7rem; font-weight:bold; align-self:center;">ONLINE</span>
+                    </div>
+                  `,
                     )
-                    .join("") +
-                  (data.presence_count > 5
-                    ? `<div style="text-align: center; font-size: 0.8rem; color: #888; padding: 15px 0 5px 0;">And ${data.presence_count - 5} more...</div>`
-                    : "");
-              } else {
-                widgetList.innerHTML =
-                  '<div style="padding:15px; text-align:center; color:#888;">No members currently online.</div>';
+                    .join("");
+                } else {
+                  listEl.innerHTML =
+                    '<div style="padding:15px; text-align:center; color:#888;">The server is currently empty.</div>';
+                }
+
+                // Handle Activity Graph
+                const graphContainer = document.getElementById("graph-container");
+                const graphImg = document.getElementById("activity-graph");
+                if (fields.chart_url && fields.chart_url.stringValue) {
+                  // Append timestamp to bust browser cache
+                  const cacheBuster = `?t=${new Date().getTime()}`;
+                  graphImg.src = fields.chart_url.stringValue + cacheBuster;
+                  graphContainer.style.display = "block";
+                } else {
+                  if (graphContainer) graphContainer.style.display = "none";
+                }
+
+                // Parse Discord Events (Array of Maps)
+                let discordEvents = [];
+                if (
+                  fields.discord_events &&
+                  fields.discord_events.arrayValue &&
+                  fields.discord_events.arrayValue.values
+                ) {
+                  discordEvents = fields.discord_events.arrayValue.values.map(
+                    (val) => {
+                      const m = val.mapValue ? val.mapValue.fields : {};
+                      return {
+                        id: m.id ? m.id.stringValue : "",
+                        name: m.name ? m.name.stringValue : "",
+                        description: m.description ? m.description.stringValue : "",
+                        start_time: m.start_time ? m.start_time.stringValue : "",
+                        end_time:
+                          m.end_time && m.end_time.stringValue
+                            ? m.end_time.stringValue
+                            : null,
+                        status: m.status ? m.status.stringValue : "",
+                        location: m.location ? m.location.stringValue : "",
+                        url: m.url ? m.url.stringValue : "",
+                        cover_url:
+                          m.cover_url && m.cover_url.stringValue
+                            ? m.cover_url.stringValue
+                            : null,
+                      };
+                    },
+                  );
+                }
+                renderDiscordEvents(discordEvents);
+
+                // Success State
+                dotEl.style.backgroundColor = "#16a34a"; // Green
+                dotEl.style.boxShadow = "0 0 10px #16a34a";
+              } catch (e) {
+                console.error("Widget Error:", e);
+                // Offline / Error State
+                mapEl.innerText = "OFFLINE";
+                countEl.innerText = "0/20";
+                dotEl.style.backgroundColor = "#dc2626"; // Red
+                dotEl.style.boxShadow = "0 0 10px #dc2626";
+                listEl.innerHTML = `
+                  <div class="offline-msg">
+                    Server may be offline, start the Discord Bot to sync status.
+                  </div>
+                `;
+
+                const eventsListEl = document.getElementById("events-list");
+                if (eventsListEl) {
+                  eventsListEl.innerHTML = `
+                    <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
+                      <div style="font-weight: bold; color: #dc2626; margin-bottom: 4px;">Events Unavailable</div>
+                      <div style="font-size: 0.85rem; color: #666;">Could not sync events from the Discord bot.</div>
+                    </div>
+                  `;
+                }
+              } finally {
+                if (btn) btn.innerText = "REFRESH";
               }
             }
-          }
-        } catch (e) {
-          console.error("Discord Widget Error:", e);
-          const statusTexts = document.querySelectorAll(".discord-status-text");
-          statusTexts.forEach((el) => (el.innerText = "OFFLINE"));
-          const dotEls = document.querySelectorAll(".discord-dot");
-          dotEls.forEach((el) => {
-            el.style.backgroundColor = "#dc2626";
-            el.style.boxShadow = "0 0 10px #dc2626";
-            el.style.display = "block";
-          });
-          const widgetList = document.getElementById("discord-player-list");
-          if (widgetList) {
-            widgetList.innerHTML =
-              '<div class="offline-msg">Widget API unavailable.</div>';
-          }
-        } finally {
-          if (btn) btn.innerText = "Refresh";
-        }
-      }
 
-      // Initial Load
-      fetchServerData();
-      fetchDiscordData();
+            async function fetchEventsData() {
+              const btn = document.querySelector("#events-widget .refresh-btn");
+              if (btn) btn.innerText = "REFRESHING...";
 
-      // Auto-refresh every 60s
-      setInterval(() => {
-        fetchServerData();
-        fetchDiscordData();
-      }, 60000);
+              try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error("API Network Error");
+
+                const json = await response.json();
+                const fields = json.fields;
+
+                // Parse Discord Events (Array of Maps)
+                let discordEvents = [];
+                if (
+                  fields.discord_events &&
+                  fields.discord_events.arrayValue &&
+                  fields.discord_events.arrayValue.values
+                ) {
+                  discordEvents = fields.discord_events.arrayValue.values.map(
+                    (val) => {
+                      const m = val.mapValue ? val.mapValue.fields : {};
+                      return {
+                        id: m.id ? m.id.stringValue : "",
+                        name: m.name ? m.name.stringValue : "",
+                        description: m.description ? m.description.stringValue : "",
+                        start_time: m.start_time ? m.start_time.stringValue : "",
+                        end_time:
+                          m.end_time && m.end_time.stringValue
+                            ? m.end_time.stringValue
+                            : null,
+                        status: m.status ? m.status.stringValue : "",
+                        location: m.location ? m.location.stringValue : "",
+                        url: m.url ? m.url.stringValue : "",
+                        cover_url:
+                          m.cover_url && m.cover_url.stringValue
+                            ? m.cover_url.stringValue
+                            : null,
+                      };
+                    },
+                  );
+                }
+                renderDiscordEvents(discordEvents);
+              } catch (e) {
+                console.error("Events Refresh Error:", e);
+                const eventsListEl = document.getElementById("events-list");
+                if (eventsListEl) {
+                  eventsListEl.innerHTML = `
+                    <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
+                      <div style="font-weight: bold; color: #dc2626; margin-bottom: 4px;">Events Unavailable</div>
+                      <div style="font-size: 0.85rem; color: #666;">Could not sync events from the Discord bot.</div>
+                    </div>
+                  `;
+                }
+              } finally {
+                if (btn) btn.innerText = "Refresh";
+              }
+            }
+
+            function formatEventTime(isoString) {
+              const date = new Date(isoString);
+              return date.toLocaleDateString(undefined, {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+              });
+            }
+
+            function getRelativeEventTime(isoString, status) {
+              const now = new Date();
+              const eventTime = new Date(isoString);
+              const diffMs = eventTime - now;
+              const diffMins = Math.round(diffMs / 60000);
+              const diffHours = Math.round(diffMs / 3600000);
+              const diffDays = Math.round(diffMs / 86400000);
+
+              if (status === "active") {
+                return "Live Now";
+              }
+
+              if (diffMins < 0) {
+                return "Started";
+              }
+              if (diffMins < 60) {
+                return `Starts in ${diffMins}m`;
+              }
+              if (diffHours < 24) {
+                return `Starts in ${diffHours}h`;
+              }
+              return `Starts in ${diffDays}d`;
+            }
+
+            function parseDiscordMarkdown(text) {
+              if (!text) return '';
+
+              // Translate common emoji shortcodes first to avoid underscore conflicts (e.g. :test_tube:)
+              const emojiMap = {
+                ':one:': '1️⃣',
+                ':two:': '2️⃣',
+                ':three:': '3️⃣',
+                ':four:': '4️⃣',
+                ':five:': '5️⃣',
+                ':six:': '6️⃣',
+                ':seven:': '7️⃣',
+                ':eight:': '8️⃣',
+                ':nine:': '9️⃣',
+                ':zero:': '0️⃣',
+                ':test_tube:': '🧪',
+                ':video_game:': '🎮',
+                ':loudspeaker:': '📢',
+                ':calendar:': '📅',
+                ':trophy:': '🏆',
+                ':crown:': '👑',
+                ':fire:': '🔥',
+                ':warning:': '⚠️',
+                ':alarm_clock:': '⏰',
+                ':party:': '🎉',
+                ':martial_arts_uniform:': '🥋'
+              };
+
+              let parsed = text;
+              Object.keys(emojiMap).forEach(key => {
+                parsed = parsed.replaceAll(key, emojiMap[key]);
+              });
+
+              // Strip custom Discord emoji codes like <:emoji_name:123456789> or <a:emoji_name:123456789>
+              parsed = parsed.replace(/<a?:[a-zA-Z0-9_-]+:\d+>/g, '');
+
+              // Strip remaining :emoji_name: patterns to prevent raw text display and underscore issues
+              parsed = parsed.replace(/:[a-zA-Z0-9_-]+:/g, '');
+
+              let html = parsed
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+              html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+              html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+              html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+              html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+              html = html.replace(/__(.*?)__/g, '<u>$1</u>');
+              html = html.replace(/~~(.*?)~~/g, '<s>$1</s>');
+              html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+              html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: #5865F2; text-decoration: underline;">$1</a>');
+
+              return html;
+            }
+
+            function renderDiscordEvents(discordEvents) {
+              const eventsListEl = document.getElementById("events-list");
+              if (!eventsListEl) return;
+
+              if (discordEvents.length > 0) {
+                eventsListEl.innerHTML = discordEvents
+                  .map((event) => {
+                    const badgeClass =
+                      event.status === "active" ? "active" : "scheduled";
+                    const badgeText =
+                      event.status === "active" ? "Live Now" : "Upcoming";
+                    const relativeTime = getRelativeEventTime(
+                      event.start_time,
+                      event.status,
+                    );
+                    const formattedTime = formatEventTime(event.start_time);
+
+                    const coverHtml = event.cover_url
+                      ? `<img src="${event.cover_url}" class="event-cover" alt="${event.name}" />`
+                      : `<div class="event-cover-placeholder"></div>`;
+
+                    const descHtml = event.description
+                      ? `<div class="event-desc">${parseDiscordMarkdown(event.description)}</div>`
+                      : "";
+
+                    const locHtml = event.location
+                      ? `<div class="event-location">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C10.3 20 2 12.3 2 10a10 10 0 0 1 20 0c0 2.3-8.3 10-10 11.7z"/></svg>
+                         <span>${event.location}</span>
+                       </div>`
+                      : "";
+
+                    return `
+                    <div class="event-card">
+                      ${coverHtml}
+                      <div class="event-details">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                          <span class="event-badge ${badgeClass}">${badgeText}</span>
+                          <span class="event-time" style="font-weight: bold; color: #5865F2;">${relativeTime}</span>
+                        </div>
+                        <h4 class="event-title">${event.name}</h4>
+                        <div class="event-time">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                          <span>${formattedTime}</span>
+                        </div>
+                        ${descHtml}
+                        ${locHtml}
+                        <a href="${event.url}" target="_blank" rel="noopener noreferrer" class="event-btn">Join Event</a>
+                      </div>
+                    </div>
+                  `;
+                  })
+                  .join("");
+              } else {
+                eventsListEl.innerHTML = `
+                  <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
+                    <div style="font-size: 1.5rem; margin-bottom: 8px;">📅</div>
+                    <div style="font-weight: bold; color: #eee; margin-bottom: 4px;">No Events Scheduled</div>
+                    <div style="font-size: 0.85rem; color: #666;">Check back later or join Discord to suggest an event!</div>
+                  </div>
+                `;
+              }
+            }
+
+            async function fetchDiscordData() {
+              const btn = document.querySelector("#discord-widget .refresh-btn");
+              if (btn) btn.innerText = "REFRESHING...";
+
+              try {
+                const response = await fetch(
+                  "https://discord.com/api/guilds/1260090854840733696/widget.json",
+                );
+                if (!response.ok) throw new Error("Discord API Error");
+                const data = await response.json();
+                if (data.presence_count !== undefined) {
+                  const countEls = document.querySelectorAll(".discord-count");
+                  const dotEls = document.querySelectorAll(".discord-dot");
+                  const statusTexts = document.querySelectorAll(
+                    ".discord-status-text",
+                  );
+
+                  countEls.forEach(
+                    (el) => (el.innerText = `${data.presence_count} Online`),
+                  );
+                  dotEls.forEach((el) => {
+                    el.style.display = "block";
+                    el.style.backgroundColor = "#23a559";
+                    el.style.boxShadow = "0 0 10px #23a559";
+                  });
+                  statusTexts.forEach((el) => (el.innerText = "ONLINE"));
+
+                  const widgetList = document.getElementById("discord-player-list");
+                  if (widgetList) {
+                    if (data.members && data.members.length > 0) {
+                      const displayMembers = data.members.slice(0, 5);
+                      widgetList.innerHTML =
+                        displayMembers
+                          .map(
+                            (m) => `
+                         <div class="player-item">
+                           <div style="display: flex; align-items: center; gap: 10px;">
+                             <img src="${m.avatar_url}" style="width: 24px; height: 24px; border-radius: 50%;" />
+                             <span style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${m.username}</span>
+                           </div>
+                           <span style="color:#16a34a; font-size:0.7rem; font-weight:bold; align-self:center;">${(m.status || "online").toUpperCase()}</span>
+                         </div>
+                       `,
+                          )
+                          .join("") +
+                        (data.presence_count > 5
+                          ? `<div style="text-align: center; font-size: 0.8rem; color: #888; padding: 15px 0 5px 0;">And ${data.presence_count - 5} more...</div>`
+                          : "");
+                    } else {
+                      widgetList.innerHTML =
+                        '<div style="padding:15px; text-align:center; color:#888;">No members currently online.</div>';
+                    }
+                  }
+                }
+              } catch (e) {
+                console.error("Discord Widget Error:", e);
+                const statusTexts = document.querySelectorAll(".discord-status-text");
+                statusTexts.forEach((el) => (el.innerText = "OFFLINE"));
+                const dotEls = document.querySelectorAll(".discord-dot");
+                dotEls.forEach((el) => {
+                  el.style.backgroundColor = "#dc2626";
+                  el.style.boxShadow = "0 0 10px #dc2626";
+                  el.style.display = "block";
+                });
+                const widgetList = document.getElementById("discord-player-list");
+                if (widgetList) {
+                  widgetList.innerHTML =
+                    '<div class="offline-msg">Widget API unavailable.</div>';
+                }
+              } finally {
+                if (btn) btn.innerText = "Refresh";
+              }
+            }
+
+            // Initial Load
+            fetchServerData();
+            fetchDiscordData();
+
+            // Auto-refresh every 60s
+            setInterval(() => {
+              fetchServerData();
+              fetchDiscordData();
+            }, 60000);
     </script>
     <script src="easteregg.js"></script>
   </body>
