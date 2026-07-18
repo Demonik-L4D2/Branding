@@ -45,6 +45,11 @@
         padding: 0;
       }
 
+      html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
       body {
         background-color: var(--bg-color);
         background-image: linear-gradient(
@@ -226,14 +231,31 @@
           font-size: 0.9rem;
         }
         h1 {
-          font-size: 2.5rem; /* Reduce heading size for mobile */
+          font-size: 2rem !important; /* Reduce heading size for mobile */
           text-align: center;
         }
         main {
           margin: 2rem auto;
+          padding: 0 1rem !important;
+        }
+        .content-box {
+          padding: 20px !important;
         }
         .perks-grid {
           grid-template-columns: 1fr !important;
+        }
+        .server-widget, .secondary-button, .primary-button, .discord-button, .perks-grid, .content-box {
+          min-width: 0 !important;
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        .footer-socials {
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+        footer p a {
+          display: inline-block;
+          margin: 5px 10px !important;
         }
       }
 
@@ -1046,6 +1068,64 @@
         return `Starts in ${diffDays}d`;
       }
 
+      function parseDiscordMarkdown(text) {
+        if (!text) return '';
+        
+        // Translate common emoji shortcodes first to avoid underscore conflicts (e.g. :test_tube:)
+        const emojiMap = {
+          ':one:': '1️⃣',
+          ':two:': '2️⃣',
+          ':three:': '3️⃣',
+          ':four:': '4️⃣',
+          ':five:': '5️⃣',
+          ':six:': '6️⃣',
+          ':seven:': '7️⃣',
+          ':eight:': '8️⃣',
+          ':nine:': '9️⃣',
+          ':zero:': '0️⃣',
+          ':test_tube:': '🧪',
+          ':video_game:': '🎮',
+          ':loudspeaker:': '📢',
+          ':calendar:': '📅',
+          ':trophy:': '🏆',
+          ':crown:': '👑',
+          ':fire:': '🔥',
+          ':warning:': '⚠️',
+          ':alarm_clock:': '⏰',
+          ':party:': '🎉',
+          ':martial_arts_uniform:': '🥋'
+        };
+        
+        let parsed = text;
+        Object.keys(emojiMap).forEach(key => {
+          parsed = parsed.replaceAll(key, emojiMap[key]);
+        });
+        
+        // Strip custom Discord emoji codes like <:emoji_name:123456789> or <a:emoji_name:123456789>
+        parsed = parsed.replace(/<a?:[a-zA-Z0-9_-]+:\d+>/g, '');
+        
+        // Strip remaining :emoji_name: patterns to prevent raw text display and underscore issues
+        parsed = parsed.replace(/:[a-zA-Z0-9_-]+:/g, '');
+
+        let html = parsed
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+
+        html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+        html = html.replace(/__(.*?)__/g, '<u>$1</u>');
+        html = html.replace(/~~(.*?)~~/g, '<s>$1</s>');
+        html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+        html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: #5865F2; text-decoration: underline;">$1</a>');
+        
+        return html;
+      }
+
       function renderDiscordEvents(discordEvents) {
         const eventsListEl = document.getElementById("events-list");
         if (!eventsListEl) return;
@@ -1062,7 +1142,7 @@
               : `<div class="event-cover-placeholder"></div>`;
             
             const descHtml = event.description 
-              ? `<div class="event-desc">${event.description}</div>`
+              ? `<div class="event-desc">${parseDiscordMarkdown(event.description)}</div>`
               : '';
 
             const locHtml = event.location

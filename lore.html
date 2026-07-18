@@ -4,6 +4,7 @@
     <script src="easteregg.js"></script>
     <script>
       if (sessionStorage.getItem('hordeUnlocked') !== 'true') {
+        window.stop();
         document.documentElement.innerHTML = `
           <head>
             <title>Access Denied | DEMONIK</title>
@@ -50,7 +51,6 @@
             <a href="index.html">Return to Safety</a>
           </body>
         `;
-        window.stop();
       }
     </script>
     <meta charset="UTF-8" />
@@ -390,6 +390,10 @@
       }
 
       @media (max-width: 768px) {
+        html, body {
+          overflow-x: hidden;
+          max-width: 100%;
+        }
         header {
           flex-direction: column;
           gap: 0.5rem;
@@ -402,7 +406,20 @@
           font-size: 0.9rem;
         }
         .lore-title {
-          font-size: 2.5rem;
+          font-size: 2.2rem !important;
+        }
+        .lore-subtitle {
+          font-size: 1.1rem !important;
+        }
+        .container {
+          padding: 2rem 1rem !important;
+        }
+        .lore-hero {
+          padding: 3rem 1rem 2rem !important;
+        }
+        .campfire-container::before {
+          min-width: 100% !important;
+          width: 100% !important;
         }
         .section-header {
           flex-direction: column;
@@ -421,6 +438,19 @@
         .chronicle-section {
           border-left: none;
           padding-left: 0;
+        }
+        .server-widget, .secondary-button, .primary-button, .discord-button {
+          min-width: 0 !important;
+          max-width: 100% !important;
+          box-sizing: border-box;
+        }
+        .footer-socials {
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+        footer p a {
+          display: inline-block;
+          margin: 5px 10px !important;
         }
       }
 
