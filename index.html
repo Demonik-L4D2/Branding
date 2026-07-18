@@ -13,15 +13,26 @@
     <meta property="og:title" content="DEMONIK L4D2 | Coop-20 Server" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://demonik-l4d2.com/" />
-    <meta property="og:image" content="https://demonik-l4d2.com/discord-banner.jpg" />
-    <meta property="og:description" content="Join DEMONIK L4D2 Coop-20 Server. Experience 20-player coop gameplay with exclusive mods, custom maps, and server events." />
+    <meta
+      property="og:image"
+      content="https://demonik-l4d2.com/discord-banner.jpg"
+    />
+    <meta
+      property="og:description"
+      content="Join DEMONIK L4D2 Coop-20 Server. Experience 20-player coop gameplay with exclusive mods, custom maps, and server events."
+    />
     <meta name="theme-color" content="#e50914" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Favicon Tags -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="favicon-192x192.png"
+    />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,9 +56,17 @@
         padding: 0;
       }
 
+      html,
+      body {
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
       body {
         background-color: var(--bg-color);
-        background-image: linear-gradient(
+        background-image:
+          linear-gradient(
             to bottom,
             rgba(10, 10, 10, 0.8),
             rgba(10, 10, 10, 0.95)
@@ -344,10 +363,44 @@
           font-size: 0.9rem;
         }
         h1 {
-          font-size: 2.5rem;
+          font-size: 2rem !important;
         }
         .subtitle {
           font-size: 1.2rem;
+        }
+        .hero {
+          padding: 2rem 1rem !important;
+        }
+        .brand-name {
+          font-size: 2.2rem !important;
+        }
+        .tagline {
+          font-size: 1.4rem !important;
+          white-space: normal !important;
+        }
+        .features-list {
+          font-size: 0.95rem !important;
+          gap: 8px !important;
+          margin: 1.5rem 0 2rem 0 !important;
+        }
+        .cta-button.large {
+          padding: 1rem 1.5rem !important;
+          font-size: 1.1rem !important;
+          max-width: 100% !important;
+          box-sizing: border-box;
+        }
+        .server-widget,
+        .secondary-button,
+        .primary-button,
+        .discord-button {
+          min-width: 0 !important;
+          max-width: 100% !important;
+          flex-basis: 100% !important;
+          box-sizing: border-box !important;
+        }
+        .hero-content {
+          width: 100% !important;
+          max-width: 100% !important;
         }
       }
 
@@ -540,9 +593,18 @@
         animation: event-pulse 1.5s infinite;
       }
       @keyframes event-pulse {
-        0% { transform: scale(0.9); opacity: 0.6; }
-        50% { transform: scale(1.2); opacity: 1; }
-        100% { transform: scale(0.9); opacity: 0.6; }
+        0% {
+          transform: scale(0.9);
+          opacity: 0.6;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0.9);
+          opacity: 0.6;
+        }
       }
       .event-title {
         font-family: "Oswald", sans-serif;
@@ -731,9 +793,34 @@
               </div>
             </div>
 
-            <div class="widget-graph-container" id="graph-container" style="display: none; margin-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; animation: fadeIn 0.8s ease-out;">
-              <div class="info-label" style="margin-bottom: 15px; text-align: center;">24-Hour Player Activity</div>
-              <img id="activity-graph" src="" alt="Player Activity Graph" style="width: 100%; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); object-fit: contain;">
+            <div
+              class="widget-graph-container"
+              id="graph-container"
+              style="
+                display: none;
+                margin-top: 25px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 20px;
+                animation: fadeIn 0.8s ease-out;
+              "
+            >
+              <div
+                class="info-label"
+                style="margin-bottom: 15px; text-align: center"
+              >
+                24-Hour Player Activity
+              </div>
+              <img
+                id="activity-graph"
+                src=""
+                alt="Player Activity Graph"
+                style="
+                  width: 100%;
+                  border-radius: 6px;
+                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+                  object-fit: contain;
+                "
+              />
             </div>
           </div>
 
@@ -741,20 +828,50 @@
           <div
             class="server-widget"
             id="events-widget"
-            style="margin: 0; flex: 1; min-width: 320px; border-top-color: #5865F2;"
+            style="
+              margin: 0;
+              flex: 1;
+              min-width: 320px;
+              border-top-color: #5865f2;
+            "
           >
             <div class="widget-header">
-              <div class="status-badge" style="color: #5865F2;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
+              <div class="status-badge" style="color: #5865f2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="vertical-align: middle; margin-right: 6px"
+                >
+                  <path
+                    d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"
+                  />
+                </svg>
                 <span>Discord Events</span>
               </div>
-              <button class="refresh-btn" onclick="fetchEventsData()" style="color: #5865F2;">
+              <button
+                class="refresh-btn"
+                onclick="fetchEventsData()"
+                style="color: #5865f2"
+              >
                 Refresh
               </button>
             </div>
 
-            <div id="events-list" style="display: flex; flex-direction: column; gap: 15px;">
-              <div style="padding: 15px; text-align: center; color: #888; font-size: 0.9rem;">
+            <div
+              id="events-list"
+              style="display: flex; flex-direction: column; gap: 15px"
+            >
+              <div
+                style="
+                  padding: 15px;
+                  text-align: center;
+                  color: #888;
+                  font-size: 0.9rem;
+                "
+              >
                 Loading events...
               </div>
             </div>
@@ -1069,22 +1186,22 @@
           if (mapUrl) {
             // External link SVG icon
             const linkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px; vertical-align: baseline; opacity: 0.8;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>`;
-            
+
             mapEl.innerHTML = `<a href="${mapUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; border-bottom: 1px solid var(--accent-color); padding-bottom: 2px; transition: all 0.3s ease; pointer-events: auto; display: inline-flex; align-items: center; text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);">${friendlyMap}${linkIcon}</a>`;
-            
+
             // Add hover effect
             const mapLink = mapEl.querySelector("a");
             if (mapLink) {
-                mapLink.addEventListener("mouseover", () => {
-                  mapLink.style.color = "#fff";
-                  mapLink.style.borderColor = "#fff";
-                  mapLink.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.5)";
-                });
-                mapLink.addEventListener("mouseout", () => {
-                  mapLink.style.color = "var(--accent-color)";
-                  mapLink.style.borderColor = "var(--accent-color)";
-                  mapLink.style.textShadow = "0 0 10px rgba(229, 9, 20, 0.3)";
-                });
+              mapLink.addEventListener("mouseover", () => {
+                mapLink.style.color = "#fff";
+                mapLink.style.borderColor = "#fff";
+                mapLink.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.5)";
+              });
+              mapLink.addEventListener("mouseout", () => {
+                mapLink.style.color = "var(--accent-color)";
+                mapLink.style.borderColor = "var(--accent-color)";
+                mapLink.style.textShadow = "0 0 10px rgba(229, 9, 20, 0.3)";
+              });
             }
           } else {
             mapEl.innerText = friendlyMap;
@@ -1137,7 +1254,7 @@
             graphImg.src = fields.chart_url.stringValue + cacheBuster;
             graphContainer.style.display = "block";
           } else {
-            if(graphContainer) graphContainer.style.display = "none";
+            if (graphContainer) graphContainer.style.display = "none";
           }
 
           // Parse Discord Events (Array of Maps)
@@ -1147,20 +1264,28 @@
             fields.discord_events.arrayValue &&
             fields.discord_events.arrayValue.values
           ) {
-            discordEvents = fields.discord_events.arrayValue.values.map((val) => {
-              const m = val.mapValue ? val.mapValue.fields : {};
-              return {
-                id: m.id ? m.id.stringValue : "",
-                name: m.name ? m.name.stringValue : "",
-                description: m.description ? m.description.stringValue : "",
-                start_time: m.start_time ? m.start_time.stringValue : "",
-                end_time: m.end_time && m.end_time.stringValue ? m.end_time.stringValue : null,
-                status: m.status ? m.status.stringValue : "",
-                location: m.location ? m.location.stringValue : "",
-                url: m.url ? m.url.stringValue : "",
-                cover_url: m.cover_url && m.cover_url.stringValue ? m.cover_url.stringValue : null
-              };
-            });
+            discordEvents = fields.discord_events.arrayValue.values.map(
+              (val) => {
+                const m = val.mapValue ? val.mapValue.fields : {};
+                return {
+                  id: m.id ? m.id.stringValue : "",
+                  name: m.name ? m.name.stringValue : "",
+                  description: m.description ? m.description.stringValue : "",
+                  start_time: m.start_time ? m.start_time.stringValue : "",
+                  end_time:
+                    m.end_time && m.end_time.stringValue
+                      ? m.end_time.stringValue
+                      : null,
+                  status: m.status ? m.status.stringValue : "",
+                  location: m.location ? m.location.stringValue : "",
+                  url: m.url ? m.url.stringValue : "",
+                  cover_url:
+                    m.cover_url && m.cover_url.stringValue
+                      ? m.cover_url.stringValue
+                      : null,
+                };
+              },
+            );
           }
           renderDiscordEvents(discordEvents);
 
@@ -1179,7 +1304,7 @@
               Server may be offline, start the Discord Bot to sync status.
             </div>
           `;
-          
+
           const eventsListEl = document.getElementById("events-list");
           if (eventsListEl) {
             eventsListEl.innerHTML = `
@@ -1212,20 +1337,28 @@
             fields.discord_events.arrayValue &&
             fields.discord_events.arrayValue.values
           ) {
-            discordEvents = fields.discord_events.arrayValue.values.map((val) => {
-              const m = val.mapValue ? val.mapValue.fields : {};
-              return {
-                id: m.id ? m.id.stringValue : "",
-                name: m.name ? m.name.stringValue : "",
-                description: m.description ? m.description.stringValue : "",
-                start_time: m.start_time ? m.start_time.stringValue : "",
-                end_time: m.end_time && m.end_time.stringValue ? m.end_time.stringValue : null,
-                status: m.status ? m.status.stringValue : "",
-                location: m.location ? m.location.stringValue : "",
-                url: m.url ? m.url.stringValue : "",
-                cover_url: m.cover_url && m.cover_url.stringValue ? m.cover_url.stringValue : null
-              };
-            });
+            discordEvents = fields.discord_events.arrayValue.values.map(
+              (val) => {
+                const m = val.mapValue ? val.mapValue.fields : {};
+                return {
+                  id: m.id ? m.id.stringValue : "",
+                  name: m.name ? m.name.stringValue : "",
+                  description: m.description ? m.description.stringValue : "",
+                  start_time: m.start_time ? m.start_time.stringValue : "",
+                  end_time:
+                    m.end_time && m.end_time.stringValue
+                      ? m.end_time.stringValue
+                      : null,
+                  status: m.status ? m.status.stringValue : "",
+                  location: m.location ? m.location.stringValue : "",
+                  url: m.url ? m.url.stringValue : "",
+                  cover_url:
+                    m.cover_url && m.cover_url.stringValue
+                      ? m.cover_url.stringValue
+                      : null,
+                };
+              },
+            );
           }
           renderDiscordEvents(discordEvents);
         } catch (e) {
@@ -1247,11 +1380,11 @@
       function formatEventTime(isoString) {
         const date = new Date(isoString);
         return date.toLocaleDateString(undefined, {
-          weekday: 'short',
-          month: 'short',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: '2-digit'
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
         });
       }
 
@@ -1263,12 +1396,12 @@
         const diffHours = Math.round(diffMs / 3600000);
         const diffDays = Math.round(diffMs / 86400000);
 
-        if (status === 'active') {
-          return 'Live Now';
+        if (status === "active") {
+          return "Live Now";
         }
 
         if (diffMins < 0) {
-          return 'Started';
+          return "Started";
         }
         if (diffMins < 60) {
           return `Starts in ${diffMins}m`;
@@ -1284,28 +1417,34 @@
         if (!eventsListEl) return;
 
         if (discordEvents.length > 0) {
-          eventsListEl.innerHTML = discordEvents.map(event => {
-            const badgeClass = event.status === 'active' ? 'active' : 'scheduled';
-            const badgeText = event.status === 'active' ? 'Live Now' : 'Upcoming';
-            const relativeTime = getRelativeEventTime(event.start_time, event.status);
-            const formattedTime = formatEventTime(event.start_time);
-            
-            const coverHtml = event.cover_url 
-              ? `<img src="${event.cover_url}" class="event-cover" alt="${event.name}" />`
-              : `<div class="event-cover-placeholder"></div>`;
-            
-            const descHtml = event.description 
-              ? `<div class="event-desc">${event.description}</div>`
-              : '';
+          eventsListEl.innerHTML = discordEvents
+            .map((event) => {
+              const badgeClass =
+                event.status === "active" ? "active" : "scheduled";
+              const badgeText =
+                event.status === "active" ? "Live Now" : "Upcoming";
+              const relativeTime = getRelativeEventTime(
+                event.start_time,
+                event.status,
+              );
+              const formattedTime = formatEventTime(event.start_time);
 
-            const locHtml = event.location
-              ? `<div class="event-location">
+              const coverHtml = event.cover_url
+                ? `<img src="${event.cover_url}" class="event-cover" alt="${event.name}" />`
+                : `<div class="event-cover-placeholder"></div>`;
+
+              const descHtml = event.description
+                ? `<div class="event-desc">${event.description}</div>`
+                : "";
+
+              const locHtml = event.location
+                ? `<div class="event-location">
                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C10.3 20 2 12.3 2 10a10 10 0 0 1 20 0c0 2.3-8.3 10-10 11.7z"/></svg>
                    <span>${event.location}</span>
                  </div>`
-              : '';
+                : "";
 
-            return `
+              return `
               <div class="event-card">
                 ${coverHtml}
                 <div class="event-details">
@@ -1324,7 +1463,8 @@
                 </div>
               </div>
             `;
-          }).join("");
+            })
+            .join("");
         } else {
           eventsListEl.innerHTML = `
             <div style="padding: 25px; text-align: center; color: #888; background: rgba(0, 0, 0, 0.2); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.1);">
