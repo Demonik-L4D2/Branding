@@ -1210,12 +1210,15 @@
                 }
 
                 // 2. Update UI
-                const count = fields.players
+                let count = fields.players?.integerValue
                   ? parseInt(fields.players.integerValue)
                   : 0;
-                const max = fields.max_players
+                if (isNaN(count)) count = 0;
+                
+                let max = fields.max_players?.integerValue
                   ? parseInt(fields.max_players.integerValue)
                   : 20;
+                if (isNaN(max)) max = 20;
 
                 // Parse Player List (Array of Strings)
                 let players = [];

@@ -793,8 +793,10 @@
               return '<div style="padding:15px; text-align:center; color:#888;">No scores recorded yet.</div>';
             }
             return arrayValue.values.map((item, index) => {
-              const name = item.mapValue.fields.name.stringValue;
-              const points = item.mapValue.fields.points.integerValue || item.mapValue.fields.points.doubleValue || 0;
+              const name = item.mapValue?.fields?.name?.stringValue || "Unknown Player";
+              const points = item.mapValue?.fields?.points?.integerValue || item.mapValue?.fields?.points?.doubleValue || 0;
+              let parsedPoints = parseInt(points);
+              if (isNaN(parsedPoints)) parsedPoints = 0;
               
               let rankStyle = "color: #bbb;";
               if (index === 0) rankStyle = "color: #FFD700; font-weight: bold; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"; // Gold
@@ -807,7 +809,7 @@
                     <span style="font-family: 'Oswald', sans-serif; font-size: 1.2rem; width: 25px; text-align: center; ${rankStyle}">#${index + 1}</span>
                     <span style="font-weight: 500; font-size: 1.05rem;">${name}</span>
                   </div>
-                  <span style="color: var(--accent-color); font-family: 'Oswald', sans-serif; font-size: 1.1rem;">${parseInt(points).toLocaleString()} PTS</span>
+                  <span style="color: var(--accent-color); font-family: 'Oswald', sans-serif; font-size: 1.1rem;">${parsedPoints.toLocaleString()} PTS</span>
                 </div>
               `;
             }).join("");

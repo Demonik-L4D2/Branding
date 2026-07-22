@@ -780,8 +780,23 @@
                const url = m.url ? m.url.stringValue : "";
                if (!url || !url.includes("id=")) continue; // Must be custom map with workshop link
                
-               const playtime = m.playtime?.integerValue ? parseInt(m.playtime.integerValue) : 0;
-               const allTimePlaytime = m.all_time_playtime?.integerValue ? parseInt(m.all_time_playtime.integerValue) : 0;
+               let playtime = 0;
+               if (m.playtime?.mapValue?.fields?.week?.integerValue) {
+                  playtime = parseInt(m.playtime.mapValue.fields.week.integerValue);
+               } else if (m.playtime?.integerValue) {
+                  playtime = parseInt(m.playtime.integerValue);
+               }
+               if (isNaN(playtime)) playtime = 0;
+
+               let allTimePlaytime = 0;
+               if (m.playtime?.mapValue?.fields?.all_time?.integerValue) {
+                  allTimePlaytime = parseInt(m.playtime.mapValue.fields.all_time.integerValue);
+               } else if (m.all_time_playtime?.integerValue) {
+                  allTimePlaytime = parseInt(m.all_time_playtime.integerValue);
+               }
+               if (isNaN(allTimePlaytime)) allTimePlaytime = 0;
+
+               const displayPlaytime = playtime > 0 ? playtime : allTimePlaytime;
                const name = m.name?.stringValue ? m.name.stringValue : "Unknown Map";
                
                // Extract steam ID
@@ -799,6 +814,7 @@
                   url,
                   playtime,
                   allTimePlaytime,
+                  displayPlaytime,
                   imageUrl
                });
             }
@@ -830,6 +846,7 @@
                 url,
                 playtime: Math.floor(Math.random() * 15) + 5, // Mock playtimes for layout
                 allTimePlaytime: Math.floor(Math.random() * 200) + 100,
+                displayPlaytime: Math.floor(Math.random() * 200) + 100,
                 imageUrl
               });
             }
@@ -854,9 +871,9 @@
                 <div class="map-title">${m.name.replace(/\\[.*?\\]/g, '').trim()}</div>
                 <div class="map-stats">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  \${m.playtime} Hours Played
+                  ${m.displayPlaytime} Hours Played
                 </div>
-                <a href="\${m.url}" target="_blank" rel="noopener noreferrer" class="subscribe-btn">View Map</a>
+                <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="subscribe-btn">View Map</a>
               </div>
             </div>
           `).join('');
