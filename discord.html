@@ -798,6 +798,15 @@
               <div class="info-label">Current Status</div>
               <div class="info-value discord-status-text">Loading...</div>
             </div>
+            <div style="text-align: center">
+              <div class="info-label">In-Game</div>
+              <div
+                class="info-value discord-gaming-count"
+                style="color: #c084fc"
+              >
+                --
+              </div>
+            </div>
             <div style="text-align: right">
               <div class="info-label">Online</div>
               <div class="info-value discord-count">--</div>
@@ -805,6 +814,27 @@
           </div>
 
           <div id="discord-voice-channels" style="margin-bottom: 20px"></div>
+
+          <div
+            class="info-label"
+            style="
+              margin: 15px 0 10px 0;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <span>Community Activity</span>
+            <span
+              style="
+                font-size: 0.75rem;
+                color: #888;
+                text-transform: none;
+                font-weight: normal;
+              "
+              >Live Gaming & Online</span
+            >
+          </div>
 
           <div class="player-list" id="discord-player-list">
             <div
@@ -1219,23 +1249,87 @@
             const widgetList = document.getElementById("discord-player-list");
             if (widgetList) {
               if (data.members && data.members.length > 0) {
-                const displayMembers = data.members.slice(0, 5);
+                // Categorize members
+                const l4d2Players = [];
+                const otherGamers = [];
+                const justOnline = [];
+
+                data.members.forEach((m) => {
+                  // Skip members currently in voice (they already appear in the voice section above)
+                  if (m.channel_id) return;
+
+                  if (m.game && m.game.name) {
+                    const gLower = m.game.name.toLowerCase();
+                    if (gLower.includes("left 4 dead") || gLower.includes("l4d")) {
+                      l4d2Players.push(m);
+                    } else {
+                      otherGamers.push(m);
+                    }
+                  } else {
+                    justOnline.push(m);
+                  }
+                });
+
+                // Update In-Game counter
+                const gamingCountEls = document.querySelectorAll(".discord-gaming-count");
+                const totalInGame = l4d2Players.length + otherGamers.length;
+                gamingCountEls.forEach((el) => (el.innerText = `${totalInGame} Playing`));
+
+                // Shuffle non-L4D2 members so the display changes dynamically on each refresh
+                otherGamers.sort(() => Math.random() - 0.5);
+                justOnline.sort(() => Math.random() - 0.5);
+
+                // Prioritize: 1. Playing L4D2, 2. Playing Other Games, 3. Random Online Members
+                const prioritized = [...l4d2Players, ...otherGamers, ...justOnline];
+                const displayMembers = prioritized.slice(0, 7);
+
                 widgetList.innerHTML =
                   displayMembers
-                    .map(
-                      (m) => `
-                   <div class="player-item">
-                     <div style="display: flex; align-items: center; gap: 10px;">
-                       <img src="${m.avatar_url}" style="width: 24px; height: 24px; border-radius: 50%;" />
-                       <span style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${m.username}</span>
-                     </div>
-                     <span style="color:#16a34a; font-size:0.7rem; font-weight:bold; align-self:center;">${(m.status || "online").toUpperCase()}</span>
-                   </div>
-                 `,
-                    )
+                    .map((m) => {
+                      let statusColor = "#10b981"; // online green
+                      if (m.status === "idle") statusColor = "#f59e0b"; // idle amber
+                      if (m.status === "dnd") statusColor = "#ef4444"; // dnd red
+
+                      let gameHtml = "";
+                      let badgeHtml = "";
+
+                      if (m.game && m.game.name) {
+                        const isL4D =
+                          m.game.name.toLowerCase().includes("left 4 dead") ||
+                          m.game.name.toLowerCase().includes("l4d");
+                        if (isL4D) {
+                          gameHtml = `<div style="color: #ef4444; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 4px;">🧟 Playing L4D2</div>`;
+                          badgeHtml = `<span style="background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.4); padding: 2px 7px; border-radius: 4px; font-size: 0.68rem; font-weight: bold; white-space: nowrap;">IN L4D2</span>`;
+                        } else {
+                          gameHtml = `<div style="color: #c084fc; font-size: 0.75rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 140px; display: flex; align-items: center; gap: 4px;" title="${m.game.name}">🎮 ${m.game.name}</div>`;
+                          badgeHtml = `<span style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 7px; border-radius: 4px; font-size: 0.68rem; font-weight: 500; white-space: nowrap;">IN-GAME</span>`;
+                        }
+                      } else {
+                        gameHtml = `<div style="color: #71717a; font-size: 0.75rem;">Online on Discord</div>`;
+                        badgeHtml = `<span style="color: ${statusColor}; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">${m.status || "online"}</span>`;
+                      }
+
+                      return `
+                        <div class="player-item" style="display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; gap: 10px;">
+                          <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
+                            <div style="position: relative; flex-shrink: 0;">
+                              <img src="${m.avatar_url}" style="width: 26px; height: 26px; border-radius: 50%; display: block;" />
+                              <span style="position: absolute; bottom: -1px; right: -1px; width: 8px; height: 8px; border-radius: 50%; background: ${statusColor}; border: 1.5px solid #141414;"></span>
+                            </div>
+                            <div style="min-width: 0;">
+                              <div style="color: #f4f4f5; font-size: 0.88rem; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 150px;">${m.username}</div>
+                              ${gameHtml}
+                            </div>
+                          </div>
+                          <div style="flex-shrink: 0;">
+                            ${badgeHtml}
+                          </div>
+                        </div>
+                      `;
+                    })
                     .join("") +
-                  (data.presence_count > 5
-                    ? `<div style="text-align: center; font-size: 0.8rem; color: #888; padding: 15px 0 5px 0;">And ${data.presence_count - 5} more...</div>`
+                  (data.presence_count > displayMembers.length
+                    ? `<div style="text-align: center; font-size: 0.78rem; color: #71717a; padding: 10px 0 4px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 4px;">And ${data.presence_count - displayMembers.length} more online • Shuffled on refresh</div>`
                     : "");
               } else {
                 widgetList.innerHTML =
