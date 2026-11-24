@@ -492,6 +492,32 @@
         background-size: cover;
         background-position: center;
         border-bottom: 2px solid var(--accent-color);
+        position: relative;
+      }
+
+      .map-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        font-family: "Oswald", sans-serif;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .badge-weekly {
+        background: rgba(229, 9, 20, 0.9);
+        color: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+      }
+
+      .badge-alltime {
+        background: rgba(234, 179, 8, 0.9);
+        color: #111;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
       }
       
       .map-card-content {
@@ -754,6 +780,20 @@
       const PROJECT_ID = "discord-bot-482803";
       const MAPS_API_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/server_status/latest`;
 
+      function formatPlaytime(mins) {
+        if (!mins || isNaN(mins) || mins <= 0) return "0 Mins";
+        if (mins < 60) {
+          return `${mins} ${mins === 1 ? "Min" : "Mins"}`;
+        }
+        const hrs = Math.floor(mins / 60);
+        const rem = mins % 60;
+        if (hrs < 10 && rem > 0) {
+          return `${hrs}h ${rem}m`;
+        }
+        const roundedHrs = Math.round(mins / 60);
+        return `${roundedHrs} ${roundedHrs === 1 ? "Hour" : "Hours"}`;
+      }
+
       async function fetchFeaturedMaps() {
         const gridEl = document.getElementById("featured-maps-grid");
         if (!gridEl) return;
@@ -796,7 +836,6 @@
                }
                if (isNaN(allTimePlaytime)) allTimePlaytime = 0;
 
-               const displayPlaytime = playtime > 0 ? playtime : allTimePlaytime;
                const name = m.name?.stringValue ? m.name.stringValue : "Unknown Map";
                
                // Extract steam ID
@@ -814,12 +853,11 @@
                   url,
                   playtime,
                   allTimePlaytime,
-                  displayPlaytime,
                   imageUrl
                });
             }
             
-            // Sort descending by playtime, tie-break with all-time playtime
+            // Sort descending by weekly playtime, tie-break with all-time playtime
             mapDataList.sort((a, b) => {
                 if (b.playtime !== a.playtime) return b.playtime - a.playtime;
                 return b.allTimePlaytime - a.allTimePlaytime;
@@ -846,7 +884,6 @@
                 url,
                 playtime: Math.floor(Math.random() * 15) + 5, // Mock playtimes for layout
                 allTimePlaytime: Math.floor(Math.random() * 200) + 100,
-                displayPlaytime: Math.floor(Math.random() * 200) + 100,
                 imageUrl
               });
             }
@@ -864,19 +901,30 @@
           }
           
           // Render HTML
-          gridEl.innerHTML = top4.map((m, index) => `
-            <div class="map-card" style="animation: fadeIn 0.5s ease-out forwards; opacity: 0; animation-delay: ${index * 0.15}s">
-              <div class="map-card-image" style="background-image: url('${m.imageUrl}')"></div>
-              <div class="map-card-content">
-                <div class="map-title">${m.name.replace(/\\[.*?\\]/g, '').trim()}</div>
-                <div class="map-stats">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  ${m.displayPlaytime} Hours Played
+          gridEl.innerHTML = top4.map((m, index) => {
+            const isWeekly = m.playtime > 0;
+            const formattedTime = isWeekly ? formatPlaytime(m.playtime) : formatPlaytime(m.allTimePlaytime);
+            const timeLabel = isWeekly ? `${formattedTime} This Week` : `${formattedTime} (All-Time)`;
+            const badgeClass = isWeekly ? "badge-weekly" : "badge-alltime";
+            const badgeText = isWeekly ? "This Week" : "All-Time Top";
+            const cleanTitle = m.name.replace(/\[.*?\]/g, '').trim();
+
+            return `
+              <div class="map-card" style="animation: fadeIn 0.5s ease-out forwards; opacity: 0; animation-delay: ${index * 0.15}s">
+                <div class="map-card-image" style="background-image: url('${m.imageUrl}')">
+                  <span class="map-badge ${badgeClass}">${badgeText}</span>
                 </div>
-                <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="subscribe-btn">View Map</a>
+                <div class="map-card-content">
+                  <div class="map-title">${cleanTitle}</div>
+                  <div class="map-stats">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    ${timeLabel}
+                  </div>
+                  <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="subscribe-btn">View Map</a>
+                </div>
               </div>
-            </div>
-          `).join('');
+            `;
+          }).join('');
           
         } catch(e) {
            console.error("Map fetch error:", e);
