@@ -561,6 +561,20 @@
         color: #5865f2;
         border: 1px solid rgba(88, 101, 242, 0.4);
       }
+      .event-interested {
+        font-family: "Oswald", sans-serif;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: rgba(34, 197, 94, 0.15);
+        color: #4ade80;
+        border: 1px solid rgba(74, 222, 128, 0.3);
+      }
       .event-badge.active::before {
         content: "";
         width: 6px;
@@ -1396,6 +1410,9 @@
                     m.cover_url && m.cover_url.stringValue
                       ? m.cover_url.stringValue
                       : null,
+                  user_count: m.user_count?.integerValue
+                    ? parseInt(m.user_count.integerValue)
+                    : (m.user_count?.stringValue ? parseInt(m.user_count.stringValue) : 0),
                 };
               },
             );
@@ -1538,7 +1555,7 @@
                 : `<div class="event-cover-placeholder"></div>`;
 
               const descHtml = event.description
-                ? `<div class="event-desc">${event.description}</div>`
+                ? `<div class="event-desc">${parseDiscordMarkdown(event.description)}</div>`
                 : "";
 
               const locHtml = event.location
@@ -1548,12 +1565,22 @@
                  </div>`
                 : "";
 
+              const interestedHtml = event.user_count > 0
+                ? `<span class="event-interested" title="${event.user_count} People Interested">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                     ${event.user_count} Interested
+                   </span>`
+                : "";
+
               return `
               <div class="event-card">
                 ${coverHtml}
                 <div class="event-details">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span class="event-badge ${badgeClass}">${badgeText}</span>
+                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="event-badge ${badgeClass}">${badgeText}</span>
+                      ${interestedHtml}
+                    </div>
                     <span class="event-time" style="font-weight: bold; color: #5865F2;">${relativeTime}</span>
                   </div>
                   <h4 class="event-title">${event.name}</h4>
